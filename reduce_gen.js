@@ -1,74 +1,41 @@
+"use strict";
 //Time to make it read from file
-//But woww I want to re-write this in scala or typescript or something
+exports.__esModule = true;
+var utils = require("./utils.js");
 var N = 2; // gates
 var n = 3; // inputs
 var m = 1; // outputs
-var table = [
-    { "in": 0, out: 0 },
-    { "in": 1, out: 0 },
-    { "in": 2, out: 0 },
-    { "in": 3, out: 0 },
-    { "in": 4, out: 0 },
-    { "in": 5, out: 0 },
-    { "in": 6, out: 0 },
-    { "in": 7, out: 1 }
-];
-var clauses = [];
-var vars = [];
-function variable(name) {
-    if (vars.indexOf(name) == -1) {
-        vars.push(name);
-    }
-    return 1 + vars.indexOf(name);
-}
+//translate variable names
 function c(i, j, k) {
-    return variable("c_" + i + "_" + j + "_" + k);
+    return utils.variable("c_" + i + "_" + j + "_" + k);
 }
 function o(i, j) {
-    return variable("o_" + i + "_" + j);
+    return utils.variable("o_" + i + "_" + j);
 }
 function v(i, t) {
-    return variable("v_" + i + "_" + t);
+    return utils.variable("v_" + i + "_" + t);
 }
 function tt(i, b1, b2) {
-    return variable("t_" + i + "_" + b1 + "_" + b2);
+    return utils.variable("t_" + i + "_" + b1 + "_" + b2);
 }
+//helper functions
 function not(name) {
     return "-" + name;
 }
 function ith_bit(num, i) {
     return ((num >> i) & 1);
 }
-function comment(x) {
-    clauses.push(["c #### " + x]);
-}
-function commentTruthTable() {
-    comment("target truth table");
-    table.forEach(function (row) {
-        comment(JSON.stringify(row));
-    });
-}
-function commentVariableMapping() {
-    comment("variable");
-    vars.forEach(function (name, index) {
-        comment(name + " " + index);
-    });
-}
-function emitClauses(clauses) {
-    var realclauses = clauses.filter(function (x) { return ("" + x[0]).substring(0, 2) != "c "; });
-    console.log("p cnf " + vars.length + " " + realclauses.length);
-    console.log(clauses.map(function (terms) { return (terms.join(" ") + " 0"); }).join("\n"));
-}
-comment("one port of a gate receives one connection");
+//generate reduction
+utils.addComment("one port of a gate receives one connection");
 for (var i = n; i < n + N; i++) {
     for (var j = 0; j < i; j++) {
         for (var k = 0; k < j; k++) {
-            clauses.push([not(c(i, 0, j)), not(c(i, 0, k))]);
-            clauses.push([not(c(i, 1, j)), not(c(i, 1, k))]);
+            utils.addClause([not(c(i, 0, j)), not(c(i, 0, k))]);
+            utils.addClause([not(c(i, 1, j)), not(c(i, 1, k))]);
         }
         //first input has smaller index than second
         for (var k = j; k < i; k++) {
-            clauses.push([not(c(i, 0, j)), not(c(i, 1, k))]);
+            utils.addClause([not(c(i, 0, j)), not(c(i, 1, k))]);
         }
     }
 }
@@ -79,14 +46,14 @@ for (var i = n; i < n + N; i++) {
         newClause0.push(c(i, 0, j));
         newClause1.push(c(i, 1, j));
     }
-    clauses.push(newClause0);
-    clauses.push(newClause1);
+    utils.addClause(newClause0);
+    utils.addClause(newClause1);
 }
-comment("one output of the circuit receives one connection");
+utils.addComment("one output of the circuit receives one connection");
 for (var i = 0; i < m; i++) {
     for (var j = 0; j < n + N; j++) {
         for (var l = 0; l < j; l++) {
-            clauses.push([not(o(j, i)), not(o(l, i))]);
+            utils.addClause([not(o(j, i)), not(o(l, i))]);
         }
     }
 }
@@ -95,16 +62,16 @@ for (var i = 0; i < m; i++) {
     for (var j = 0; j < n + N; j++) {
         newClause.push(o(j, i));
     }
-    clauses.push(newClause);
+    utils.addClause(newClause);
 }
-comment("input gate has input value");
+utils.addComment("input gate has input value");
 for (var i = 0; i < n; i++) {
     for (var t = 0; t < Math.pow(2, n); t++) {
         if (ith_bit(t, i)) {
-            clauses.push([v(i, t).toString()]);
+            utils.addClause([v(i, t).toString()]);
         }
         else {
-            clauses.push([not(v(i, t))]);
+            utils.addClause([not(v(i, t))]);
         }
     }
 }
@@ -114,21 +81,21 @@ function sixClauseGateValue(c0, c1, v0, v1, vir, t, i0, i1) {
         [not(c0), not(c1), i0 ? v0 : not(v0), i1 ? v1 : not(v1), vir, not(t)]
     ];
 }
-comment("internal gates produce calculated value");
+utils.addComment("internal gates produce calculated value");
 for (var i = n; i < N + n; i++) {
     for (var j0 = 0; j0 < i; j0++) {
         for (var j1 = 0; j1 < j0; j1++) {
             for (var r = 0; r < Math.pow(2, n); r++) {
                 for (var i0 = 0; i0 < 2; i0++) {
                     for (var i1 = 0; i1 < 2; i1++) {
-                        clauses = clauses.concat(sixClauseGateValue(c(i, 0, j0), c(i, 1, j1), v(j0, r), v(j1, r), v(i, r), tt(i, i0, i1), i0, i1));
+                        utils.addClauses(sixClauseGateValue(c(i, 0, j0), c(i, 1, j1), v(j0, r), v(j1, r), v(i, r), tt(i, i0, i1), i0, i1));
                     }
                 }
             }
         }
     }
 }
-comment("outputs match truth table");
+utils.addComment("outputs match truth table");
 function tableMatch(o, v, vl) {
     if (vl) {
         return [[not(o), v]];
@@ -140,10 +107,10 @@ function tableMatch(o, v, vl) {
 for (var k = 0; k < m; k++) {
     table.forEach(function (row) {
         for (var i = 0; i < n + N; i++) {
-            clauses = clauses.concat(tableMatch(o(i, k), v(i, row["in"]), ith_bit(row.out, k)));
+            cs = cs.concat(tableMatch(o(i, k), v(i, row["in"]), ith_bit(row.out, k)));
         }
     });
 }
-commentTruthTable();
-commentVariableMapping();
-emitClauses(clauses);
+utils.commentTruthTable();
+utils.commentVariableMapping();
+utils.emitClauses();

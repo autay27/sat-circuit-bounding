@@ -1,0 +1,1 @@
+sed "s#c_2_0_1#c_2_0_1=t#g"|sed "s#c_2_1_1#c_2_1_1=t#g"|sed "s#o_2_0#o_2_0=t#g"|sed "s#v_0_1#v_0_1=t#g"|sed "s#v_0_3#v_0_3=t#g"|sed "s#v_1_2#v_1_2=t#g"|sed "s#v_1_3#v_1_3=t#g"|sed "s#t_2_1_0#t_2_1_0=t#g"|sed "s#v_2_3#v_2_3=t#g"|cat

@@ -1,0 +1,29 @@
+p cnf 10 18
+c #### one port of a gate, one connection 0 
+c #### one output, one connection 0 
+-1 -2 0 
+2 1 0 
+c #### input gate has input value 0 
+-3 0 
+4 0 
+-5 0 
+6 0 
+-7 0 
+-8 0 
+9 0 
+10 0 
+c #### internal gates have calculated value 0 
+c #### outputs match truth table 0 
+-2 -3 0 
+-1 -7 0 
+-2 -4 0 
+-1 -8 0 
+-2 5 0 
+-1 9 0 
+-2 6 0 
+-1 10 0 
+c #### gate 2 is an or gate 0 
+c #### {"in":0,"out":0} 0 
+c #### {"in":1,"out":0} 0 
+c #### {"in":2,"out":1} 0 
+c #### {"in":3,"out":1} 0
