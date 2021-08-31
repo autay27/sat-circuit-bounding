@@ -8,6 +8,7 @@ import * as utils from "./utils";
 const N=2 // gates
 const n=3 // inputs
 const m=1 // outputs
+const L=4 //max circuit depth
 
 var myArgs = process.argv.slice(2);
 
@@ -29,6 +30,10 @@ function v(i: number, t: number): number {
 
 function tt(i: number, b1: number, b2: number): number {
     return utils.variable("t_" + i + "_" + b1 + "_" + b2)
+}
+
+function d(i: number, l: number): number {
+    return utils.variable("d_" + i + "_" + l)
 }
 
 //helper functions
@@ -204,6 +209,32 @@ function tableMatch(o: number,v: number,vl: number) {
 
             }
         })
+    }
+
+    utils.addComment("a gate has exactly one depth")
+
+    for (var i = n; i < n+N; i++){
+    
+        one_hot(seq(L).map(l => d(i,l)))
+
+    }
+
+
+    utils.addComment("gates output to ones at lower depths")
+
+    for (var i = n; i < n+N; i++){
+        for (var j = n; j < i; j++){        
+            for (var l0 = 0; l0 < L; l0++){
+                for (var l1 = 0; l1 <= l0; l1++){
+
+                    utils.addClause(
+                        [not(d(i,l0)), not(d(j, l1)), not(c(i,0,j))])
+
+                    utils.addClause(
+                        [not(d(i,l0)), not(d(j, l1)), not(c(i,1,j))])
+                }
+            } 
+        }
     }
 
 
