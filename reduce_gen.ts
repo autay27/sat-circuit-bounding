@@ -4,15 +4,15 @@
 //have a variable class (storing name and index), a literal class, and a clause type
 import * as utils from "./utils";
 
-
+//make these CL arguments too
 const N=2 // gates
-const n=3 // inputs
-const m=1 // outputs
 
 var myArgs = process.argv.slice(2);
 
 const table = utils.parseTable(myArgs[0])
-
+const rows = table.rows
+const n=table.ins
+const m=table.outs
 
 //translate variable names
 function c(i: number, j: number, k: number): number {
@@ -82,7 +82,7 @@ for (var i = n; i < n + N; i++) {
         utils.addClause([not(c(i, 0, j)), not(c(i, 0, k))])
         utils.addClause([not(c(i, 1, j)), not(c(i, 1, k))])
       } 
-      //first input has smaller index than second
+      //first input has smaller cdcfc than second
       for (var k = j; k < i; k++) {
         utils.addClause([not(c(i, 0, j)), not(c(i, 1, k))])
       } 
@@ -193,7 +193,7 @@ function tableMatch(o: number,v: number,vl: number) {
 }
 
     for (var k = 0; k < m; k++){
-        table.forEach( row => {
+        rows.forEach( row => {
             for (var i = 0; i < n+N; i++){
 
                 utils.addClauses(tableMatch(

@@ -4,12 +4,12 @@ exports.__esModule = true;
 var fs = require('fs');
 function parseTable(filename) {
     var file = fs.readFileSync('./' + filename, 'utf-8');
-    var notcomment = /^[01 ]+ [01]$/;
-    return file.split('\n').filter(function (line) { return line.match(notcomment); })
-        .map(function (str) {
-        var rows = str.split(' ');
-        return { "in": parseInt(rows[0], 2), out: parseInt(rows[1], 2) };
+    var notcomment = /^[01 ]+ [01]+$/;
+    var rs = file.split('\n').filter(function (line) { return line.match(notcomment); }).map(function (str) { return str.split(' '); });
+    var t = rs.map(function (row) {
+        return { "in": parseInt(row[0], 2), out: parseInt(row[1], 2) };
     });
+    return { rows: t, ins: rs[0][0].length, outs: rs[0][1].length };
 }
 exports.parseTable = parseTable;
 //dimacs output
@@ -38,15 +38,15 @@ exports.addClauses = addClauses;
 //take truth table as arg
 function commentTruthTable(t) {
     addComment("target truth table");
-    t.forEach(function (row) {
+    t.rows.forEach(function (row) {
         addComment(JSON.stringify(row));
     });
 }
 exports.commentTruthTable = commentTruthTable;
 function commentVariableMapping() {
-    addComment("variable");
+    addComment("variable names");
     vars.forEach(function (name, index) {
-        addComment(name + " " + index);
+        addComment(name + " " + (index + 1));
     });
 }
 exports.commentVariableMapping = commentVariableMapping;
