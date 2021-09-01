@@ -2,4 +2,4 @@
 
 Command examples: 
 
-ts-node reduce_gen.ts > prob && minisat prob out ; cat out
+ts-node reduce_gen.ts truth.table > prob && minisat prob out ; cat out
