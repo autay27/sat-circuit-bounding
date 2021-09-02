@@ -1,0 +1,817 @@
+Problem file: examples/6parity/prob_sat
+Solution file: examples/6parity/solution_sat
+c_6_0_0
+c_6_1_0 TRUE
+c_6_1_1
+c_6_1_2
+c_6_1_3
+c_6_1_4
+c_6_1_5
+c_6_0_1
+c_6_0_2
+c_6_0_3
+c_6_0_4
+c_6_0_5 TRUE
+c_7_0_0
+c_7_1_0
+c_7_1_1 TRUE
+c_7_1_2
+c_7_1_3
+c_7_1_4
+c_7_1_5
+c_7_1_6
+c_7_0_1
+c_7_0_2
+c_7_0_3
+c_7_0_4
+c_7_0_5
+c_7_0_6 TRUE
+c_8_0_0
+c_8_1_0
+c_8_1_1
+c_8_1_2 TRUE
+c_8_1_3
+c_8_1_4
+c_8_1_5
+c_8_1_6
+c_8_1_7
+c_8_0_1
+c_8_0_2
+c_8_0_3
+c_8_0_4 TRUE
+c_8_0_5
+c_8_0_6
+c_8_0_7
+c_9_0_0
+c_9_1_0
+c_9_1_1
+c_9_1_2
+c_9_1_3 TRUE
+c_9_1_4
+c_9_1_5
+c_9_1_6
+c_9_1_7
+c_9_1_8
+c_9_0_1
+c_9_0_2
+c_9_0_3
+c_9_0_4
+c_9_0_5
+c_9_0_6
+c_9_0_7 TRUE
+c_9_0_8
+c_10_0_0
+c_10_1_0
+c_10_1_1
+c_10_1_2
+c_10_1_3
+c_10_1_4
+c_10_1_5
+c_10_1_6
+c_10_1_7
+c_10_1_8 TRUE
+c_10_1_9
+c_10_0_1
+c_10_0_2
+c_10_0_3
+c_10_0_4
+c_10_0_5
+c_10_0_6
+c_10_0_7
+c_10_0_8
+c_10_0_9 TRUE
+o_1_0
+o_0_0
+o_2_0
+o_3_0
+o_4_0
+o_5_0
+o_6_0
+o_7_0
+o_8_0
+o_9_0
+o_10_0 TRUE
+v_0_0
+v_0_1 TRUE
+v_0_2
+v_0_3 TRUE
+v_0_4
+v_0_5 TRUE
+v_0_6
+v_0_7 TRUE
+v_0_8
+v_0_9 TRUE
+v_0_10
+v_0_11 TRUE
+v_0_12
+v_0_13 TRUE
+v_0_14
+v_0_15 TRUE
+v_0_16
+v_0_17 TRUE
+v_0_18
+v_0_19 TRUE
+v_0_20
+v_0_21 TRUE
+v_0_22
+v_0_23 TRUE
+v_0_24
+v_0_25 TRUE
+v_0_26
+v_0_27 TRUE
+v_0_28
+v_0_29 TRUE
+v_0_30
+v_0_31 TRUE
+v_0_32
+v_0_33 TRUE
+v_0_34
+v_0_35 TRUE
+v_0_36
+v_0_37 TRUE
+v_0_38
+v_0_39 TRUE
+v_0_40
+v_0_41 TRUE
+v_0_42
+v_0_43 TRUE
+v_0_44
+v_0_45 TRUE
+v_0_46
+v_0_47 TRUE
+v_0_48
+v_0_49 TRUE
+v_0_50
+v_0_51 TRUE
+v_0_52
+v_0_53 TRUE
+v_0_54
+v_0_55 TRUE
+v_0_56
+v_0_57 TRUE
+v_0_58
+v_0_59 TRUE
+v_0_60
+v_0_61 TRUE
+v_0_62
+v_0_63 TRUE
+v_1_0
+v_1_1
+v_1_2 TRUE
+v_1_3 TRUE
+v_1_4
+v_1_5
+v_1_6 TRUE
+v_1_7 TRUE
+v_1_8
+v_1_9
+v_1_10 TRUE
+v_1_11 TRUE
+v_1_12
+v_1_13
+v_1_14 TRUE
+v_1_15 TRUE
+v_1_16
+v_1_17
+v_1_18 TRUE
+v_1_19 TRUE
+v_1_20
+v_1_21
+v_1_22 TRUE
+v_1_23 TRUE
+v_1_24
+v_1_25
+v_1_26 TRUE
+v_1_27 TRUE
+v_1_28
+v_1_29
+v_1_30 TRUE
+v_1_31 TRUE
+v_1_32
+v_1_33
+v_1_34 TRUE
+v_1_35 TRUE
+v_1_36
+v_1_37
+v_1_38 TRUE
+v_1_39 TRUE
+v_1_40
+v_1_41
+v_1_42 TRUE
+v_1_43 TRUE
+v_1_44
+v_1_45
+v_1_46 TRUE
+v_1_47 TRUE
+v_1_48
+v_1_49
+v_1_50 TRUE
+v_1_51 TRUE
+v_1_52
+v_1_53
+v_1_54 TRUE
+v_1_55 TRUE
+v_1_56
+v_1_57
+v_1_58 TRUE
+v_1_59 TRUE
+v_1_60
+v_1_61
+v_1_62 TRUE
+v_1_63 TRUE
+v_2_0
+v_2_1
+v_2_2
+v_2_3
+v_2_4 TRUE
+v_2_5 TRUE
+v_2_6 TRUE
+v_2_7 TRUE
+v_2_8
+v_2_9
+v_2_10
+v_2_11
+v_2_12 TRUE
+v_2_13 TRUE
+v_2_14 TRUE
+v_2_15 TRUE
+v_2_16
+v_2_17
+v_2_18
+v_2_19
+v_2_20 TRUE
+v_2_21 TRUE
+v_2_22 TRUE
+v_2_23 TRUE
+v_2_24
+v_2_25
+v_2_26
+v_2_27
+v_2_28 TRUE
+v_2_29 TRUE
+v_2_30 TRUE
+v_2_31 TRUE
+v_2_32
+v_2_33
+v_2_34
+v_2_35
+v_2_36 TRUE
+v_2_37 TRUE
+v_2_38 TRUE
+v_2_39 TRUE
+v_2_40
+v_2_41
+v_2_42
+v_2_43
+v_2_44 TRUE
+v_2_45 TRUE
+v_2_46 TRUE
+v_2_47 TRUE
+v_2_48
+v_2_49
+v_2_50
+v_2_51
+v_2_52 TRUE
+v_2_53 TRUE
+v_2_54 TRUE
+v_2_55 TRUE
+v_2_56
+v_2_57
+v_2_58
+v_2_59
+v_2_60 TRUE
+v_2_61 TRUE
+v_2_62 TRUE
+v_2_63 TRUE
+v_3_0
+v_3_1
+v_3_2
+v_3_3
+v_3_4
+v_3_5
+v_3_6
+v_3_7
+v_3_8 TRUE
+v_3_9 TRUE
+v_3_10 TRUE
+v_3_11 TRUE
+v_3_12 TRUE
+v_3_13 TRUE
+v_3_14 TRUE
+v_3_15 TRUE
+v_3_16
+v_3_17
+v_3_18
+v_3_19
+v_3_20
+v_3_21
+v_3_22
+v_3_23
+v_3_24 TRUE
+v_3_25 TRUE
+v_3_26 TRUE
+v_3_27 TRUE
+v_3_28 TRUE
+v_3_29 TRUE
+v_3_30 TRUE
+v_3_31 TRUE
+v_3_32
+v_3_33
+v_3_34
+v_3_35
+v_3_36
+v_3_37
+v_3_38
+v_3_39
+v_3_40 TRUE
+v_3_41 TRUE
+v_3_42 TRUE
+v_3_43 TRUE
+v_3_44 TRUE
+v_3_45 TRUE
+v_3_46 TRUE
+v_3_47 TRUE
+v_3_48
+v_3_49
+v_3_50
+v_3_51
+v_3_52
+v_3_53
+v_3_54
+v_3_55
+v_3_56 TRUE
+v_3_57 TRUE
+v_3_58 TRUE
+v_3_59 TRUE
+v_3_60 TRUE
+v_3_61 TRUE
+v_3_62 TRUE
+v_3_63 TRUE
+v_4_0
+v_4_1
+v_4_2
+v_4_3
+v_4_4
+v_4_5
+v_4_6
+v_4_7
+v_4_8
+v_4_9
+v_4_10
+v_4_11
+v_4_12
+v_4_13
+v_4_14
+v_4_15
+v_4_16 TRUE
+v_4_17 TRUE
+v_4_18 TRUE
+v_4_19 TRUE
+v_4_20 TRUE
+v_4_21 TRUE
+v_4_22 TRUE
+v_4_23 TRUE
+v_4_24 TRUE
+v_4_25 TRUE
+v_4_26 TRUE
+v_4_27 TRUE
+v_4_28 TRUE
+v_4_29 TRUE
+v_4_30 TRUE
+v_4_31 TRUE
+v_4_32
+v_4_33
+v_4_34
+v_4_35
+v_4_36
+v_4_37
+v_4_38
+v_4_39
+v_4_40
+v_4_41
+v_4_42
+v_4_43
+v_4_44
+v_4_45
+v_4_46
+v_4_47
+v_4_48 TRUE
+v_4_49 TRUE
+v_4_50 TRUE
+v_4_51 TRUE
+v_4_52 TRUE
+v_4_53 TRUE
+v_4_54 TRUE
+v_4_55 TRUE
+v_4_56 TRUE
+v_4_57 TRUE
+v_4_58 TRUE
+v_4_59 TRUE
+v_4_60 TRUE
+v_4_61 TRUE
+v_4_62 TRUE
+v_4_63 TRUE
+v_5_0
+v_5_1
+v_5_2
+v_5_3
+v_5_4
+v_5_5
+v_5_6
+v_5_7
+v_5_8
+v_5_9
+v_5_10
+v_5_11
+v_5_12
+v_5_13
+v_5_14
+v_5_15
+v_5_16
+v_5_17
+v_5_18
+v_5_19
+v_5_20
+v_5_21
+v_5_22
+v_5_23
+v_5_24
+v_5_25
+v_5_26
+v_5_27
+v_5_28
+v_5_29
+v_5_30
+v_5_31
+v_5_32 TRUE
+v_5_33 TRUE
+v_5_34 TRUE
+v_5_35 TRUE
+v_5_36 TRUE
+v_5_37 TRUE
+v_5_38 TRUE
+v_5_39 TRUE
+v_5_40 TRUE
+v_5_41 TRUE
+v_5_42 TRUE
+v_5_43 TRUE
+v_5_44 TRUE
+v_5_45 TRUE
+v_5_46 TRUE
+v_5_47 TRUE
+v_5_48 TRUE
+v_5_49 TRUE
+v_5_50 TRUE
+v_5_51 TRUE
+v_5_52 TRUE
+v_5_53 TRUE
+v_5_54 TRUE
+v_5_55 TRUE
+v_5_56 TRUE
+v_5_57 TRUE
+v_5_58 TRUE
+v_5_59 TRUE
+v_5_60 TRUE
+v_5_61 TRUE
+v_5_62 TRUE
+v_5_63 TRUE
+v_6_0 TRUE
+t_6_0_0 TRUE
+t_6_0_1
+t_6_1_0
+t_6_1_1 TRUE
+v_6_1
+v_6_2 TRUE
+v_6_3
+v_6_4 TRUE
+v_6_5
+v_6_6 TRUE
+v_6_7
+v_6_8 TRUE
+v_6_9
+v_6_10 TRUE
+v_6_11
+v_6_12 TRUE
+v_6_13
+v_6_14 TRUE
+v_6_15
+v_6_16 TRUE
+v_6_17
+v_6_18 TRUE
+v_6_19
+v_6_20 TRUE
+v_6_21
+v_6_22 TRUE
+v_6_23
+v_6_24 TRUE
+v_6_25
+v_6_26 TRUE
+v_6_27
+v_6_28 TRUE
+v_6_29
+v_6_30 TRUE
+v_6_31
+v_6_32
+v_6_33 TRUE
+v_6_34
+v_6_35 TRUE
+v_6_36
+v_6_37 TRUE
+v_6_38
+v_6_39 TRUE
+v_6_40
+v_6_41 TRUE
+v_6_42
+v_6_43 TRUE
+v_6_44
+v_6_45 TRUE
+v_6_46
+v_6_47 TRUE
+v_6_48
+v_6_49 TRUE
+v_6_50
+v_6_51 TRUE
+v_6_52
+v_6_53 TRUE
+v_6_54
+v_6_55 TRUE
+v_6_56
+v_6_57 TRUE
+v_6_58
+v_6_59 TRUE
+v_6_60
+v_6_61 TRUE
+v_6_62
+v_6_63 TRUE
+v_7_0
+t_7_0_0 TRUE
+t_7_0_1
+t_7_1_0
+t_7_1_1 TRUE
+v_7_1 TRUE
+v_7_2 TRUE
+v_7_3
+v_7_4
+v_7_5 TRUE
+v_7_6 TRUE
+v_7_7
+v_7_8
+v_7_9 TRUE
+v_7_10 TRUE
+v_7_11
+v_7_12
+v_7_13 TRUE
+v_7_14 TRUE
+v_7_15
+v_7_16
+v_7_17 TRUE
+v_7_18 TRUE
+v_7_19
+v_7_20
+v_7_21 TRUE
+v_7_22 TRUE
+v_7_23
+v_7_24
+v_7_25 TRUE
+v_7_26 TRUE
+v_7_27
+v_7_28
+v_7_29 TRUE
+v_7_30 TRUE
+v_7_31
+v_7_32 TRUE
+v_7_33
+v_7_34
+v_7_35 TRUE
+v_7_36 TRUE
+v_7_37
+v_7_38
+v_7_39 TRUE
+v_7_40 TRUE
+v_7_41
+v_7_42
+v_7_43 TRUE
+v_7_44 TRUE
+v_7_45
+v_7_46
+v_7_47 TRUE
+v_7_48 TRUE
+v_7_49
+v_7_50
+v_7_51 TRUE
+v_7_52 TRUE
+v_7_53
+v_7_54
+v_7_55 TRUE
+v_7_56 TRUE
+v_7_57
+v_7_58
+v_7_59 TRUE
+v_7_60 TRUE
+v_7_61
+v_7_62
+v_7_63 TRUE
+v_8_0
+t_8_0_0
+t_8_0_1 TRUE
+t_8_1_0 TRUE
+t_8_1_1
+v_8_1
+v_8_2
+v_8_3
+v_8_4 TRUE
+v_8_5 TRUE
+v_8_6 TRUE
+v_8_7 TRUE
+v_8_8
+v_8_9
+v_8_10
+v_8_11
+v_8_12 TRUE
+v_8_13 TRUE
+v_8_14 TRUE
+v_8_15 TRUE
+v_8_16 TRUE
+v_8_17 TRUE
+v_8_18 TRUE
+v_8_19 TRUE
+v_8_20
+v_8_21
+v_8_22
+v_8_23
+v_8_24 TRUE
+v_8_25 TRUE
+v_8_26 TRUE
+v_8_27 TRUE
+v_8_28
+v_8_29
+v_8_30
+v_8_31
+v_8_32
+v_8_33
+v_8_34
+v_8_35
+v_8_36 TRUE
+v_8_37 TRUE
+v_8_38 TRUE
+v_8_39 TRUE
+v_8_40
+v_8_41
+v_8_42
+v_8_43
+v_8_44 TRUE
+v_8_45 TRUE
+v_8_46 TRUE
+v_8_47 TRUE
+v_8_48 TRUE
+v_8_49 TRUE
+v_8_50 TRUE
+v_8_51 TRUE
+v_8_52
+v_8_53
+v_8_54
+v_8_55
+v_8_56 TRUE
+v_8_57 TRUE
+v_8_58 TRUE
+v_8_59 TRUE
+v_8_60
+v_8_61
+v_8_62
+v_8_63
+v_9_0
+t_9_0_0
+t_9_0_1 TRUE
+t_9_1_0 TRUE
+t_9_1_1
+v_9_1 TRUE
+v_9_2 TRUE
+v_9_3
+v_9_4
+v_9_5 TRUE
+v_9_6 TRUE
+v_9_7
+v_9_8 TRUE
+v_9_9
+v_9_10
+v_9_11 TRUE
+v_9_12 TRUE
+v_9_13
+v_9_14
+v_9_15 TRUE
+v_9_16
+v_9_17 TRUE
+v_9_18 TRUE
+v_9_19
+v_9_20
+v_9_21 TRUE
+v_9_22 TRUE
+v_9_23
+v_9_24 TRUE
+v_9_25
+v_9_26
+v_9_27 TRUE
+v_9_28 TRUE
+v_9_29
+v_9_30
+v_9_31 TRUE
+v_9_32 TRUE
+v_9_33
+v_9_34
+v_9_35 TRUE
+v_9_36 TRUE
+v_9_37
+v_9_38
+v_9_39 TRUE
+v_9_40
+v_9_41 TRUE
+v_9_42 TRUE
+v_9_43
+v_9_44
+v_9_45 TRUE
+v_9_46 TRUE
+v_9_47
+v_9_48 TRUE
+v_9_49
+v_9_50
+v_9_51 TRUE
+v_9_52 TRUE
+v_9_53
+v_9_54
+v_9_55 TRUE
+v_9_56
+v_9_57 TRUE
+v_9_58 TRUE
+v_9_59
+v_9_60
+v_9_61 TRUE
+v_9_62 TRUE
+v_9_63
+v_10_0
+t_10_0_0
+t_10_0_1 TRUE
+t_10_1_0 TRUE
+t_10_1_1
+v_10_1 TRUE
+v_10_2 TRUE
+v_10_3
+v_10_4 TRUE
+v_10_5
+v_10_6
+v_10_7 TRUE
+v_10_8 TRUE
+v_10_9
+v_10_10
+v_10_11 TRUE
+v_10_12
+v_10_13 TRUE
+v_10_14 TRUE
+v_10_15
+v_10_16 TRUE
+v_10_17
+v_10_18
+v_10_19 TRUE
+v_10_20
+v_10_21 TRUE
+v_10_22 TRUE
+v_10_23
+v_10_24
+v_10_25 TRUE
+v_10_26 TRUE
+v_10_27
+v_10_28 TRUE
+v_10_29
+v_10_30
+v_10_31 TRUE
+v_10_32 TRUE
+v_10_33
+v_10_34
+v_10_35 TRUE
+v_10_36
+v_10_37 TRUE
+v_10_38 TRUE
+v_10_39
+v_10_40
+v_10_41 TRUE
+v_10_42 TRUE
+v_10_43
+v_10_44 TRUE
+v_10_45
+v_10_46
+v_10_47 TRUE
+v_10_48
+v_10_49 TRUE
+v_10_50 TRUE
+v_10_51
+v_10_52 TRUE
+v_10_53
+v_10_54
+v_10_55 TRUE
+v_10_56 TRUE
+v_10_57
+v_10_58
+v_10_59 TRUE
+v_10_60
+v_10_61 TRUE
+v_10_62 TRUE
+v_10_63
