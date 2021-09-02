@@ -1,0 +1,163 @@
+Problem file: examples/4and/prob_sat
+Solution file: examples/4and/solution_sat
+c_4_0_0
+c_4_1_0
+c_4_1_1 TRUE
+c_4_1_2
+c_4_1_3
+c_4_0_1
+c_4_0_2 TRUE
+c_4_0_3
+c_5_0_0
+c_5_1_0
+c_5_1_1
+c_5_1_2
+c_5_1_3 TRUE
+c_5_1_4
+c_5_0_1
+c_5_0_2
+c_5_0_3
+c_5_0_4 TRUE
+c_6_0_0
+c_6_1_0 TRUE
+c_6_1_1
+c_6_1_2
+c_6_1_3
+c_6_1_4
+c_6_1_5
+c_6_0_1
+c_6_0_2
+c_6_0_3
+c_6_0_4
+c_6_0_5 TRUE
+o_1_0
+o_0_0
+o_2_0
+o_3_0
+o_4_0
+o_5_0
+o_6_0 TRUE
+v_0_0
+v_0_1 TRUE
+v_0_2
+v_0_3 TRUE
+v_0_4
+v_0_5 TRUE
+v_0_6
+v_0_7 TRUE
+v_0_8
+v_0_9 TRUE
+v_0_10
+v_0_11 TRUE
+v_0_12
+v_0_13 TRUE
+v_0_14
+v_0_15 TRUE
+v_1_0
+v_1_1
+v_1_2 TRUE
+v_1_3 TRUE
+v_1_4
+v_1_5
+v_1_6 TRUE
+v_1_7 TRUE
+v_1_8
+v_1_9
+v_1_10 TRUE
+v_1_11 TRUE
+v_1_12
+v_1_13
+v_1_14 TRUE
+v_1_15 TRUE
+v_2_0
+v_2_1
+v_2_2
+v_2_3
+v_2_4 TRUE
+v_2_5 TRUE
+v_2_6 TRUE
+v_2_7 TRUE
+v_2_8
+v_2_9
+v_2_10
+v_2_11
+v_2_12 TRUE
+v_2_13 TRUE
+v_2_14 TRUE
+v_2_15 TRUE
+v_3_0
+v_3_1
+v_3_2
+v_3_3
+v_3_4
+v_3_5
+v_3_6
+v_3_7
+v_3_8 TRUE
+v_3_9 TRUE
+v_3_10 TRUE
+v_3_11 TRUE
+v_3_12 TRUE
+v_3_13 TRUE
+v_3_14 TRUE
+v_3_15 TRUE
+v_4_0 TRUE
+t_4_0_0
+t_4_0_1 TRUE
+t_4_1_0 TRUE
+t_4_1_1 TRUE
+v_4_1 TRUE
+v_4_2 TRUE
+v_4_3 TRUE
+v_4_4 TRUE
+v_4_5 TRUE
+v_4_6
+v_4_7
+v_4_8 TRUE
+v_4_9 TRUE
+v_4_10 TRUE
+v_4_11 TRUE
+v_4_12 TRUE
+v_4_13 TRUE
+v_4_14
+v_4_15
+v_5_0
+t_5_0_0
+t_5_0_1
+t_5_1_0 TRUE
+t_5_1_1
+v_5_1
+v_5_2
+v_5_3
+v_5_4
+v_5_5
+v_5_6
+v_5_7
+v_5_8
+v_5_9
+v_5_10
+v_5_11
+v_5_12
+v_5_13
+v_5_14 TRUE
+v_5_15 TRUE
+v_6_0
+t_6_0_0 TRUE
+t_6_0_1
+t_6_1_0
+t_6_1_1
+v_6_1
+v_6_2
+v_6_3
+v_6_4
+v_6_5
+v_6_6
+v_6_7
+v_6_8
+v_6_9
+v_6_10
+v_6_11
+v_6_12
+v_6_13
+v_6_14
+v_6_15 TRUE
