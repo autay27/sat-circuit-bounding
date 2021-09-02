@@ -1,15 +1,16 @@
-//priority 1: make it read from file
+//really this file should also be passed as an argument to another piece of code
 
 //make a sat problem class
 //have a variable class (storing name and index), a literal class, and a clause type
 import * as utils from "./utils";
 
-//make these CL arguments too
-const N=2 // gates
 
 var myArgs = process.argv.slice(2);
 
-const table = utils.parseTable(myArgs[0])
+if (myArgs.length<2) console.log("Usage: max # gates, truth table file")
+
+const N=parseInt(myArgs[0])// gates
+const table = utils.parseTable(myArgs[1])
 const rows = table.rows
 const n=table.ins
 const m=table.outs
