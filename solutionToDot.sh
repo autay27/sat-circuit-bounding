@@ -2,8 +2,16 @@
 
 SOLN=$1
 
-echo "Solution file: ${SOLN}"
+echo "digraph {"
 
-cat ${SOLN} | grep TRUE | tr -d 'TRUE ' 
+cat ${SOLN} | grep TRUE | grep c | sed 's/TRUE//' | awk -F'_' '{ print $4 "-> " $2 ";"}'
 
-#time to learn how to use dot.
+cat ${SOLN} | grep t_ | \
+    sed 's/$/ FALSE/' | sed 's/TRUE FALSE/TRUE/' | \
+    paste - - - - | \
+    sed 's/^t_\([0-9]*\)/\1 [ label = "/' | \
+    sed 's#t_[0-9]*_##g' | \
+    sed 's/_//' | sed 's/$/"];/' | sed 's/\t/\\n/g'
+
+
+echo "}"

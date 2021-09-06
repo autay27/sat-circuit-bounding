@@ -1,0 +1,11 @@
+digraph {
+1 -> 4;
+2 -> 4;
+0 -> 5;
+4 -> 5;
+3 -> 6;
+5 -> 6;
+4 [ label = "0_0 FALSE\n0_1 TRUE\n1_0 TRUE\n1_1 FALSE"];
+5 [ label = "0_0 FALSE\n0_1 TRUE\n1_0 TRUE\n1_1 FALSE"];
+6 [ label = "0_0 FALSE\n0_1 TRUE\n1_0 TRUE\n1_1 FALSE"];
+}
