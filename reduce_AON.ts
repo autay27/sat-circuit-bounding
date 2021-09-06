@@ -28,8 +28,8 @@ function v(i: number, t: number): number {
     return utils.variable("v_" + i + "_" + t)
 }
 
-function tt(i: number, b1: number, b2: number): number {
-    return utils.variable("t_" + i + "_" + b1 + "_" + b2)
+function t(i: number, b: number, ): number {
+    return utils.variable("t_" + i + "_" + b)
 }
 
 //helper functions
@@ -73,23 +73,24 @@ function one_hot(xs:number[]): void {
 
 }
 
-function gateOutput(ti0, ti1, i0, i1){
+function gateOutput(ti0: number, ti1: number, i: number, j: number): number {
 
-  //match gate with one of AND, OR, NAND, NOR
+  //match gate with one of AND, OR, NOT
   //using ti_ as index
 
-  let dictionary = [
+  let dictionary: number[][] = [
     [0,0,0,1], //and
     [0,1,1,1], //or
-    [1,0,0,0], //nor
-    [1,1,1,0] //nand
+    [1,0,1,0], //not
+    [1,0,1,0] //not again
   ]
 
-  return dictionary[2*ti1 + ti0][2*i1 + i0]
+  return dictionary[2*ti0 + ti1][2*i + j]
 
 }
 
-//generate reduction
+//I should change these to use the existing onehot function!
+//and put these common features of the reduction into a second file, honestly
 
     utils.addComment("one port of a gate receives one connection")
 
@@ -99,7 +100,7 @@ for (var i = n; i < n + N; i++) {
         utils.addClause([not(c(i, 0, j)), not(c(i, 0, k))])
         utils.addClause([not(c(i, 1, j)), not(c(i, 1, k))])
       } 
-      //first input has smaller cdcfc than second
+      //first input has smaller index than second
       for (var k = j; k < i; k++) {
         utils.addClause([not(c(i, 0, j)), not(c(i, 1, k))])
       } 
@@ -151,24 +152,42 @@ for (var i = n; i < n + N; i++) {
 
     for (var i = 0; i < n; i++){
 
-        for (var t = 0; t < Math.pow(2,n); t++){
-            if(ith_bit(t, i)){
-                utils.addClause([v(i,t).toString()])
+        for (var r = 0; r < Math.pow(2,n); r++){
+            if(ith_bit(r, i)){
+                utils.addClause([v(i,r).toString()])
             } else {
-                utils.addClause([not(v(i,t))])
+                utils.addClause([not(v(i,r))])
             }
         }
 
     }
 
-function sixClauseGateValue(c0: number,c1: number,v0: number,v1: number,vir: number,t: number,i0: number,i1: number) {
-    return [
-        [not(c0), not(c1), i0?v0.toString():not(v0), i1?v1.toString():not(v1), not(vir),t.toString()],
-        [not(c0), not(c1), i0?v0.toString():not(v0), i1?v1.toString():not(v1), vir.toString(), not(t)]
-    ];
+function sixClauseGateValue(c0: number,c1: number,v0: number,v1: number,ti0: number,ti1: number,i0: number,i1: number,vir: number): string[][] {
+    
+    let newClauses = [];
+
+    for (var i = 0; i < 2; i++){
+        for(var j = 0; j < 2; j++){
+            
+            const reqd_value = gateOutput(i0, i1, i, j)
+
+            newClauses.push([
+                    not(c0), not(c1),
+                    i0 ? not(ti0) : ti0,
+                    i1 ? not(ti1) : ti1,
+                    i ? not(v0) : v0,
+                    j ? not(v1) : v1,
+                    reqd_value ? vir : not(vir)
+                ])
+        }
+    }
+
+    return newClauses.map(x => x.map(y => y.toString()));
 }
 
     utils.addComment("internal gates produce calculated value")
+
+    //can I have a little iterate over booleans as a treat
 
     for (var i = n; i < N+n; i++){
 
@@ -184,10 +203,11 @@ function sixClauseGateValue(c0: number,c1: number,v0: number,v1: number,vir: num
                                 c(i,1,j1),
                                 v(j0,r),
                                 v(j1,r),
-                                v(i,r),
-                                tt(i, i0, i1),
+                                t(i, 0),
+                                t(i, 1),
                                 i0,
-                                i1
+                                i1,
+                                v(i,r)
                             ))
                         }
                     }
