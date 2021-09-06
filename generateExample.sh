@@ -12,9 +12,9 @@ msresult=20
 
 while [[ "$i" -le "${MAX}" ]] && [[ "$msresult" -eq 20 ]]
 do
+    echo "Checking $i gates"
     prob=$(tempfile -p prob_)
     solution=$(tempfile -p solution_)
-    echo ts-node ${RED} $i ${TAB} > ${prob}
     ts-node ${RED} $i ${TAB} > ${prob}
     i=$((i+1))
 
@@ -28,15 +28,19 @@ i=$((i-1))
 echo "Smallest circuit has $i gates"
 
 #output evidence files
-mkdir examples/${NAME}/
+mkdir -p examples/${NAME}/
 
 ts-node ${RED} $((i-1)) ${TAB} > examples/${NAME}/prob_unsat
 
-ts-node ${RED} $i ${TAB} > examples/${NAME}/prob_sat
+cat ${prob} > examples/${NAME}/prob_sat
 
 cat ${solution} > examples/${NAME}/solution_sat
 
 ./decodeSolution.sh examples/${NAME}/prob_sat examples/${NAME}/solution_sat > examples/${NAME}/solution_readable
+
+./solutionToDot.sh examples/${NAME}/solution_readable > examples/${NAME}/solution.dot
+
+dot -Tpng examples/${NAME}/solution.dot > examples/${NAME}/solution.png
 
 else
 echo "No solution found with up to ${MAX} gates"
