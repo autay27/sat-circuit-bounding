@@ -4,6 +4,18 @@
 //have a variable class (storing name and index), a literal class, and a clause type
 import * as utils from "./utils";
 
+import {c,o,v,t} from './variabledict';
+
+import {CNF} from './cnf';
+
+//import { Variable } from './variable';
+
+//const vars = new VariableDict()
+const v1 = v(1,2);
+
+const v2 = v(1,2);
+console.log(v1.v.index)
+console.log(v2.v.index)
 
 var myArgs = process.argv.slice(2);
 
@@ -15,7 +27,12 @@ const rows = table.rows
 const n=table.ins
 const m=table.outs
 
+
+var cnf = new CNF()
+
+
 //translate variable names
+/*
 function c(i: number, j: number, k: number): number {
     return utils.variable("c_" + i + "_" + j + "_" + k)
 }
@@ -28,9 +45,9 @@ function v(i: number, t: number): number {
     return utils.variable("v_" + i + "_" + t)
 }
 
-function t(i: number, b: number, ): number {
+function t(i: number, b: number): number {
     return utils.variable("t_" + i + "_" + b)
-}
+}*/
 
 //helper functions
 
@@ -78,6 +95,7 @@ function gateOutput(ti0: number, ti1: number, i: number, j: number): number {
   //match gate with one of AND, OR, NOT
   //using ti_ as index
 
+  //not discards 0th bit
   let dictionary: number[][] = [
     [0,0,0,1], //and
     [0,1,1,1], //or
