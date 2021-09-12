@@ -19,6 +19,10 @@ export class VariableDict {
 
     }
 
+    static getVarCount() : number {
+        return this.dict.length
+    }
+
 }
 
 function newvar(name: string): Literal{
