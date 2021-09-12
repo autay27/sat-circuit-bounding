@@ -6,16 +6,14 @@ import * as utils from "./utils";
 
 import {c,o,v,t} from './variabledict';
 
-import {CNF} from './cnf';
+import {CNF, Clause} from './cnf';
+
+import { not, Literal } from './literal';
+
 
 //import { Variable } from './variable';
 
 //const vars = new VariableDict()
-const v1 = v(1,2);
-
-const v2 = v(1,2);
-console.log(v1.v.index)
-console.log(v2.v.index)
 
 var myArgs = process.argv.slice(2);
 
@@ -29,6 +27,7 @@ const m=table.outs
 
 
 var cnf = new CNF()
+
 
 
 //translate variable names
@@ -51,9 +50,6 @@ function t(i: number, b: number): number {
 
 //helper functions
 
-function not(name: number): string {
-    return "-" + name
-}
 
 function ith_bit(num: number, i: number): number {
     return ((num>>i) & 1)
@@ -65,29 +61,6 @@ function seq(max: number): number[] {
         a.push(i)
     }
     return a
-}
-
-function one_hot(xs:number[]): void {
-    const l: number = xs.length
-
-    for (var i = 0; i < l; i++){
-        
-        for (var j=0; j<i; j++){
-            
-            utils.addClause([not(xs[i]), not(xs[j])])
-
-        }
-
-    }
-
-    let newClause = []
-
-    for (var i=0; i<l; i++){
-        newClause.push(xs[i].toString())
-    }
-
-    utils.addClause(newClause)
-
 }
 
 function gateOutput(ti0: number, ti1: number, i: number, j: number): number {
@@ -115,12 +88,12 @@ function gateOutput(ti0: number, ti1: number, i: number, j: number): number {
 for (var i = n; i < n + N; i++) {
     for (var j = 0; j < i; j++) {
       for (var k = 0; k < j; k++) {
-        utils.addClause([not(c(i, 0, j)), not(c(i, 0, k))])
-        utils.addClause([not(c(i, 1, j)), not(c(i, 1, k))])
+        cnf.addClause([not(c(i, 0, j)), not(c(i, 0, k))])
+        cnf.addClause([not(c(i, 1, j)), not(c(i, 1, k))])
       } 
       //first input has smaller index than second
       for (var k = j; k < i; k++) {
-        utils.addClause([not(c(i, 0, j)), not(c(i, 1, k))])
+        cnf.addClause([not(c(i, 0, j)), not(c(i, 1, k))])
       } 
     }
   }
@@ -131,15 +104,15 @@ for (var i = n; i < n + N; i++) {
         let newClause1 = []
 
         for (var j=0; j<i; j++){
-            newClause0.push(c(i,0,j).toString())
-            newClause1.push(c(i,1,j).toString())
+            newClause0.push(c(i,0,j))
+            newClause1.push(c(i,1,j))
         }
 
-        utils.addClause(newClause0)
-        utils.addClause(newClause1)
+        cnf.addClause(newClause0)
+        cnf.addClause(newClause1)
     }
 
-    utils.addComment("one output of the circuit receives one connection")
+//    cnf.addComment("one output of the circuit receives one connection")
 
     for (var i = 0; i < m; i++){
         
@@ -147,7 +120,7 @@ for (var i = n; i < n + N; i++) {
             
             for (var l=0; l<j; l++){
 
-                utils.addClause([not(o(j,i)), not(o(l,i))])
+                cnf.addClause([not(o(j,i)), not(o(l,i))])
             
             }
 
@@ -160,27 +133,27 @@ for (var i = n; i < n + N; i++) {
         let newClause = []
 
         for (var j=0; j<n+N; j++){
-            newClause.push(o(j,i).toString())
+            newClause.push(o(j,i))
         }
 
-        utils.addClause(newClause)
+        cnf.addClause(newClause)
     }
 
-    utils.addComment("input gate has input value")
+    //utils.addComment("input gate has input value")
 
     for (var i = 0; i < n; i++){
 
         for (var r = 0; r < Math.pow(2,n); r++){
             if(ith_bit(r, i)){
-                utils.addClause([v(i,r).toString()])
+                cnf.addClause([v(i,r)])
             } else {
-                utils.addClause([not(v(i,r))])
+                cnf.addClause([not(v(i,r))])
             }
         }
 
     }
 
-function sixClauseGateValue(c0: number,c1: number,v0: number,v1: number,ti0: number,ti1: number,i0: number,i1: number,vir: number): string[][] {
+function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal,ti0: Literal,ti1: Literal,i0: number,i1: number,vir: Literal): Clause[] {
     
     let newClauses = [];
 
@@ -200,10 +173,10 @@ function sixClauseGateValue(c0: number,c1: number,v0: number,v1: number,ti0: num
         }
     }
 
-    return newClauses.map(x => x.map(y => y.toString()));
+    return newClauses
 }
 
-    utils.addComment("internal gates produce calculated value")
+ //   utils.addComment("internal gates produce calculated value")
 
     //can I have a little iterate over booleans as a treat
 
@@ -216,7 +189,7 @@ function sixClauseGateValue(c0: number,c1: number,v0: number,v1: number,ti0: num
 
                     for (var i0 = 0; i0 < 2; i0++){
                         for (var i1 = 0; i1 < 2; i1++){
-                            utils.addClauses(sixClauseGateValue(
+                            cnf.addClauses(sixClauseGateValue(
                                 c(i,0,j0),
                                 c(i,1,j1),
                                 v(j0,r),
@@ -239,19 +212,19 @@ function sixClauseGateValue(c0: number,c1: number,v0: number,v1: number,ti0: num
 
     utils.addComment("outputs match truth table")
 
-function tableMatch(o: number,v: number,vl: number) {
-    if(vl){
-        return [[not(o),v.toString()]]
-    } else {
-        return [[not(o),not(v)]]
+    function tableMatch(o: Literal, v: Literal, vl: number): Clause {
+        if(vl){
+            return [not(o), v]
+        } else {
+            return [not(o),not(v)]
+        }
     }
-}
 
     for (var k = 0; k < m; k++){
         rows.forEach( row => {
             for (var i = 0; i < n+N; i++){
 
-                utils.addClauses(tableMatch(
+                cnf.addClause(tableMatch(
                     o(i,k), 
                     v(i,row.in), 
                     ith_bit(row.out, k)
@@ -261,7 +234,10 @@ function tableMatch(o: number,v: number,vl: number) {
         })
     }
 
+console.log(cnf.dimacs())
 
+/*
 utils.commentTruthTable(table)
 utils.commentVariableMapping()
 utils.emitClauses()
+*/

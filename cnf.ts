@@ -1,6 +1,10 @@
 import { Literal, not } from './literal';
 
-export type Clause = Literal[]
+import { VariableDict } from './variabledict';
+
+
+
+export type Clause = (Literal[]|string)//imterface dimacsline
 
 export class CNF {
 
@@ -18,8 +22,20 @@ export class CNF {
     dimacs
     varmap*/
 
-    add_one_hot(xs:Literal[]): void {
-        
+
+    dimacs(): string {
+
+        return "p cnf " + VariableDict.getVarCount() + " " + this.clauses.length + "\n"
+            + this.clauses.map(clause => clause.map(x => x.getDimacs()).join(" ") + " 0" ).join("\n")
+
+    }
+
+    dimacsClause(c:Clause): string {
+        retun ""
+    }
+
+    addOneHot(xs:Literal[]): void {
+
         const l: number = xs.length
 
         for (var i = 0; i < l; i++){
@@ -35,7 +51,7 @@ export class CNF {
         let newClause = []
 
         for (var i=0; i<l; i++){
-            newClause.push(xs[i].toString())
+            newClause.push(xs[i])
         }
 
         this.addClause(newClause)
