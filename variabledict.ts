@@ -19,8 +19,14 @@ export class VariableDict {
 
     }
 
-    static getVarCount() : number {
+    static getVarCount(): number {
         return this.dict.length
+    }
+
+    static getVarMapComment(): string[] {
+
+        return ["variable names:"].concat(this.dict.map(v => `${v.name} ${v.index}`))
+
     }
 
 }

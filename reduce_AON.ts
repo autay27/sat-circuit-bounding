@@ -4,7 +4,7 @@
 //have a variable class (storing name and index), a literal class, and a clause type
 import * as utils from "./utils";
 
-import {c,o,v,t} from './variabledict';
+import {c,o,v,t, VariableDict} from './variabledict';
 
 import {CNF, Clause} from './cnf';
 
@@ -83,7 +83,7 @@ function gateOutput(ti0: number, ti1: number, i: number, j: number): number {
 //I should change these to use the existing onehot function!
 //and put these common features of the reduction into a second file, honestly
 
-    utils.addComment("one port of a gate receives one connection")
+    cnf.addComment("one port of a gate receives one connection")
 
 for (var i = n; i < n + N; i++) {
     for (var j = 0; j < i; j++) {
@@ -112,7 +112,7 @@ for (var i = n; i < n + N; i++) {
         cnf.addClause(newClause1)
     }
 
-//    cnf.addComment("one output of the circuit receives one connection")
+    cnf.addComment("one output of the circuit receives one connection")
 
     for (var i = 0; i < m; i++){
         
@@ -139,7 +139,7 @@ for (var i = n; i < n + N; i++) {
         cnf.addClause(newClause)
     }
 
-    //utils.addComment("input gate has input value")
+    cnf.addComment("input gate has input value")
 
     for (var i = 0; i < n; i++){
 
@@ -153,7 +153,7 @@ for (var i = n; i < n + N; i++) {
 
     }
 
-function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal,ti0: Literal,ti1: Literal,i0: number,i1: number,vir: Literal): Clause[] {
+function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal,ti0: Literal,ti1: Literal,i0: number,i1: number,vir: Literal): Literal[][] {
     
     let newClauses = [];
 
@@ -176,7 +176,7 @@ function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal,ti0:
     return newClauses
 }
 
- //   utils.addComment("internal gates produce calculated value")
+    cnf.addComment("internal gates produce calculated value")
 
     //can I have a little iterate over booleans as a treat
 
@@ -210,9 +210,9 @@ function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal,ti0:
 
     }
 
-    utils.addComment("outputs match truth table")
+    cnf.addComment("outputs match truth table")
 
-    function tableMatch(o: Literal, v: Literal, vl: number): Clause {
+    function tableMatch(o: Literal, v: Literal, vl: number): Literal[] {
         if(vl){
             return [not(o), v]
         } else {
@@ -234,8 +234,8 @@ function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal,ti0:
         })
     }
 
+cnf.addComments(VariableDict.getVarMapComment())
 console.log(cnf.dimacs())
-
 /*
 utils.commentTruthTable(table)
 utils.commentVariableMapping()
