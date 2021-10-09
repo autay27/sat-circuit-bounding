@@ -15,5 +15,5 @@ cat ${PROB} | sed '1,/variable names/ d' > ${VARMAP}
 #format the sat output to one variable per line
 cat ${SAT} | tr ' ' '\n' | grep -v SAT | egrep -v "^0$" > ${VARVAL}
 #create list of variables names marked true
-paste -d' ' ${VARMAP} ${VARVAL} | cut -d' ' -f3,5 | sed -E 's/ [0-9]+/ TRUE/' | sed 's/ -.*//'
+paste -d' ' ${VARMAP} ${VARVAL} | cut -d' ' -f2,4 | sed -E 's/ [0-9]+/ TRUE/' | sed 's/ -.*//'
 
