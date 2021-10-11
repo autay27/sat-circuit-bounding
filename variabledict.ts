@@ -31,22 +31,6 @@ export class VariableDict {
 
 }
 
-function newvar(name: string): Literal{
+export function newvar(name: string): Literal{
     return new Literal(VariableDict.newvar(name), true)
-}
-
-export function c(i: number, j: number, k: number): Literal {
-    return newvar("c_" + i + "_" + j + "_" + k)
-}
-
-export function o(i: number, j: number): Literal {
-    return newvar("o_" + i + "_" + j)
-}
-
-export function v(i: number, t: number): Literal {
-    return newvar("v_" + i + "_" + t)
-}
-
-export function t(i: number, b: number): Literal {
-    return newvar("t_" + i + "_" + b)
 }
