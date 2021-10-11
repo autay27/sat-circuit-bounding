@@ -147,8 +147,8 @@ for (var i = n; i < n + N; i++) {
 
 function sixClauseGateValue(c0: number,c1: number,v0: number,v1: number,vir: number,t: number,i0: number,i1: number) {
     return [
-        [not(c0), not(c1), i0?v0.toString():not(v0), i1?v1.toString():not(v1), not(vir),t.toString()],
-        [not(c0), not(c1), i0?v0.toString():not(v0), i1?v1.toString():not(v1), vir.toString(), not(t)]
+        [not(c0), not(c1), i0?not(v0):v0.toString(), i1?not(v1):v1.toString(), not(vir),t.toString()],
+        [not(c0), not(c1), i0?not(v0):v0.toString(), i1?not(v1):v1.toString(), vir.toString(), not(t)]
     ];
 }
 

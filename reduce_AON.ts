@@ -1,10 +1,6 @@
-//really this file should also be passed as an argument to another piece of code
-
-//make a sat problem class
-//have a variable class (storing name and index), a literal class, and a clause type
 import * as utils from "./utils";
 
-import {c,o,v,t, VariableDict} from './variabledict';
+import {VariableDict, newvar} from './variabledict';
 
 import {CNF, Clause} from './cnf';
 
@@ -25,31 +21,29 @@ const rows = table.rows
 const n=table.ins
 const m=table.outs
 
-
 var cnf = new CNF()
 
 
 
 //translate variable names
-/*
-function c(i: number, j: number, k: number): number {
-    return utils.variable("c_" + i + "_" + j + "_" + k)
+
+function c(i: number, j: number, k: number): Literal {
+    return newvar("c_" + i + "_" + j + "_" + k)
 }
 
-function o(i: number, j: number): number {
-    return utils.variable("o_" + i + "_" + j)
+function o(i: number, j: number): Literal {
+    return newvar("o_" + i + "_" + j)
 }
 
-function v(i: number, t: number): number {
-    return utils.variable("v_" + i + "_" + t)
+function v(i: number, t: number): Literal {
+    return newvar("v_" + i + "_" + t)
 }
 
-function t(i: number, b: number): number {
-    return utils.variable("t_" + i + "_" + b)
-}*/
+function t(i: number, b1: number, b2: number): Literal {
+    return newvar("t_" + i + "_" + b1 + "_" + b2)
+}
 
 //helper functions
-
 
 function ith_bit(num: number, i: number): number {
     return ((num>>i) & 1)
@@ -63,24 +57,8 @@ function seq(max: number): number[] {
     return a
 }
 
-function gateOutput(ti0: number, ti1: number, i: number, j: number): number {
-
-  //match gate with one of AND, OR, NOT
-  //using ti_ as index
-
-  //not discards 0th bit
-  let dictionary: number[][] = [
-    [0,0,0,1], //and
-    [0,1,1,1], //or
-    [1,0,1,0], //not
-    [1,0,1,0] //not again
-  ]
-
-  return dictionary[2*ti0 + ti1][2*i + j]
-
-}
-
 //I should change these to use the existing onehot function!
+//and make some lists to iterate over instead of these for loops
 //and put these common features of the reduction into a second file, honestly
 
     cnf.addComment("one port of a gate receives one connection")
@@ -153,62 +131,78 @@ for (var i = n; i < n + N; i++) {
 
     }
 
-function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal,ti0: Literal,ti1: Literal,i0: number,i1: number,vir: Literal): Literal[][] {
+function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal, vir: Literal, t: Literal, i0: number,i1: number): Literal[][] {
     
-    let newClauses = [];
+    return [
+        [
+            not(c0), 
+            not(c1),
+            i0 ? not(v0) : v0,
+            i1 ? not(v1) : v1,
+            not(vir),
+            t
+        ],
+        [
+            not(c0), 
+            not(c1),
+            i0 ? not(v0) : v0,
+            i1 ? not(v1) : v1,
+            vir,
+            not(t)
+        ]
+    ]
+        
 
-    for (var i = 0; i < 2; i++){
-        for(var j = 0; j < 2; j++){
-            
-            const reqd_value = gateOutput(i0, i1, i, j)
-
-            newClauses.push([
-                    not(c0), not(c1),
-                    i0 ? not(ti0) : ti0,
-                    i1 ? not(ti1) : ti1,
-                    i ? not(v0) : v0,
-                    j ? not(v1) : v1,
-                    reqd_value ? vir : not(vir)
-                ])
-        }
-    }
-
-    return newClauses
 }
 
     cnf.addComment("internal gates produce calculated value")
-
-    //can I have a little iterate over booleans as a treat
 
     for (var i = n; i < N+n; i++){
 
         for (var j0 = 0; j0 < i; j0++){
 
             for (var j1 = 0; j1 < j0; j1++){
+
                 for (var r = 0; r < Math.pow(2,n); r++){
 
                     for (var i0 = 0; i0 < 2; i0++){
+
                         for (var i1 = 0; i1 < 2; i1++){
                             cnf.addClauses(sixClauseGateValue(
                                 c(i,0,j0),
                                 c(i,1,j1),
                                 v(j0,r),
                                 v(j1,r),
-                                t(i, 0),
-                                t(i, 1),
+                                v(i,r),
+                                t(i, i0, i1),
                                 i0,
-                                i1,
-                                v(i,r)
+                                i1
                             ))
                         }
                     }
                 }
-                
             }
-
         }
-
     }
+
+    cnf.addComment("internal gates restricted to a subset of functions")
+
+    const allowedTruthTables = [ 0b0001, 0b0111, 0b1010 ]
+
+    for (var i = n; i < N+n; i++){
+        for (var j = 0; j < 16; j++){
+            if (!allowedTruthTables.includes(j)){
+                cnf.addClause([
+                    ith_bit(j,3) ? not(t(i,0,0)) : t(i,0,0),
+                    ith_bit(j,2) ? not(t(i,0,1)) : t(i,0,1),
+                    ith_bit(j,1) ? not(t(i,1,0)) : t(i,1,0),
+                    ith_bit(j,0) ? not(t(i,1,1)) : t(i,1,1)
+                ])
+            }
+        }
+    }
+
+
 
     cnf.addComment("outputs match truth table")
 
