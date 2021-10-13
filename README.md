@@ -1,5 +1,6 @@
 # sat-circuit-bounding
 
+<<<<<<< HEAD
 Finding if a circuit for a 3and truth table using 2 gates exists 
 
 <pre><code>
