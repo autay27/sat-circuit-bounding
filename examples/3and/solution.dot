@@ -3,7 +3,9 @@ digraph {
 2 -> 3;
 0 -> 4;
 3 -> 4;
-3 [ label = "AND"];
-4 [ label = "AND"];
+3 [ label = "0_0 FALSE0_1 FALSE"];
+3 [ label = "1_0 FALSE1_1 TRUE"];
+4 [ label = "0_0 FALSE0_1 FALSE"];
+4 [ label = "1_0 FALSE1_1 TRUE"];
 4 -> output0 
 }
