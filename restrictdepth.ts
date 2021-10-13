@@ -1,19 +1,19 @@
-//really this file should also be passed as an argument to another piece of code
+//priority 1: make it read from file
 
 //make a sat problem class
 //have a variable class (storing name and index), a literal class, and a clause type
 import * as utils from "./utils";
 
 
+const N=2 // gates
+const n=3 // inputs
+const m=1 // outputs
+const L=4 //max circuit depth
+
 var myArgs = process.argv.slice(2);
 
-if (myArgs.length<2) console.log("Usage: max # gates, truth table file")
+const table = utils.parseTable(myArgs[0])
 
-const N=parseInt(myArgs[0])// gates
-const table = utils.parseTable(myArgs[1])
-const rows = table.rows
-const n=table.ins
-const m=table.outs
 
 //translate variable names
 function c(i: number, j: number, k: number): number {
@@ -30,6 +30,10 @@ function v(i: number, t: number): number {
 
 function tt(i: number, b1: number, b2: number): number {
     return utils.variable("t_" + i + "_" + b1 + "_" + b2)
+}
+
+function d(i: number, l: number): number {
+    return utils.variable("d_" + i + "_" + l)
 }
 
 //helper functions
@@ -73,22 +77,6 @@ function one_hot(xs:number[]): void {
 
 }
 
-function gateOutput(ti0, ti1, i0, i1){
-
-  //match gate with one of AND, OR, NAND, NOR
-  //using ti_ as index
-
-  let dictionary = [
-    [0,0,0,1], //and
-    [0,1,1,1], //or
-    [1,0,0,0], //nor
-    [1,1,1,0] //nand
-  ]
-
-  return dictionary[2*ti1 + ti0][2*i1 + i0]
-
-}
-
 //generate reduction
 
     utils.addComment("one port of a gate receives one connection")
@@ -99,7 +87,7 @@ for (var i = n; i < n + N; i++) {
         utils.addClause([not(c(i, 0, j)), not(c(i, 0, k))])
         utils.addClause([not(c(i, 1, j)), not(c(i, 1, k))])
       } 
-      //first input has smaller cdcfc than second
+      //first input has smaller index than second
       for (var k = j; k < i; k++) {
         utils.addClause([not(c(i, 0, j)), not(c(i, 1, k))])
       } 
@@ -210,7 +198,7 @@ function tableMatch(o: number,v: number,vl: number) {
 }
 
     for (var k = 0; k < m; k++){
-        rows.forEach( row => {
+        table.forEach( row => {
             for (var i = 0; i < n+N; i++){
 
                 utils.addClauses(tableMatch(
@@ -221,6 +209,32 @@ function tableMatch(o: number,v: number,vl: number) {
 
             }
         })
+    }
+
+    utils.addComment("a gate has exactly one depth")
+
+    for (var i = n; i < n+N; i++){
+    
+        one_hot(seq(L).map(l => d(i,l)))
+
+    }
+
+
+    utils.addComment("gates output to ones at larger depths")
+
+    for (var i = n; i < n+N; i++){
+        for (var j = n; j < i; j++){        
+            for (var l0 = 0; l0 < L; l0++){
+                for (var l1 = 0; l1 <= l0; l1++){
+
+                    utils.addClause(
+                        [not(d(i,l0)), not(d(j, l1)), not(c(i,0,j))])
+
+                    utils.addClause(
+                        [not(d(i,l0)), not(d(j, l1)), not(c(i,1,j))])
+                }
+            } 
+        }
     }
 
 

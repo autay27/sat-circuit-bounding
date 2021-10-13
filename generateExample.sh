@@ -38,7 +38,7 @@ cat ${solution} > examples/${NAME}/solution_sat
 
 ./decodeSolution.sh examples/${NAME}/prob_sat examples/${NAME}/solution_sat > examples/${NAME}/solution_readable
 
-./solutionToDot.sh examples/${NAME}/solution_readable > examples/${NAME}/solution.dot
+./solutionToDotAON.sh examples/${NAME}/solution_readable > examples/${NAME}/solution.dot
 
 dot -Tpng examples/${NAME}/solution.dot > examples/${NAME}/solution.png
 
