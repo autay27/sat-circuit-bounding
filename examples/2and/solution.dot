@@ -1,0 +1,5 @@
+digraph {
+0 -> 2;
+1 -> 2;
+2 [ label = "0_0 FALSE\n0_1 FALSE\n1_0 FALSE\n1_1 TRUE"];
+}

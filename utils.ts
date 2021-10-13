@@ -1,8 +1,3 @@
-//truth table input
-
-const fs = require('fs')
-
-
 /*
 truth table file format: eg with 2 inputs 1 output
 
@@ -14,8 +9,9 @@ comment
 
 */
 
-type row = {in: number, out: number}
-type table = {rows: row[], ins: number, outs: number}
+const fs = require('fs');
+
+import { table } from './parameters';
 
 export function parseTable(filename: string): table {
 
@@ -32,60 +28,14 @@ export function parseTable(filename: string): table {
 
 }
 
-
-//dimacs output
-
-//prefer to pass cs as arg
-
-let cs: string[][] = []
-let vars: string[] = []
-
-export function variable(name: string) {
-    if (vars.indexOf(name) == -1) {
-        vars.push(name)
+export function seq(min: number, max: number): number[] {
+    let a = []
+    for(var i=min; i<max; i++){
+        a.push(i)
     }
-    return 1 + vars.indexOf(name) 
+    return a
 }
 
-
-export function addComment(x: string) {
-    cs.push(["c #### " + x])
-}
-
-export function addClause(x: string[]) {
-    cs.push(x)
-}
-
-export function addClauses(x: string[][]) {
-    cs = cs.concat(x)
-}
-
-//take truth table as arg
-export function commentTruthTable(t: table) {
-    addComment("target truth table")
-      t.rows.forEach(row =>{
-        addComment(JSON.stringify(row))        
-    })
-
-}
-
-export function commentVariableMapping() {
-    addComment("variable names")
-      vars.forEach((name, index) =>{
-        addComment(name + " " + (index+1))        
-    })
-
-}
-
-export function emitClauses() {
-
-    var realclauses = cs.filter(x => { return (""+x[0]).substring(0,2) != "c "})
-
-    console.log("p cnf " + vars.length + " " + realclauses.length)
-
-    console.log(cs.map(clause => {
-            if (clause[0][0]=='c') return clause.join(" ")
-            else return (clause.join(" ") + " 0" )
-        }).join("\n"))
-
+export function ith_bit(num: number, i: number): number {
+    return ((num>>i) & 1)
 }

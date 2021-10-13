@@ -7,9 +7,13 @@ digraph {
 3 -> 4;
 3 -> 5;
 4 -> 5;
-2 [ label = "AND"];
-3 [ label = "OR"];
-4 [ label = "NOT"];
-5 [ label = "AND"];
+2 [ label = "0_0 FALSE0_1 FALSE"];
+2 [ label = "1_0 FALSE1_1 TRUE"];
+3 [ label = "0_0 FALSE0_1 TRUE"];
+3 [ label = "1_0 TRUE1_1 TRUE"];
+4 [ label = "0_0 TRUE0_1 FALSE"];
+4 [ label = "1_0 TRUE1_1 FALSE"];
+5 [ label = "0_0 FALSE0_1 FALSE"];
+5 [ label = "1_0 FALSE1_1 TRUE"];
 5 -> output0 
 }

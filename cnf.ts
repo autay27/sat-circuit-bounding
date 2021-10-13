@@ -56,6 +56,10 @@ export class CNF {
         this.clauses = this.clauses.concat(ls.map(s => new Comment(s)))
     }
 
+    commentVarMap() {
+        this.clauses = this.clauses.concat(VariableDict.getVarMapComment().map(s => new Comment(s)))
+    }
+
     /*readable
     dimacs
     varmap*/
