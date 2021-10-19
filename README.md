@@ -1,6 +1,5 @@
 # sat-circuit-bounding
 
-<<<<<<< HEAD
 Finding if a circuit for a 3and truth table using 2 gates exists 
 
 <pre><code>
@@ -17,19 +16,18 @@ Searching for the number of gates needed to make a circuit for a truth table
 
 ### Reductions used
 
-#### reduce_gen
+#### restrictgen
 
 as described [here](https://logic.pdmi.ras.ru/~arist/papers/sat09.pdf).
+Plan to add higher fan-in.
 
-#### reduce_AON
+#### restrictgates
 
-modified to only allow AND, OR, NOT gates. We add 4-clauses requiring that each gate's t-variables do not match any other type of gate.
+modified to only allow a given set of gates (eg AND, OR, NOT). We add 4-clauses requiring that each gate's t-variables do not match any other type of gate.
 
-#### reduce_depth: 
+#### restrictdepth: 
 
-AON with limited circuit depth - note: it's not AON right now
-
-explain the thing about simply having a variable for each gate x level and only allowing you to move down the levels
+Introduce maxDepth 'depth levels' with an indicator variable d<sub>il</sub> true iff gate i is on level l. A gate must be on exactly 1 level. If gates A and B are on levels l1 and l2, a connection may only exist from A to B if l1 < l2.
 
 ### Terminology
 

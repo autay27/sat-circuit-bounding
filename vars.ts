@@ -17,3 +17,7 @@ export function v(i: number, t: number): Literal {
 export function t(i: number, b1: number, b2: number): Literal {
     return newvar("t_" + i + "_" + b1 + "_" + b2)
 }
+
+export function d(i: number, l: number): Literal {
+    return newvar("d_" + i + "_" + l)
+}

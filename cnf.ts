@@ -18,6 +18,19 @@ export class Clause implements DimacsLine{
         return this.ls.map(x => x.getDimacs()).join(" ") + " 0"
     }
 
+    includes(l: Literal): boolean {
+        //is this optimal?
+        return this.ls.some(x => x.getDimacs() == l.getDimacs())
+    }
+
+    without(l: Literal): Clause {
+        return new Clause(this.ls.filter(x => x.getDimacs() != l.getDimacs()))
+    }
+
+    isEmpty(): boolean { return this.ls.length == 0 }
+
+    isUnit(): boolean { return this.ls.length == 1 }
+
 }
 
 export class Comment implements DimacsLine{
@@ -72,6 +85,12 @@ export class CNF {
 
         return "p cnf " + VariableDict.getVarCount() + " " + this.clauseCount() + "\n"
             + this.clauses.map(clause => clause.getDimacs()).join("\n")
+
+    }
+
+    clause_list(): Clause[] {
+
+        return this.clauses.filter(x => x instanceof Clause) as Clause[]
 
     }
 

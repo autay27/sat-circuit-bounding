@@ -10,13 +10,11 @@ import { not, Literal } from './literal';
 
 import { c, o, v, t } from './vars';
 
-//helper functions
-
 export function restrict(params: Parameters, cnf: CNF, allowedTruthTables: number[]){
 
     cnf.addComment("internal gates restricted to a subset of functions")
 
-    //const allowedTruthTables = [ 0b0001, 0b0111 ]
+    //AON - [ 0b0001, 0b0111, 0b1010 ]
 
     for (const i of params.gates()) {
         for (var j = 0; j < 16; j++){

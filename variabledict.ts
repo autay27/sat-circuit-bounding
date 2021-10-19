@@ -1,5 +1,9 @@
 import { Variable } from './variable';
 import { Literal } from './literal';
+import { table } from './parameters';
+
+import {getRandomInt} from "./utils";
+
 
 export class VariableDict {
 
@@ -29,8 +33,13 @@ export class VariableDict {
 
     }
 
+    static getRandomVar(): Variable {
+        return this.dict[getRandomInt(0, this.getVarCount())]
+    }
 }
 
 export function newvar(name: string): Literal{
     return new Literal(VariableDict.newvar(name), true)
 }
+
+export function getRandomVar(): Variable { return VariableDict.getRandomVar() }

@@ -28,6 +28,10 @@ export function parseTable(filename: string): table {
 
 }
 
+export function isNumeric(xs: string) {
+    return /^\d+$/.test(xs);
+}
+
 export function seq(min: number, max: number): number[] {
     let a = []
     for(var i=min; i<max; i++){
@@ -38,4 +42,9 @@ export function seq(min: number, max: number): number[] {
 
 export function ith_bit(num: number, i: number): number {
     return ((num>>i) & 1)
+}
+
+export function getRandomInt(min: number, max: number): number {
+    //from docs
+  return Math.floor(Math.random() * (max - min) + min) //The maximum is exclusive and the minimum is inclusive
 }

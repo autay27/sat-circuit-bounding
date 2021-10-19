@@ -1,0 +1,15 @@
+My sweet ambition but it's not all implemented rn
+
+reduce N some.table [flags]
+
+-notAON
+    Allows all types of gates, not just And, Or, Not gates
+-DNF
+-m, -monotonic
+-gates [comma separated truth tables]
+-d, depth [maxDepth]
+    Default depth is unbounded.
+-f, -fanin [fanin] 
+    Default fan-in is 2. btw I actually think implementing this might be more insane than i realised
+-bf
+    Attempt to bruteforce solve the resultant SAT problem rather than outputting it in DIMACS format.
