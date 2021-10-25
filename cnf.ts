@@ -4,18 +4,23 @@ import { VariableDict } from './variabledict';
 
 interface DimacsLine {
     getDimacs(): string
+    getReadable(): string
 }
 
 export class Clause implements DimacsLine{
 
-    ls: Literal[] 
+    ls: Literal[] //make it private later..
     
     constructor(ls: Literal[]){
         this.ls = ls
     }
-
+    
     getDimacs(): string {
         return this.ls.map(x => x.getDimacs()).join(" ") + " 0"
+    } 
+
+    getReadable(): string {
+        return this.ls.map(x => x.getReadable()).join(" ")
     }
 
     includes(l: Literal): boolean {
@@ -43,6 +48,10 @@ export class Comment implements DimacsLine{
 
     getDimacs(): string {
         return "c " + this.s
+    }
+
+    getReadable(): string {
+        return "// " + this.s
     }
 }
 
@@ -85,6 +94,13 @@ export class CNF {
 
         return "p cnf " + VariableDict.getVarCount() + " " + this.clauseCount() + "\n"
             + this.clauses.map(clause => clause.getDimacs()).join("\n")
+
+    }
+
+    readable(): string {
+
+        return VariableDict.getVarCount() + " variables and " + this.clauseCount() + " clauses\n"
+            + this.clauses.map(clause => clause.getReadable()).join("\n")
 
     }
 
