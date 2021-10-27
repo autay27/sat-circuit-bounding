@@ -51,6 +51,11 @@ export function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min) + min) //The maximum is exclusive and the minimum is inclusive
 }
 
+export function pad(str:string, size: number):string {
+    while (str.length < size) str = "0" + str
+    return str
+}
+
 export function flatMap<A,B>(xs: A[], f: (x: A)=>B[] ): B[] {
     return xs.map(f).reduce((x,y) => x.concat(y))
 }

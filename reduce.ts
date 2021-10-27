@@ -16,8 +16,8 @@ import * as values from './restrictvalues';
 
 import * as DNF from './restrictdnf';
 
-
-var myArgs = process.argv.slice(2);
+//I think I should be using some sort of argument parsing library for all this..
+var myArgs = process.argv.slice(2).join(' ').split(/\s+/);
 
 var readable = false
 var failed = false
