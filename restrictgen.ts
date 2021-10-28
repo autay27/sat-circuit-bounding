@@ -18,29 +18,43 @@ export function restrict(params: Parameters, cnf: CNF, fanin: number){
 
     for (const i of params.gates()) {
         for (var j = 0; j < i; j++) {
-          for (var k = 0; k < j; k++) {
-            cnf.addClause([not(c(i, 0, j)), not(c(i, 0, k))])
-            cnf.addClause([not(c(i, 1, j)), not(c(i, 1, k))])
-          } 
-          //first input has smaller index than second
-          for (var k = j; k < i; k++) {
-            cnf.addClause([not(c(i, 0, j)), not(c(i, 1, k))])
-          } 
+
+            //this is L onehots, part 1
+            for (var k = 0; k < j; k++) {
+                for (var l = 0; l < fanin; l++){
+                    cnf.addClause([not(c(i, l, j)), not(c(i, l, k))])
+                }
+            }        
         }
-      }
+    }
+            //this is L onehots, part 2
 
     for (const i of params.gates()){
 
-        let newClause0 = []
-        let newClause1 = []
+        for (var l = 0; l < fanin; l++){
 
-        for (var j=0; j<i; j++){
-            newClause0.push(c(i,0,j))
-            newClause1.push(c(i,1,j))
+            let newClause = []
+
+            for (var j=0; j<i; j++){
+                newClause.push(c(i,l,j))
+            }
+
+            cnf.addClause(newClause)
         }
+    }
 
-        cnf.addClause(newClause0)
-        cnf.addClause(newClause1)
+    cnf.addComment("gates are connected to ports by increasing index")
+
+    //first input has smaller index than second, second smaller than third... etc
+    //Not adding the minimal number of clauses, could fix it later
+    for (const i of params.gates()){
+        for (var j = 0; j < i; j++) {
+            for (var k = j; k < i; k++) {
+                for (var l = 1; l < fanin; l++){
+                    cnf.addClause([not(c(i, l-1, k)), not(c(i, l, j))])
+                } 
+            }
+        }
     }
 
     cnf.addComment("one output of the circuit receives one connection")
@@ -84,60 +98,6 @@ export function restrict(params: Parameters, cnf: CNF, fanin: number){
         }
 
     }
-
-    function sixClauseGateValue(c0: Literal,c1: Literal,v0: Literal,v1: Literal, vir: Literal, t: Literal, i0: number,i1: number): Literal[][] {
-        return [
-            [
-                not(c0), 
-                not(c1),
-                i0 ? not(v0) : v0,
-                i1 ? not(v1) : v1,
-                not(vir),
-                t
-            ],
-            [
-                not(c0), 
-                not(c1),
-                i0 ? not(v0) : v0,
-                i1 ? not(v1) : v1,
-                vir,
-                not(t)
-            ]
-        ]
-            
-
-    }
-
-    cnf.addComment("internal gates produce calculated value")
-
-    for (const i of params.gates()) {
-
-        for (var j0 = 0; j0 < i; j0++){
-
-            for (var j1 = 0; j1 < j0; j1++){
-
-                for (const r of params.inputVectors()) {
-
-                    for (var i0 = 0; i0 < 2; i0++){
-
-                        for (var i1 = 0; i1 < 2; i1++){
-                            cnf.addClauses(sixClauseGateValue(
-                                c(i,0,j0),
-                                c(i,1,j1),
-                                v(j0,r),
-                                v(j1,r),
-                                v(i,r),
-                                t(i, i0, i1),
-                                i0,
-                                i1
-                            ))
-                        }
-                    }
-                }
-            }
-        }
-    }
-
 
     cnf.addComment("outputs match truth table")
 

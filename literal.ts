@@ -20,6 +20,10 @@ export class Literal {
         return `${this.sign ? "" : "-"}${this.v.index}`
     }
 
+    getReadable(): string {
+        return `${this.sign ? " " : "¬"}${this.v.name}`
+    }
+
 }
 
 

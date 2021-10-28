@@ -13,6 +13,8 @@ const fs = require('fs');
 
 import { table } from './parameters';
 
+import { Literal, not } from './literal';
+
 export function parseTable(filename: string): table {
 
     let file: string = fs.readFileSync('./'+filename, 'utf-8')
@@ -47,4 +49,55 @@ export function ith_bit(num: number, i: number): number {
 export function getRandomInt(min: number, max: number): number {
     //from docs
   return Math.floor(Math.random() * (max - min) + min) //The maximum is exclusive and the minimum is inclusive
+}
+
+export function pad(str:string, size: number):string {
+    while (str.length < size) str = "0" + str
+    return str
+}
+
+export function flatMap<A,B>(xs: A[], f: (x: A)=>B[] ): B[] {
+    return xs.map(f).reduce((x,y) => x.concat(y))
+}
+
+export function* kGatesSeq(k: number, max: number) {
+    console.assert(max >= k)
+    var c = seq(0, k)
+
+    while(true){
+    
+        yield c
+
+        while(c[0]+1 < c[1]){
+            c[0]++
+            yield c
+        }
+
+        var i = 0
+        while(i < k-1 && c[i]+1 == c[i+1]) i++
+        
+        c[i]++
+
+        if(i == k-1 && c[k-1] == max) return
+        else {
+            while(i > 0) {
+                i--
+                c[i] = i
+            }
+        }
+    }
+}
+
+export function orImplication(c: Literal[], l1: Literal, l2: Literal): Literal[][] {
+    return([
+        c.concat([not(l1), l2]),
+        c.concat([l1, not(l2)])
+        ])
+}
+
+export function orConjunction(c: Literal[], l1: Literal, l2: Literal): Literal[][] {
+    return([
+        c.concat([l1]),
+        c.concat([l2])
+        ])
 }

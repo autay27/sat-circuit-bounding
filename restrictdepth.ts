@@ -21,7 +21,7 @@ export function restrict(params: Parameters, cnf: CNF, maxDepth: number){
     cnf.addComment("gates output to ones at larger depths")
 
     for (const i of params.gates()){
-        for (var j = params.table.ins; j < i; j++){        
+        for (var j = params.table.ins; j < i; j++){    //ie gates not sources    
             for (var l0 = 0; l0 < maxDepth; l0++){
                 for (var l1 = 0; l1 <= l0; l1++){
 
