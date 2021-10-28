@@ -124,8 +124,14 @@ if (!failed){
         cnf.commentVarMap()
         console.log(cnf.dimacs())
     } else {
-        if (DPLL.solve(cnf)) console.log("DPLL returns true")
-        else console.log("DPLL returns false")
+        if (DPLL.solve(cnf)){
+            console.log("DPLL returns true")
+            process.exit(10)
+        } 
+        else {
+            console.log("DPLL returns false")
+            process.exit(20)
+        }
     }
 
 } else {

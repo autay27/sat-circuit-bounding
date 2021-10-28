@@ -3,13 +3,19 @@
 Finding if a circuit for a 3and truth table using 2 gates exists 
 
 <pre><code>
-ts-node reduce_gen.ts examples/3and.table 2 > prob && minisat prob out ; cat out
+ts-node reduce.ts 2 examples/3and.table | minisat
 </code></pre>
 
-Searching for the number of gates needed to make a circuit for a truth table, up to 5 gates 
+Searching for the number of gates needed to make a circuit for a 3and truth table, up to 5 gates 
 
 <pre><code>
 ./searchMinGates.sh 5 tables/3and.table 
+</code></pre>
+
+Flags can be used - for a list 
+
+<pre><code>
+cat helpreduce
 </code></pre>
 
 ### Reductions used

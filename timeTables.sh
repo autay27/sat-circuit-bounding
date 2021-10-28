@@ -10,7 +10,10 @@ then
     shopt -s globstar
     for file in ./"$TABLES"/**/*; do
             echo "Checking $file up to $MAX gates"
-            ./searchMinGates.sh "$MAX" "$file" "$FLAGS"
+            SECONDS=0
+            timeout 2h bash -c "./searchMinGates.sh $MAX $file $FLAGS"
+            duration=$SECONDS
+            echo "$duration seconds elapsed"
     done
 else
     echo "Usage: timeStdTables.sh maxGates tableFolder [flags for reduce]"
