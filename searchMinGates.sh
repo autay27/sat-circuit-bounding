@@ -14,6 +14,8 @@ fi
 i=1
 msresult=20
 
+echo "searching for circuit for ${TABLE}"
+
 while [[ "$i" -le "${MAX}" ]] && [[ "$msresult" -eq 20 ]]
 do
     echo "Checking $i gates"

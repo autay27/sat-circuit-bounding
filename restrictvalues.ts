@@ -1,4 +1,4 @@
-import { flatMap, seq, kGatesSeq, orImplication } from "./utils";
+import { flatMap, seq, kGatesSeq, orDImplication } from "./utils";
 
 import {VariableDict, newvar} from './variabledict';
 
@@ -78,7 +78,7 @@ export function restrictAON(params: Parameters, cnf: CNF, fanin: number){
         for (var j = 0; j < i; j++){
             for (const r of params.inputVectors()) {
 
-                cnf.addClauses(orImplication([not(c(i,0,j)), not(m(i,0))], v(i,r), not(v(j,r))))
+                cnf.addClauses(orDImplication([not(c(i,0,j)), not(m(i,0))], v(i,r), not(v(j,r))))
 
             }
         }
@@ -124,7 +124,7 @@ export function restrictAON(params: Parameters, cnf: CNF, fanin: number){
                         var clauses = [clause.concat([not(v(j_vec[l0], r)), v(j_vec[l1], r)]),
                                         clause.concat([v(j_vec[l0], r), not(v(j_vec[l1], r))])]
 
-                        clauses = flatMap(clauses, (c => orImplication(c, v(i,r), m(i,1))))
+                        clauses = flatMap(clauses, (c => orDImplication(c, v(i,r), m(i,1))))
 
                         cnf.addClauses(clauses)
                     }

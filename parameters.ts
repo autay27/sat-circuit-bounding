@@ -25,6 +25,9 @@ export class Parameters {
         return seq(this.table.ins, i)
     }
 
+    connectible(i: number): number[] {
+        return seq(0, i)
+    }
 
     sourcesAndGates(): number[] {
         return seq(0, this.table.ins + this.N)

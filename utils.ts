@@ -88,7 +88,7 @@ export function* kGatesSeq(k: number, max: number) {
     }
 }
 
-export function orImplication(c: Literal[], l1: Literal, l2: Literal): Literal[][] {
+export function orDImplication(c: Literal[], l1: Literal, l2: Literal): Literal[][] {
     return([
         c.concat([not(l1), l2]),
         c.concat([l1, not(l2)])

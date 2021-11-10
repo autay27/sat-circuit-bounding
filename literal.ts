@@ -16,6 +16,10 @@ export class Literal {
         return new Literal(this.v, !this.sign)
     }
 
+    match(b: boolean): Literal {
+        return new Literal(this.v, b ? this.sign : !this.sign)
+    }
+
     getDimacs(): string {
         return `${this.sign ? "" : "-"}${this.v.index}`
     }

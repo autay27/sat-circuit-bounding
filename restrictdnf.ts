@@ -1,4 +1,4 @@
-import { flatMap, seq, kGatesSeq, orImplication, orConjunction } from "./utils";
+import { flatMap, seq, kGatesSeq, orDImplication, orConjunction } from "./utils";
 
 import {VariableDict, newvar} from './variabledict';
 

@@ -36,6 +36,18 @@ export class Clause implements DimacsLine{
 
     isUnit(): boolean { return this.ls.length == 1 }
 
+    concat(ls: Literal[]): Clause {
+        return new Clause(this.ls.concat(ls))
+    }
+
+    orAnd(l1: Literal, l2: Literal): Clause[] {
+        return [new Clause(this.ls.concat([l1])), new Clause(this.ls.concat([l2]))]
+    }
+
+    orEq(l1: Literal, l2: Literal): Clause[] {
+        return [new Clause(this.ls.concat([l1, not(l2)])), new Clause(this.ls.concat([not(l1), l2]))]
+    }
+
 }
 
 export class Comment implements DimacsLine{
@@ -55,13 +67,15 @@ export class Comment implements DimacsLine{
     }
 }
 
-
-//export type Clause = (Literal[]|string)//imterface dimacsline
-
 export class CNF {
 
     private clauses: DimacsLine[] = []
 
+    add(cs: Clause[]) {
+        this.clauses.concat(cs)       
+    }
+
+    //I would really rather not allow the literal lists, something to eventually fix
     addClause(xs: Literal[]) {
         this.clauses.push(new Clause(xs))
     }
