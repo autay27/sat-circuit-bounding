@@ -48,6 +48,11 @@ export class Clause implements DimacsLine{
         return [new Clause(this.ls.concat([l1, not(l2)])), new Clause(this.ls.concat([not(l1), l2]))]
     }
 
+    tgtImplies(cs: Clause[]): Clause[] {
+        const neg = this.ls.map(l => not(l))
+        return cs.map(c => new Clause(neg.concat(c.ls)))
+    }
+
 }
 
 export class Comment implements DimacsLine{
@@ -72,7 +77,7 @@ export class CNF {
     private clauses: DimacsLine[] = []
 
     add(cs: Clause[]) {
-        this.clauses.concat(cs)       
+        this.clauses = this.clauses.concat(cs)       
     }
 
     //I would really rather not allow the literal lists, something to eventually fix

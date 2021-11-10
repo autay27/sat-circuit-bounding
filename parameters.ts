@@ -41,6 +41,10 @@ export class Parameters {
         return seq(0, Math.pow(2, this.table.ins))
     }
 
+    lastGate(): number { return this.table.ins + this.N - 1}
+
+    lastSource(): number { return this.table.ins - 1}
+
 }
 
 //I wonder if this can provide the iterable list of gates (indices), etc.

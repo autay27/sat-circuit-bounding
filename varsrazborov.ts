@@ -35,19 +35,19 @@ export function whichconst(i: number, v: number): Literal {
 }
 
 export function inputvar(i: number, v: number, j: number): Literal {
-    return newvar("InputVar_" + i + "(" + v + ", " + j + ")")
+    return newvar("InputVar_" + i + "(" + v + "," + j + ")")
 }
 
 //INPUTVAR in paper
 export function varor(i: number, v: number, j: number): Literal {
-    return newvar("VAROR_" + i + "(" + v + ", " + j + ")")
+    return newvar("VAROR_" + i + "(" + v + "," + j + ")")
 }
 
 export function inputnode(i: number, v: number, u: number): Literal {
-    return newvar("InputNode_" + i + "(" + v + ", " + u + ")")
+    return newvar("InputNode_" + i + "(" + v + "," + u + ")")
 }
 
 //INPUTNODE in paper
 export function nodeor(i: number, v: number, j: number): Literal {
-    return newvar("NODEOR_" + i + "(" + v + ", " + j + ")")
+    return newvar("NODEOR_" + i + "(" + v + "," + j + ")")
 }
