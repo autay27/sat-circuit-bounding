@@ -16,6 +16,10 @@ import * as values from './restrictvalues';
 
 import * as DNF from './restrictdnf';
 
+import * as naive from './restrictnaive';
+
+import * as razborov from './restrictrazborov';
+
 //I think I should be using some sort of argument parsing library for all this..
 var myArgs = process.argv.slice(2).join(' ').split(/\s+/);
 
@@ -26,6 +30,8 @@ var maxDepth = 0
 var fanin = 0
 var dnf = false
 var dpll = false
+var naivever = true
+var raz = false
 
 var allowedGates = [ 0b0001, 0b0111, 0b1010 ]
 
@@ -65,14 +71,20 @@ while(i < myArgs.length){
             }
             break;     
         case "-dnf":
-            fanin = Math.max(2,fanin)
             dnf = true
             break;        
         case "-dpll":
             dpll = true
             break;
-        case "-r":
+        case "-readable":
             readable = true
+            break;
+        case "-naive":
+            naivever = true
+            break;
+        case "-raz":
+        case "-razborov":
+            raz = true
             break;
         case "":
             break;
@@ -85,6 +97,11 @@ while(i < myArgs.length){
 
 if(!restrictingGates && fanin > 2) {
     console.log("Haven't implemented general fanin above 2!")
+    failed = true    
+}
+
+if(dnf && fanin == 0 && !naive) {
+    console.log("Haven't implemented Kulikov DNF!")
     failed = true    
 }
 
@@ -105,19 +122,26 @@ if (!failed){
     const params = new Parameters(parseInt(myArgs[0]), parseTable(myArgs[1]))
 
     var cnf = new CNF()
-
+    //have you heard of a case statement...
     if (fanin > 0) {
         cnf = gen.restrict(params, cnf, fanin)
         cnf = values.restrictAON(params, cnf, fanin)
         if (dnf) cnf = DNF.restrict(params, cnf, fanin)
-    } else {
+    } else if (!naivever) {
         cnf = gen.restrict(params, cnf, 2)
         cnf = values.restrict(params, cnf)
         if (restrictingGates) cnf = gates.restrict(params, cnf, allowedGates)
+    } else if (!raz) {
+        naive.restrict(params,cnf)
+        if(dnf) naive.restrictDNF(params, cnf)
+    } else {
+        razborov.restrict(params,cnf)
     }
 
     if (maxDepth > 0) cnf = depth.restrict(params, cnf, maxDepth)
 
+
+//output
     if (readable) {
         console.log(cnf.readable())
     } else if (!dpll){

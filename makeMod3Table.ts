@@ -14,5 +14,5 @@ for (var i = 0; i<Math.pow(2,ins); i++){
         j = j>>1
     }
 
-    console.log(pad(i.toString(2), ins) + " " + pad((set_bits % 3).toString(2), 2)) 
+    console.log(pad(i.toString(2), ins) + " " + (set_bits % 3 == 0 ? 0 : 1)) 
 }

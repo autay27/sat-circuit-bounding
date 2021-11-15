@@ -25,6 +25,9 @@ export class Parameters {
         return seq(this.table.ins, i)
     }
 
+    connectible(i: number): number[] {
+        return seq(0, i)
+    }
 
     sourcesAndGates(): number[] {
         return seq(0, this.table.ins + this.N)
@@ -37,6 +40,10 @@ export class Parameters {
     inputVectors(): number[] {
         return seq(0, Math.pow(2, this.table.ins))
     }
+
+    lastGate(): number { return this.table.ins + this.N - 1}
+
+    lastSource(): number { return this.table.ins - 1}
 
 }
 
