@@ -1,17 +1,20 @@
 var myArgs = process.argv.slice(2);
 
 const ins = parseInt(myArgs[0])
-const subset = parseInt(myArgs[1])
-console.log("Parity function on the last " + subset + " bits with " + ins + " bit input")
+//const subset = parseInt(myArgs[1])
+
+console.assert(ins > 2)
+
+console.log("First 4 rows of parity function with " + ins + " bit input")
 
 function pad(str:string, size: number):string {
     while (str.length < size) str = "0" + str
     return str
 }
 
-for (var i = 0; i<Math.pow(2,ins); i++){
+for (var i = 0; i<4; i++){
 
-    let j = i & (Math.pow(2,subset)-1)
+    let j = i 
     let set_bits = 0
   
     while(j>0){

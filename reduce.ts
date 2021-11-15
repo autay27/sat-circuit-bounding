@@ -31,7 +31,7 @@ var fanin = 0
 var dnf = false
 var dpll = false
 var naivever = true
-var raz = true
+var raz = false
 
 var allowedGates = [ 0b0001, 0b0111, 0b1010 ]
 
