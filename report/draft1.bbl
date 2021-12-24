@@ -28,6 +28,12 @@ Arist Kojevnikov, Alexander~S Kulikov, and Grigory Yaroslavtsev.
 \newblock In {\em International Conference on Theory and Applications of
   Satisfiability Testing}, pages 32--44. Springer, 2009.
 
+\bibitem{kulikovsurvey}
+Alexander~S Kulikov.
+\newblock Improving circuit size upper bounds using sat-solvers.
+\newblock In {\em 2018 Design, Automation \& Test in Europe Conference \&
+  Exhibition (DATE)}, pages 305--308. IEEE, 2018.
+
 \bibitem{kulikovlocal}
 Alexander~S. Kulikov and Nikita Slezkin.
 \newblock Sat-based circuit local improvement, 2021.

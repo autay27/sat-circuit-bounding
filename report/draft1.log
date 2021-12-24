@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2021.12.23)  23 DEC 2021 19:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2021.12.23)  24 DEC 2021 16:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -67,14 +67,22 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
 \openout3 = `draft1.toc'.
 
- [1] (./draft1.bbl [2]) [3] (./draft1.aux) ) 
+ [1] [2]
+
+LaTeX Warning: Citation `raz' on page 3 undefined on input line 63.
+
+(./draft1.bbl [3]) [4] (./draft1.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 416 strings out of 483184
- 6775 string characters out of 5966317
+ 417 strings out of 483184
+ 6790 string characters out of 5966317
  237599 words of memory out of 5000000
- 15496 multiletter control sequences out of 15000+600000
+ 15497 multiletter control sequences out of 15000+600000
  537546 words of font info for 41 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 25i,6n,19p,526b,199s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 25i,7n,20p,527b,211s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on draft1.dvi (4 pages, 9412 bytes).
+Output written on draft1.dvi (5 pages, 14272 bytes).
