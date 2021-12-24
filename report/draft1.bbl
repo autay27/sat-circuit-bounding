@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{arora}
+Sanjeev Arora and Boaz Barak.
+\newblock {\em Computational complexity: a modern approach}.
+\newblock Cambridge University Press, 2009.
+
+\bibitem{boppana}
+Ravi~B Boppana and Michael Sipser.
+\newblock The complexity of finite functions.
+\newblock In {\em Algorithms and complexity}, pages 757--804. Elsevier, 1990.
+
+\bibitem{estrada}
+Giovani~Gomez Estrada.
+\newblock A note on designing logical circuits using sat.
+\newblock In {\em International Conference on Evolvable Systems}, pages
+  410--421. Springer, 2003.
+
+\bibitem{kamath}
+AP~Kamath, NK~Karmarkar, KG~Ramakrishnan, and MGC Resende.
+\newblock An interior point approach to boolean vector function synthesis.
+\newblock In {\em Proceedings of 36th Midwest Symposium on Circuits and
+  Systems}, pages 185--189. IEEE, 1993.
+
+\bibitem{kulikov}
+Arist Kojevnikov, Alexander~S Kulikov, and Grigory Yaroslavtsev.
+\newblock Finding efficient circuits using sat-solvers.
+\newblock In {\em International Conference on Theory and Applications of
+  Satisfiability Testing}, pages 32--44. Springer, 2009.
+
+\bibitem{kulikovlocal}
+Alexander~S. Kulikov and Nikita Slezkin.
+\newblock Sat-based circuit local improvement, 2021.
+
+\bibitem{williams}
+Ryan Williams.
+\newblock Applying practice to theory, 2008.
+
+\end{thebibliography}

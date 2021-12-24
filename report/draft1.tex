@@ -1,0 +1,70 @@
+\documentclass{article}
+
+
+\begin{document}
+
+\begin{titlepage}
+\title{Searching for circuit complexity lower bounds using SAT solvers}
+\author{August Taylor}
+\maketitle
+\end{titlepage}
+
+\begin{abstract}
+Where the abstract will go
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{Motivation}
+
+Finding lower bounds on the size of Boolean circuits computing given functions is a fundamental problem in computer science. Despite the fact that the majority of functions have exponential circuits, the best lower bounds proven on unrestricted circuits are only linear~\cite{boppana} and we still do not have optimal circuits or close upper and lower bounds for many important functions. Results in this area can be used to separate computational complexity classes, possibly even P and NP~\cite{arora}.
+
+A heuristic approach is to find minimal circuits for small instances of the functions. This can be used to prove new bounds~\cite{kulikovsurvey} and may lead to theoretical insights on the structure of their optimal circuits generally~\cite{williams}. Finding efficient circuits is also necessary in practice when designing electronic systems. 
+
+One approach to automating the search for efficient circuits is to reduce the problem of designing a correct circuit (logical design synthesis) to the Boolean satisfiability problem (SAT). Existing algorithms (SAT solvers) can then be used to solve the problem, either finding a correct circuit of fixed size or generating a proof that none exists~\cite{kulikov}.
+
+\subsection{Previous work}
+
+Kamath et al~\cite{kamath} propose a reduction from logical design synthesis to SAT which fixes the DNF structure of the circuit and number of disjunctions used. Experiments using this reduction are reported in~\cite{estrada}. Kojevnikov et al~\cite{kulikov} demonstrate a more general reduction allowing any circuit with a fixed number of gates. In~\cite{kulikovlocal} the same reduction was used to improve large circuits by searching for smaller versions of their sub-circuits.
+
+*mention valiant universal circuits?
+
+\subsection{Our contributions}
+
+We investigate feasible ways to find small circuits using SAT reductions. Previous research in this area has focused on a small number of target Boolean functions and a single reduction at a time. Instead we use multiple combinations of reductions and SAT solvers to see which leads to the best performance, testing them on a range of different functions. 
+
+We also present a new reduction *how to cite*
+
+*Extension axioms - let’s actually try them first
+
+
+\section{Background}
+
+\subsection{General setting}
+
+Denote by \(B_n,m\) the set of all Boolean functions \(f: {0,1}^n -> {0,1}^m\) and let \(B_n = B_n,1\) 
+
+\subsection{Reduction to SAT}
+
+\subsection{Target Boolean functions}
+
+\subsection{Extension axioms}
+
+\section{Methodology}
+
+\section{Results}
+
+\section{Discussion}
+
+\subsection{Reflection}
+
+\subsection{Conclusions}
+
+\subsection{Possible extensions}
+
+\bibliographystyle{plain} 
+\bibliography{sources}
+
+\end{document}
