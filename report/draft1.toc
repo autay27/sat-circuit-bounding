@@ -5,12 +5,13 @@
 \contentsline {section}{\numberline {2}Background}{2}%
 \contentsline {subsection}{\numberline {2.1}General setting}{2}%
 \contentsline {subsection}{\numberline {2.2}Reduction to SAT}{3}%
-\contentsline {subsubsection}{\numberline {2.2.1}third reduction}{3}%
-\contentsline {subsection}{\numberline {2.3}Target Boolean functions}{4}%
-\contentsline {subsection}{\numberline {2.4}Extension axioms}{4}%
-\contentsline {section}{\numberline {3}Methodology}{4}%
-\contentsline {section}{\numberline {4}Results}{4}%
-\contentsline {section}{\numberline {5}Discussion}{4}%
-\contentsline {subsection}{\numberline {5.1}Reflection}{4}%
-\contentsline {subsection}{\numberline {5.2}Conclusions}{4}%
-\contentsline {subsection}{\numberline {5.3}Possible extensions}{4}%
+\contentsline {subsubsection}{\numberline {2.2.1}Existing reductions}{3}%
+\contentsline {subsubsection}{\numberline {2.2.2}A new reduction}{3}%
+\contentsline {subsection}{\numberline {2.3}Target Boolean functions}{5}%
+\contentsline {subsection}{\numberline {2.4}Extension axioms}{5}%
+\contentsline {section}{\numberline {3}Methodology}{5}%
+\contentsline {section}{\numberline {4}Results}{5}%
+\contentsline {section}{\numberline {5}Discussion}{5}%
+\contentsline {subsection}{\numberline {5.1}Reflection}{5}%
+\contentsline {subsection}{\numberline {5.2}Conclusions}{5}%
+\contentsline {subsection}{\numberline {5.3}Further directions}{5}%

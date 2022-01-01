@@ -29,28 +29,30 @@ One approach to automating the search for efficient circuits is to reduce the pr
 
 Kamath et al~\cite{kamath} propose a reduction from logical design synthesis to SAT which fixes the DNF structure of the circuit and number of disjunctions used. Experiments using this reduction are reported in~\cite{estrada}. Kojevnikov et al~\cite{kulikov} demonstrate a more general reduction allowing any circuit with a fixed number of gates. In~\cite{kulikovlocal} the same reduction was used to improve large circuits by searching for smaller versions of their sub-circuits.
 
-*mention valiant universal circuits?
+*Mention valiant universal circuits?
+
+*Should look for other things
 
 \subsection{Our contributions}
 
 We investigate feasible ways to find small circuits using SAT reductions. Previous research in this area has focused on a small number of target Boolean functions and a single reduction at a time. Instead we use multiple combinations of reductions and SAT solvers to see which leads to the best performance, testing them on a range of different functions. 
 
-We also present a new reduction *how to cite*
+We also present a new reduction *not sure what to say about this*
 
-*Extension axioms - let’s actually try them first
+*Extension axioms - should actually try them first
 
 
 \section{Background}
 
 \subsection{General setting}
 
-Denote by \(B_{n,m}\) the set of all Boolean functions \(f: \{0,1\}^n \to \{0,1\}^m\) and let \(B_n = B_{n,1}\). A circuit over the basis \(A \subseteq B_2\) is a directed acyclic graph with nodes of in-degree 0 or 2. Nodes of in-degree 0 are called inputs. Nodes of in-degree 2 are assigned functions from \(A\) and are called gates. Some gates may be also be marked as outputs.
+Denote by \(B_{n,m}\) the set of all Boolean functions \(f: \{0,1\}^n \to \{0,1\}^m\) and let \(B_n = B_{n,1}\). A circuit over the basis \(A \subseteq B_2\) is a directed acyclic graph with nodes of in-degree 0 or 2. Nodes of in-degree 0 are called inputs. Nodes of in-degree 2 are assigned functions from \(A\) and are called gates. Some nodes may be also be marked as outputs.
 
 Without loss of generality, we can also assert that every gate has a larger index than both of its predecessors (i.e. the gates are sorted topologically w.r.t. the used numbering); that every gate's second predecessor has a larger index than its first predecessor; and that the last gate is an output.~\cite{kulikov}
 
 A circuit \(c\) of size N is said to compute the function \(f\in B_{n,m}\) if, for all input vectors \(v\in\{0,1\}^n\) in the range of \(f\), \(c(v)=f(v)\), where \(c(v) = (o_1,...o_m)\) are the values of the output gates of \(c\), each input \(x_i\) takes value \(v_i\), and each gate takes the value of its assigned function when applied to the value of its two predecessor nodes.
 
-In this paper, we mainly consider circuits over the basis \(C_2 = \{\lor, \land, \neg\}\), where \(\neg\) denotes the Boolean function which outputs the negation of its first argument.
+In this paper, we mainly consider circuits over the De Morgan basis \[C_2 = \{\lor, \land, \neg\}\] where \(\neg\) denotes the Boolean function which outputs the negation of its first argument.
 
 The size of a circuit is its number of gates. We define logical design synthesis as the problem of whether, given a truth table for a function \(f: \{0,1\}^n \to \{0,1\}^m\), there exists a circuit of size N computing \(f\).
 
@@ -58,19 +60,22 @@ The size of a circuit is its number of gates. We define logical design synthesis
 
 We encoded the logical design synthesis problem as a Boolean formula using three reductions.
 
+\subsubsection{Existing reductions}
+
 The first is due to Kojevnikov et al~\cite{kulikov} who present it together with bounds on the growth rate of the formula. The basis of the circuit can be specified as any subset of \(B_2\). The number of clauses generated is \(O(N^3\cdot2^n)\) and the number of variables is \(O(2^n\cdot N)\)
 
 The second is due to Razborov~\cite{raz} and requires a circuit over the basis \(C_2\): *not sure how much to describe this one but I definitely need to give the growth rates..*
 
-\subsubsection{third reduction}
+*Also am bothered that this is the only reduction that allows constants in the circuit - it wouldn't be hard to remove that aspect.*
 
-The third is due to Jan Pich *HOW 2 CITE THO* and also requires a circuit over the basis \(C_2\).
+\subsubsection{A new reduction}
 
+The third *Don't know how to credit Jan* also requires a circuit over the basis \(C_2\).
 
-Include the following variables:
+It uses the following variables:
 
 \begin{enumerate}
-  \item \(e^i_a\) \((n \leq i < N, a\in\{0,1\}^n)\) is the output of the \(i\)-th gate when the input to the circuit is \(a\). It gives \(O(N\cdot 2^n)\) variables.
+  \item \(e^i_a\) \((n \leq i < N, a\in\{0,1\}^n)\) is the value of the \(i\)-th gate when the input to the circuit is \(a\). It gives \(O(N\cdot 2^n)\) variables.
   \item \(x_{i,j}\) \(( 0 \leq i < N+n,0 \leq j < i)\) is true iff j is a predecessor of i. It gives \(O(N\cdot N+n)\) variables.
   \item \(g^0_i, g^1_i\) \((n \leq i < N)\) together encode the function assigned to the \(i\)-th gate by their truth values, giving \(2N\) variables:
 
@@ -89,6 +94,35 @@ Include the following variables:
 
 \end{enumerate}
 
+We encode the requirements for the circuit by the following clauses:
+
+\begin{enumerate}
+  \item For all \((i,j,k)\) with \(n \leq i < n+N\), \(0 \leq j < i\) and \(j < k < i\), and for all \(a\in\{0,1\}^n\), if \(j\) and \(k\) are both predecessors of \(i\), then \(e^i_a\) must take the value computed by the \(i\)th gate's assigned function on \(e^j_a\) and \(e^k_a\). A clause must be added for each function in the basis. For example, the clause for when the \(i\)th gate is an \(\land\)-gate:
+
+\[
+(g^0_i\wedge \neg g^1_i)\wedge 
+(x_{i,j}\wedge x_{i,k})\rightarrow 
+(e^i_a\leftrightarrow e^j_a\wedge e^k_a)
+\]
+  
+  (Note that the gate must compute the conjunction of any two predecessors' variables, so it can have a maximum of two predecessors.) This leads to \(O(2^n\cdot N^3)\) 7-clauses.
+
+  \item For all \(i\) with \(n \leq i < n+N\), gate \(i\) must have at least one predecessor. This leads to \(O(N)\) \(O(N)\)-clauses.
+
+  \item For all \((i,j)\) with \(n \leq i < n+N\), \(0 \leq j < i\), if \(i\) is an \(\lor\)-gate or \(\land\)-gate with \(j\) its predecessor, it must have another distinct predecessor (i.e. it must have at least 2 overall). For example, the clause for when the \(i\)th gate is an \(\land\)-gate:
+
+\[
+(g^0_i \land \neg g^1_i) \rightarrow \left( x_{i,j} \rightarrow \bigvee_{j<k<i} x_{i,k} \right)
+\]
+
+  This leads to \(O(N^2)\) \(O(N)\)-clauses.
+
+  \item For all \(i\) with \(0 \leq i < n\), \(a\in\{0,1\}^n\), the \(i\)-th input must equal \(a_i\). This leads to \(O(n \cdot 2^n)\) 1-clauses.
+
+  \item For all \(a\in\{0,1\}^n\), the final m gates (i.e. the outputs) should agree with the output values given for \(a\) in the target truth table. This leads to \(O(2^n)\) 1-clauses.
+
+\end{enumerate}
+
 \subsection{Target Boolean functions}
 
 \subsection{Extension axioms}
@@ -103,7 +137,7 @@ Include the following variables:
 
 \subsection{Conclusions}
 
-\subsection{Possible extensions}
+\subsection{Further directions}
 
 \bibliographystyle{plain} 
 \bibliography{sources}

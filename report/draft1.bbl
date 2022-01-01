@@ -38,6 +38,12 @@ Alexander~S Kulikov.
 Alexander~S. Kulikov and Nikita Slezkin.
 \newblock Sat-based circuit local improvement, 2021.
 
+\bibitem{raz}
+Alexander~A Razborov.
+\newblock Pseudorandom generators hard for k-dnf resolution and polynomial
+  calculus resolution.
+\newblock {\em Annals of Mathematics}, pages 415--472, 2015.
+
 \bibitem{williams}
 Ryan Williams.
 \newblock Applying practice to theory, 2008.
