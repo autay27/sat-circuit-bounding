@@ -1,9 +1,11 @@
-import {getRandomInt, pad} from "./utils";
+import {pad} from "./utils";
 
 var myArgs = process.argv.slice(2);
 
 const ins = parseInt(myArgs[0])
-console.log("Mod3 function with " + ins + " bit input")
+const target = parseInt(myArgs[1])
+
+console.log("Mod3 function with " + ins + " bit input, 1 when congruent to " + target )
 
 for (var i = 0; i<Math.pow(2,ins); i++){
     let j = i
@@ -14,5 +16,5 @@ for (var i = 0; i<Math.pow(2,ins); i++){
         j = j>>1
     }
 
-    console.log(pad(i.toString(2), ins) + " " + (set_bits % 3 == 0 ? 0 : 1)) 
+    console.log(pad(i.toString(2), ins) + " " + (set_bits % 3 == target ? 1 : 0)) 
 }

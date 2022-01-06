@@ -1,41 +1,27 @@
 #!
 
-#timeout 4h bash -c './getTimes.sh stdprobs/raz/4mod3/ maplesat'
+#timeout 4h bash -c './getTimes.sh stdprobs/raz/4mod3 maplesat'
 
-./getTimes.sh stdprobs/kulikov/7and/ maplesat
+#start=`date +%s.%N`
 
-./getTimes.sh stdprobs/kulikov/8and/ maplesat
+#cat stdprobs/raz/4mod3/9gates.problem | picosat
 
-./getTimes.sh stdprobs/kulikov/3parity/ maplesat
+#end=`date +%s.%N`
 
-./getTimes.sh stdprobs/kulikov/4parity/ maplesat
-
-./getTimes.sh stdprobs/kulikov/3mod3/ maplesat
-
-./getTimes.sh stdprobs/kulikov/4mod3/ maplesat
+#runtime=$( echo "$end - $start" | bc -l )
+ 
+#echo "took time: " $runtime
 
 
-./getTimes.sh stdprobs/kulikov/7and/ minisat
+#./makeProblems.sh 9 stdtables/partialparity/4rows8parity1.table stdprobs/kulikov/partialparity/4rows8parity1
 
-./getTimes.sh stdprobs/kulikov/8and/ minisat
+#./makeProblems.sh 9 stdtables/partialparity/4rows8parity2.table stdprobs/kulikov/partialparity/4rows8parity2
 
-./getTimes.sh stdprobs/kulikov/3parity/ minisat
+#./makeProblems.sh 9 stdtables/partialparity/4rows8parity3.table stdprobs/kulikov/partialparity/4rows8parity3
 
-./getTimes.sh stdprobs/kulikov/4parity/ minisat
+#./makeProblems.sh 9 stdtables/partialparity/4rows8parity4.table stdprobs/kulikov/partialparity/4rows8parity4
 
-./getTimes.sh stdprobs/kulikov/3mod3/ minisat
-
-./getTimes.sh stdprobs/kulikov/4mod3/ minisat
-
-
-./getTimes.sh stdprobs/kulikov/7and/ picosat
-
-./getTimes.sh stdprobs/kulikov/8and/ picosat
-
-./getTimes.sh stdprobs/kulikov/3parity/ picosat
-
-./getTimes.sh stdprobs/kulikov/4parity/ picosat
-
-./getTimes.sh stdprobs/kulikov/3mod3/ picosat
-
-./getTimes.sh stdprobs/kulikov/4mod3/ picosat
+./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity1 maplesat
+./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity2 maplesat
+./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity3 maplesat
+./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity4 maplesat
