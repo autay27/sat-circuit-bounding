@@ -1,14 +1,12 @@
-array files = ['maplesat_kulikov_total', 'maplesat_naive_total', 'maplesat_raz_total', 'minisat_kulikov_total', 'minisat_naive_total', 'minisat_raz_total', 'picosat_kulikov_total', 'picosat_naive_total']
+array files = ['maplesat_kulikov_total', 'maplesat_naive_total', 'maplesat_raz_total', 'minisat_kulikov_total', 'minisat_naive_total', 'minisat_raz_total', 'picosat_kulikov_total', 'picosat_naive_total', 'picosat_raz_total']
 
-array labels = ['maplesat kulikov', 'maplesat naive', 'maplesat raz', 'minisat kulikov', 'minisat naive', 'minisat raz', 'picosat kulikov', 'picosat naive', 'picosat raz (>=minisat raz)']
+array labels = ['Maplesat Kulikov', 'Maplesat naive', 'Maplesat Razborov', 'Minisat kulikov', 'Minisat naive', 'Minisat Razborov', 'Picosat Kulikov', 'Picosat naive', 'Picosat Razborov']
 
-array SUM[|files|+1]
+array SUM[|files|]
 do for [i=1:|files|] {
   stats files[i] using ($5+$6+$7) nooutput
   SUM[i] = STATS_sum
 }
-
-SUM[|files|+1]=0
 
 set style histogram 
 set boxwidth 0.75 relative

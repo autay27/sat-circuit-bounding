@@ -10,7 +10,9 @@ set xlabel 'Gates'
 set ylabel 'Times (s)' 
 
 #show correct # gates
-set arrow from ARG2, graph 0 to ARG2, graph 1 nohead lc rgb "red"
+if(ARG2 > 0) {
+  set arrow from ARG2, graph 0 to ARG2, graph 1 nohead lc rgb "red"
+}
 
 set key left
 
