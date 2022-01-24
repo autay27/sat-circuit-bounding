@@ -19,7 +19,7 @@ Where the abstract will go
 
 \subsection{Motivation}
 
-Finding lower bounds on the size of Boolean circuits computing given functions is a fundamental problem in computer science. Despite the fact that the majority of functions have exponential circuits, the best lower bounds proven on unrestricted circuits are only linear~\cite{boppana} and we still do not have optimal circuits or close upper and lower bounds for many important functions. Results in this area can be used to separate computational complexity classes, possibly even P and NP~\cite{arora}.
+Finding lower bounds on the size of Boolean circuits computing given Boolean functions is one of the most fundamental open problems in computer science. Despite the fact that the majority of functions have exponential circuits, the best lower bounds proven on unrestricted circuits are only linear~\cite{boppana} and we still do not have optimal circuits or close upper and lower bounds for many important functions. Results in this area can be used to separate computational complexity classes, possibly even P and NP (i.e. to show that a large class of fundamental and practically useful problems do not have polynomially fast algorithms).~\cite{arora} ****still need to address this feedback
 
 A heuristic approach is to find minimal circuits for small instances of the functions. This can be used to prove new bounds~\cite{kulikovsurvey} and may lead to theoretical insights on the structure of their optimal circuits generally~\cite{williams}. Finding efficient circuits is also necessary in practice when designing electronic systems. 
 
@@ -27,7 +27,7 @@ One approach to automating the search for efficient circuits is to reduce the pr
 
 \subsection{Previous work}
 
-Kamath et al~\cite{kamath} propose a reduction from logical design synthesis to SAT which fixes the DNF structure of the circuit and number of disjunctions used. Experiments using this reduction are reported in~\cite{estrada}. Kojevnikov et al~\cite{kulikov} demonstrate a more general reduction allowing any circuit with a fixed number of gates. In~\cite{kulikovlocal} the same reduction was used to improve large circuits by searching for smaller versions of their sub-circuits.
+Kamath et al~\cite{kamath} propose a reduction from logical design synthesis to SAT which fixes the DNF structure of the circuit and number of disjunctions used. Experiments using this reduction to find minimal circuits for 2-4 bit adders and multipliers are reported in~\cite{estrada}. Kojevnikov et al~\cite{kulikov} demonstrate a more general reduction allowing any circuit with a fixed number of gates, proving linear bounds for \(MOD^n_3\) circuits over different Boolean bases. This was done by checking for circuit 'building blocks' with 5 to 11 gates. In~\cite{kulikovlocal} the same reduction was used to improve large circuit building blocks by searching for smaller versions of their sub-circuits. Specifically, linear upper bounds were proved or verified for \(SUM\), \(MOD^n_4\), and \(MOD^n_3\) by checking for circuits with up to 13 gates.
 
 *Mention valiant universal circuits?
 
@@ -54,11 +54,11 @@ A circuit \(c\) of size N is said to compute the function \(f\in B_{n,m}\) if, f
 
 In this paper, we mainly consider circuits over the De Morgan basis \[C_2 = \{\lor, \land, \neg\}\] where \(\neg\) denotes the Boolean function which outputs the negation of its first argument.
 
-The size of a circuit is its number of gates. We define logical design synthesis as the problem of whether, given a truth table for a function \(f: \{0,1\}^n \to \{0,1\}^m\), there exists a circuit of size N computing \(f\).
+The size of a circuit is its number of gates. We define the circuit existence problem as the question of whether, given a truth table for a function \(f: \{0,1\}^n \to \{0,1\}^m\), there exists a circuit of size N computing \(f\).
 
 \subsection{Reduction to SAT}
 
-We encoded the logical design synthesis problem as a Boolean formula using three reductions.
+We encoded the circuit existence problem as a Boolean formula using three reductions.
 
 \subsubsection{Existing reductions}
 
@@ -70,13 +70,13 @@ The second is due to Razborov~\cite{raz} and requires a circuit over the basis \
 
 \subsubsection{A new reduction}
 
-The third *Don't know how to credit Jan* also requires a circuit over the basis \(C_2\).
+The third reduction is straightforward and also requires a circuit over the basis \(C_2\).
 
 It uses the following variables:
 
 \begin{enumerate}
   \item \(e^i_a\) \((n \leq i < N, a\in\{0,1\}^n)\) is the value of the \(i\)-th gate when the input to the circuit is \(a\). It gives \(O(N\cdot 2^n)\) variables.
-  \item \(x_{i,j}\) \(( 0 \leq i < N+n,0 \leq j < i)\) is true iff j is a predecessor of i. It gives \(O(N\cdot N+n)\) variables.
+  \item \(x_{i,j}\) \(( 0 \leq i < N+n,0 \leq j < i)\) is true iff j is a predecessor of i. It gives \(O(N\cdot (N+n))\) variables.
   \item \(g^0_i, g^1_i\) \((n \leq i < N)\) together encode the function assigned to the \(i\)-th gate by their truth values, giving \(2N\) variables:
 
     \begin{center}
@@ -105,9 +105,9 @@ We encode the requirements for the circuit by the following clauses:
 (e^i_a\leftrightarrow e^j_a\wedge e^k_a)
 \]
   
-  (Note that the gate must compute the conjunction of any two predecessors' variables, so it can have a maximum of two predecessors.) This leads to \(O(2^n\cdot N^3)\) 7-clauses.
+  Note that the gate must compute the conjunction of any two predecessors' variables. This means it can have at most two predecessors, otherwise the conjunctions of different pairs of predecessors may disagree and the gate will have no correct value. This leads to \(O(2^n\cdot N^3)\) 7-clauses.
 
-  \item For all \(i\) with \(n \leq i < n+N\), gate \(i\) must have at least one predecessor. This leads to \(O(N)\) \(O(N)\)-clauses.
+  \item For all \(i\) with \(n \leq i < n+N\), gate \(i\) must have at least one predecessor. This leads to \(O(N)\) \(O(N+n)\)-clauses.
 
   \item For all \((i,j)\) with \(n \leq i < n+N\), \(0 \leq j < i\), if \(i\) is an \(\lor\)-gate or \(\land\)-gate with \(j\) its predecessor, it must have another distinct predecessor (i.e. it must have at least 2 overall). For example, the clause for when the \(i\)th gate is an \(\land\)-gate:
 
@@ -127,9 +127,55 @@ We encode the requirements for the circuit by the following clauses:
 
 \subsection{Extension axioms}
 
-\section{Methodology}
-
 \section{Results}
+
+Timed experiments were carried out on a 3.400GHz Intel i3-8130U processor running Linux. The DIMACS hardware benchmark program *** takes *** seconds on the machine. 
+
+The times shown were obtained by running the software on the problem 3 times and taking the mean.
+
+We chose to investigate the existence of circuits up to 9 gates, as these were reliably solved within less than 12 hours on the hardware described.
+
+\subsection{Comparison of Boolean functions}
+
+We investigated the relationship between the size of a circuit and the time taken for a SAT solver to confirm or deny its existence. We chose a range of simple symmetric functions *define them:
+
+\begin{enumerate}
+  \item AND on 7 and 8-bit inputs
+  \item Parity on 3- and 4-bit inputs
+  \item \(MOD^0_3\) and \(MOD^0_4\) on 3- and 4-bit inputs
+  \item Majority on 3 and 4-bit inputs
+  \item Partial parity - Explain why partial functions are useful for encoding lower bounds on big input-lengths. But also need to find a way to get good data for them (ie. more than 1 second per problem...)
+
+\end{enumerate}
+
+*images*
+
+The size of the minimal circuit is shown in red. It was found that the SAT solver's time tended to spike on or around the optimal circuit size. This may be because it is difficult to rule out circuits that almost satisfy the requirements but do not, and because as the circuit size grows further beyond the optimal size, the number of feasible circuits also increases and the SAT solver is able to find one of these more quickly. A similar phenomenon was reported in ~\cite{estrada}.
+
+A complete list of times can be found in the appendix.
+
+\subsection{Comparison of SAT solvers and reductions}
+
+We used three SAT solvers, each based on DPLL with a variety of heuristics. (give a brief introduction on minisat, picosat, maplesat)
+
+We investigated whether there was a relationship between the reduction used to encode a Boolean function, the solver used, and the time taken by the solver.
+
+*image*
+
+
+It can be seen that MapleSAT on the Kulikov encoding performs the best. Apart from this, the effect of the reduction and the solver seem to be independent, with MapleSAT consistently performing better than MiniSAT and PicoSAT, and the naive and Kulikov reductions performing better than the Razborov reduction. Razoborv reduction seems to be the most ‘efficient’ (having a lower asymptotic growth) **however I should take out the constants and re-run the experiments to be sure it’s not that..
+
+\subsection{Random functions}
+
+16 truth tables were generated for 3 and 4-bit inputs using (insert randomness), encoded with the Kulikov reduction and solved using MapleSAT. The times taken to check for circuits of different sizes are shown below:
+
+*images*
+
+The distribution of minimal circuit sizes needed to implement these functions is as follows:
+
+*images* *bar chart omg
+
+\subsection{Extension axioms}
 
 \section{Discussion}
 
