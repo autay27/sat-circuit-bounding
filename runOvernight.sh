@@ -1,13 +1,27 @@
 #!
 
-echo 4parity
-date; timeout 2h bash -c './searchMinGates.sh 20 stdtables/parity/4parity.table -raz'; date
+#timeout 4h bash -c './getTimes.sh stdprobs/raz/4mod3 maplesat'
 
-echo 4mod3
-date; timeout 2h bash -c './searchMinGates.sh 20 stdtables/mod3/4mod3.table -raz'; date
+#start=`date +%s.%N`
 
-echo 10parity2bit
-date; timeout 2h bash -c './searchMinGates.sh 20 stdtables/partialparity/10parity2bit.table -raz'; date
+#cat stdprobs/raz/4mod3/9gates.problem | picosat
 
-echo 5majority
-date; timeout 2h bash -c './searchMinGates.sh 20 stdtables/majority/5majority.table -raz'; date
+#end=`date +%s.%N`
+
+#runtime=$( echo "$end - $start" | bc -l )
+ 
+#echo "took time: " $runtime
+
+
+#./makeProblems.sh 9 stdtables/partialparity/4rows8parity1.table stdprobs/kulikov/partialparity/4rows8parity1
+
+#./makeProblems.sh 9 stdtables/partialparity/4rows8parity2.table stdprobs/kulikov/partialparity/4rows8parity2
+
+#./makeProblems.sh 9 stdtables/partialparity/4rows8parity3.table stdprobs/kulikov/partialparity/4rows8parity3
+
+#./makeProblems.sh 9 stdtables/partialparity/4rows8parity4.table stdprobs/kulikov/partialparity/4rows8parity4
+
+./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity1 maplesat
+./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity2 maplesat
+./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity3 maplesat
+./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity4 maplesat

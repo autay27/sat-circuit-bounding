@@ -21,8 +21,6 @@ export function restrict(params: Parameters, cnf: CNF){
             for (const j of params.connectible(i)){
                 for (const k of params.connectible(i).slice(j+1)){
 
-                    cnf.addComment(`gate ${i} with inputs ${j} and ${k} on source ${a}`)
-
                     //AND
                     const notAndGate = [not(g(i,0)), g(i,1), not(x(i,j)), not(x(i,k))]
 
@@ -35,8 +33,6 @@ export function restrict(params: Parameters, cnf: CNF){
                     cnf.addClause(notOrGate.concat([not(e(i,a)), e(j,a), e(k,a)]))
                     cnf.addClauses(orConjunction(notOrGate.concat([e(i,a)]), not(e(j,a)), not(e(k,a))))
                 }
-
-                cnf.addComment(`not gate ${i} with input ${j} on source ${a}`)
 
                 //NOT
                 const notNotGate = orDImplication([not(x(i,j))], g(i,0), not(g(i,1)))

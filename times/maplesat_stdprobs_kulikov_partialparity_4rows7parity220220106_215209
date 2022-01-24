@@ -1,0 +1,18 @@
+maplesat kulikov partialparity 4rows7parity2 1 .013560679 .015044584 .009285846 UNSATISFIABLE
+
+maplesat kulikov partialparity 4rows7parity2 2 .060725473 .069987946 .055647024 SATISFIABLE
+
+maplesat kulikov partialparity 4rows7parity2 3 .128566941 .118959259 .131408161 SATISFIABLE
+
+maplesat kulikov partialparity 4rows7parity2 4 .208027401 .218194554 .205337090 SATISFIABLE
+
+maplesat kulikov partialparity 4rows7parity2 5 .325786751 .292095303 .314631857 SATISFIABLE
+
+maplesat kulikov partialparity 4rows7parity2 6 .511507314 .481713555 .523259614 SATISFIABLE
+
+maplesat kulikov partialparity 4rows7parity2 7 .750028334 .736096517 .742613915 SATISFIABLE
+
+maplesat kulikov partialparity 4rows7parity2 8 1.109336078 1.096125974 1.097684829 SATISFIABLE
+
+maplesat kulikov partialparity 4rows7parity2 9 1.787210558 1.658794020 1.662183218 SATISFIABLE
+

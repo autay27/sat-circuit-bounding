@@ -4,7 +4,7 @@ OUTPTH=$3
 shift 3
 FLAGS=$*
 
-echo "SAT problems for ${TABLE} circuit existence up to ${MAX} gates output to ./${OUTPTH}/"
+echo "SAT problems for ${TABLE} circuit existence up to ${MAX} gates outputting to ./${OUTPTH}/"
 
 mkdir -p ${OUTPTH}/
 
