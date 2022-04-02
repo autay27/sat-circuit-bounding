@@ -1,39 +1,68 @@
 #!
 
-MAX=$1
-TABLE=$2
+SAT=$1
+FOLDER=$2
 shift 2
 FLAGS=$*
 
-dpll=0
-if [[ "$1" == "-dpll" ]]
-then
-    dpll=1
-fi
+
+outname="${SAT}"_$(echo "${FOLDER}" | sed -r 's#/#_#g')$(date +%Y%m%d_%H%M%S)
+
+
 #minisat exit codes: 10=SAT, 20=UNSAT
 i=1
 msresult=20
+result="$(mktemp)"
 
-echo "searching for circuit for ${TABLE}"
+echo "searching for smallest sat. problem in ${FOLDER}; Using ${SAT}; results output to ${outname}"
 
-while [[ "$i" -le "${MAX}" ]] && [[ "$msresult" -eq 20 ]]
-do
+readarray -d '' entries < <(printf '%s\0' ./${FOLDER}/*.problem | sort -zV)
+for f in "${entries[@]}"; do
     echo "Checking $i gates"
-    if [[ "$dpll" -eq 0 ]]
+
+    #outputting the current solver / problem / gates
+
+    echo -n "${SAT} $(echo "${f}" | \
+        sed -r 's#gates\.problem##g' | \
+        cut -d'/' -f3-6 --output-delimiter=' ' )" | \
+        sed -r 's#random2 #random2_#' >> "${outname}"
+
+    #run, get result and time 
+
+    start=`date +%s.%N`
+
+    if [[ "$SAT" = "picosat" ]]
     then
-        ts-node reduce.ts $i "${TABLE}" "${FLAGS}" | minisat > /dev/null
+        cat "${f}" | "${SAT}" > $result
     else
-        ts-node reduce.ts $i "${TABLE}" "${FLAGS}" > /dev/null
+        "${SAT}" "${f}" $result
     fi
+
     msresult=$?
+
+    end=`date +%s.%N`
+
+    runtime=$( echo "$end - $start" | bc -l )
+
+
+    #output to file
+
+    echo -n " $runtime" >> "${outname}"
+
+    echo -n " " >> "${outname}"
+
+    cat $result >> "${outname}"
+
+    echo ""  >> "${outname}"
+
+    #stop if sat
+
+    if [[ "$msresult" -eq 10 ]]; then
+        break
+    fi
+
     i=$((i+1))
     
 done
 
-if [[ "$msresult" -eq 10 ]]
-then
-    i=$((i-1))
-    echo "Smallest circuit has $i gates"
-else
-    echo "No solution found with up to ${MAX} gates"
-fi
+rm -f "$result"

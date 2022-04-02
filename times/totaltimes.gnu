@@ -4,20 +4,20 @@ array labels = ['Maplesat Kulikov', 'Maplesat naive', 'Maplesat Razborov', 'Mini
 
 array SUM[|files|]
 do for [i=1:|files|] {
-  stats files[i] using ($5+$6+$7) nooutput
+  stats files[i] using (($5+$6+$7)/3600) nooutput
   SUM[i] = STATS_sum
 }
 
 set style histogram 
 set boxwidth 0.75 relative
-set ylabel 'Total times to solve all problems 3 times (s)' 
+set ylabel 'Total times to solve all problems 3 times (hours)' 
 set title 'Times taken by solver-reduction combinations'
 
-
 set terminal png size 800, 600
+set yrange [0:25.5]
 
 set output ("totals.png")
 
 set xtics rotate
 
-plot SUM using 1:2:xticlabels(labels[$1]) with boxes
+plot SUM using 1:2:xticlabels(labels[$1]) with boxes notitle

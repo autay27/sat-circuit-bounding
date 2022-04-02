@@ -17,11 +17,16 @@
 
 #./makeProblems.sh 9 stdtables/partialparity/4rows8parity2.table stdprobs/kulikov/partialparity/4rows8parity2
 
-#./makeProblems.sh 9 stdtables/partialparity/4rows8parity3.table stdprobs/kulikov/partialparity/4rows8parity3
+#./makePrd oblems.sh 9 stdtables/partialparity/4rows8parity3.table stdprobs/kulikov/partialparity/4rows8parity3
 
 #./makeProblems.sh 9 stdtables/partialparity/4rows8parity4.table stdprobs/kulikov/partialparity/4rows8parity4
 
-./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity1 maplesat
-./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity2 maplesat
-./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity3 maplesat
-./getTimes.sh stdprobs/kulikov/partialparity/4rows7parity4 maplesat
+
+
+i=1
+while [[ "$i" -le 64 ]] 
+do
+        ./getTimes.sh stdprobs/kulikov/random3/4bits${i}th maplesat
+        i=$((i+1))
+done
+

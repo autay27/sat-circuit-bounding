@@ -36,10 +36,22 @@ export class VariableDict {
     static getRandomVar(): Variable {
         return this.dict[getRandomInt(0, this.getVarCount())]
     }
+
+    static randomVarUntil(n: number): Variable {
+
+        console.assert(n <= this.getVarCount())
+        
+        return this.dict[getRandomInt(0, n)]
+    }
+
 }
 
 export function newvar(name: string): Literal{
     return new Literal(VariableDict.newvar(name), true)
 }
 
+export function getVarCount(): number { return VariableDict.getVarCount() }
+
 export function getRandomVar(): Variable { return VariableDict.getRandomVar() }
+
+export function randomVarUntil(n: number): Variable { return VariableDict.randomVarUntil(n) }

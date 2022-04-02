@@ -1,5 +1,6 @@
 \documentclass{article}
 
+\usepackage{graphicx}
 
 \begin{document}
 
@@ -19,7 +20,9 @@ Where the abstract will go
 
 \subsection{Motivation}
 
-Finding lower bounds on the size of Boolean circuits computing given Boolean functions is one of the most fundamental open problems in computer science. Despite the fact that the majority of functions have exponential circuits, the best lower bounds proven on unrestricted circuits are only linear~\cite{boppana} and we still do not have optimal circuits or close upper and lower bounds for many important functions. Results in this area can be used to separate computational complexity classes, possibly even P and NP (i.e. to show that a large class of fundamental and practically useful problems do not have polynomially fast algorithms).~\cite{arora} ****still need to address this feedback
+Finding lower bounds on the size of Boolean circuits computing given Boolean functions is one of the most fundamental open problems in computer science. Despite the fact that the majority of functions have exponential circuits, the best lower bounds proven on unrestricted circuits are only linear~\cite{boppana} and we still do not have optimal circuits or close upper and lower bounds for many important functions. Results in this area can be used to separate computational complexity classes, possibly even P and NP (i.e. to show that a large class of fundamental and practically useful problems do not have polynomially fast algorithms).~\cite{arora} 
+
+If functions with circuits of a given complexity could be identified by an efficient algorithm, this could be used to construct efficient learning algorithms for circuits of a smaller complexity.~\cite{carmosino} Furthermore, such an algorithm could be used to break pseudorandom generators (i.e. distinguish random from pseudorandom inputs), which would have major implications in the field of cryptography.~\cite{arora}
 
 A heuristic approach is to find minimal circuits for small instances of the functions. This can be used to prove new bounds~\cite{kulikovsurvey} and may lead to theoretical insights on the structure of their optimal circuits generally~\cite{williams}. Finding efficient circuits is also necessary in practice when designing electronic systems. 
 
@@ -123,21 +126,17 @@ We encode the requirements for the circuit by the following clauses:
 
 \end{enumerate}
 
-\subsection{Target Boolean functions}
-
 \subsection{Extension axioms}
 
 \section{Results}
 
-Timed experiments were carried out on a 3.400GHz Intel i3-8130U processor running Linux. The DIMACS hardware benchmark program *** takes *** seconds on the machine. 
-
-The times shown were obtained by running the software on the problem 3 times and taking the mean.
+Timed experiments were carried out on a 3.400GHz Intel i3-8130U processor running Linux. The times shown were obtained by running the software on the problem 3 times and taking the mean.
 
 We chose to investigate the existence of circuits up to 9 gates, as these were reliably solved within less than 12 hours on the hardware described.
 
 \subsection{Comparison of Boolean functions}
 
-We investigated the relationship between the size of a circuit and the time taken for a SAT solver to confirm or deny its existence. We chose a range of simple symmetric functions *define them:
+We investigated the relationship between the size of a circuit and the time taken for a SAT solver to confirm or deny its existence. We encoded a range of simple symmetric functions using the Kulikov encoding *define them more clearly:
 
 \begin{enumerate}
   \item AND on 7 and 8-bit inputs
@@ -148,11 +147,12 @@ We investigated the relationship between the size of a circuit and the time take
 
 \end{enumerate}
 
-*images*
+\begin{figure}[!ht]
+%  \includegraphics[width=\textwidth]{images/times/8and kulikov.png}
+\end{figure}
+The size of the minimal circuit is shown in red. It was found that the time needed tended to spike on or around the optimal circuit size. This may be because it is difficult to confirm or rule out circuits that come close to satisfying the requirements. A similar phenomenon was reported in~\cite{estrada}.
 
-The size of the minimal circuit is shown in red. It was found that the SAT solver's time tended to spike on or around the optimal circuit size. This may be because it is difficult to rule out circuits that almost satisfy the requirements but do not, and because as the circuit size grows further beyond the optimal size, the number of feasible circuits also increases and the SAT solver is able to find one of these more quickly. A similar phenomenon was reported in ~\cite{estrada}.
-
-A complete list of times can be found in the appendix.
+A complete display of graphs can be found in the appendix.
 
 \subsection{Comparison of SAT solvers and reductions}
 
@@ -160,20 +160,38 @@ We used three SAT solvers, each based on DPLL with a variety of heuristics. (giv
 
 We investigated whether there was a relationship between the reduction used to encode a Boolean function, the solver used, and the time taken by the solver.
 
-*image*
+\begin{figure}[!ht]
+  \includegraphics[width=\textwidth]{images/totals.png}
+  \label{fig:totals}
+  \caption{Comparison of times taken by SAT solvers on different reductions}
 
+\end{figure}
 
-It can be seen that MapleSAT on the Kulikov encoding performs the best. Apart from this, the effect of the reduction and the solver seem to be independent, with MapleSAT consistently performing better than MiniSAT and PicoSAT, and the naive and Kulikov reductions performing better than the Razborov reduction. Razoborv reduction seems to be the most ‘efficient’ (having a lower asymptotic growth) **however I should take out the constants and re-run the experiments to be sure it’s not that..
+It can be seen that MapleSAT on the Kulikov encoding performs the best. Apart from this, the effect of the reduction and the solver seem to be independent, with MapleSAT consistently performing better than MiniSAT and PicoSAT, and the naive and Kulikov reductions performing better than the Razborov reduction. **however I should take out the constants and re-run the experiments to be sure it’s not that..
 
 \subsection{Random functions}
 
-16 truth tables were generated for 3 and 4-bit inputs using (insert randomness), encoded with the Kulikov reduction and solved using MapleSAT. The times taken to check for circuits of different sizes are shown below:
+16 truth tables were generated for 3 and 4-bit inputs using a pseudorandom number generator (specifically, xorshift128+ due to the Javascript implementation) simulating a uniform distribution. The tables were encoded with the Kulikov reduction and solved using MapleSAT. The times taken to check for circuits of different sizes are shown in
 
 *images*
 
-The distribution of minimal circuit sizes needed to implement these functions is as follows:
+The distribution of minimal circuit sizes needed to implement these functions are shown in \ref{fig:3rand_sizes} and \ref{fig:4rand_sizes}.
 
-*images* *bar chart omg
+\begin{figure}[!ht]
+  \includegraphics[width=\textwidth]{images/3rand_sizes.png}
+  \label{fig:3rand_sizes}
+  \caption{Sizes of optimal circuits for 3-bit functions with randomly chosen truth tables}
+\end{figure}
+\begin{figure}[!ht]
+  \includegraphics[width=\textwidth]{images/4rand_sizes.png}
+  \label{fig:4rand_sizes}
+  \caption{Sizes of optimal circuits for 4-bit functions with randomly chosen truth tables}
+
+\end{figure}
+
+A further 32 truth tables were generated for 4-bit inputs. While we expect a large proportion of circuits to be hard for large input sizes~\cite{arora}, the usual counting argument breaks down for such small values of n (ask for help - why?). However, using the SAT solver we can check the number of hard circuits directly.
+
+*image*
 
 \subsection{Extension axioms}
 

@@ -23,7 +23,10 @@ export function m(i: number, b: number): Literal {
     return newvar("m_" + i + "_" + b)
 }
 
-
 export function d(i: number, l: number): Literal {
     return newvar("d_" + i + "_" + l)
+}
+
+export function q(i: number): Literal {
+    return newvar("q_" + i)
 }

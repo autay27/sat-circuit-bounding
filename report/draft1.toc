@@ -7,11 +7,13 @@
 \contentsline {subsection}{\numberline {2.2}Reduction to SAT}{3}%
 \contentsline {subsubsection}{\numberline {2.2.1}Existing reductions}{3}%
 \contentsline {subsubsection}{\numberline {2.2.2}A new reduction}{3}%
-\contentsline {subsection}{\numberline {2.3}Target Boolean functions}{5}%
-\contentsline {subsection}{\numberline {2.4}Extension axioms}{5}%
-\contentsline {section}{\numberline {3}Methodology}{5}%
-\contentsline {section}{\numberline {4}Results}{5}%
-\contentsline {section}{\numberline {5}Discussion}{5}%
-\contentsline {subsection}{\numberline {5.1}Reflection}{5}%
-\contentsline {subsection}{\numberline {5.2}Conclusions}{5}%
-\contentsline {subsection}{\numberline {5.3}Further directions}{5}%
+\contentsline {subsection}{\numberline {2.3}Extension axioms}{5}%
+\contentsline {section}{\numberline {3}Results}{5}%
+\contentsline {subsection}{\numberline {3.1}Comparison of Boolean functions}{5}%
+\contentsline {subsection}{\numberline {3.2}Comparison of SAT solvers and reductions}{5}%
+\contentsline {subsection}{\numberline {3.3}Random functions}{6}%
+\contentsline {subsection}{\numberline {3.4}Extension axioms}{7}%
+\contentsline {section}{\numberline {4}Discussion}{7}%
+\contentsline {subsection}{\numberline {4.1}Reflection}{7}%
+\contentsline {subsection}{\numberline {4.2}Conclusions}{7}%
+\contentsline {subsection}{\numberline {4.3}Further directions}{7}%

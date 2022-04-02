@@ -1,19 +1,16 @@
 MAX=$1
-CPY=$2
+SIZE=$2
 OUTPTH=$3
 
-echo "${CPY}x Even tables up to ${MAX} output to ./${OUTPTH}/random/"
+echo "${MAX} random tables for ${SIZE} bit inputs output to ./${OUTPTH}/"
 
-mkdir -p ${OUTPTH}/random/
+mkdir -p ${OUTPTH}/
 
-i=2
+i=1
 while [[ "$i" -le "${MAX}" ]] 
 do
-    j=1
-    while [[ "$j" -le "${CPY}" ]] 
-    do
-        ts-node makeRandomTable.ts ${i} > ${OUTPTH}/random/${i}random${j}.table
-        j=$((j+1))
-    done
-    i=$((i+2))
+
+    ts-node makeRandomTable.ts ${SIZE} > ${OUTPTH}/${SIZE}bits${i}.table
+
+    i=$((i+1))
 done
