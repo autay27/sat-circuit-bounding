@@ -1,0 +1,22 @@
+maplesat kulikov random3 4bits31th 1 .002447823 .002060051 .002049709 UNSAT
+
+maplesat kulikov random3 4bits31th 2 .008057943 .007338583 .004908704 UNSAT
+
+maplesat kulikov random3 4bits31th 3 .006613299 .005872560 .005936879 UNSAT
+
+maplesat kulikov random3 4bits31th 4 .015712709 .012798368 .011698845 UNSAT
+
+maplesat kulikov random3 4bits31th 5 .027912961 .026313141 .027683388 UNSAT
+
+maplesat kulikov random3 4bits31th 6 .087195420 .084746898 .085479389 UNSAT
+
+maplesat kulikov random3 4bits31th 7 .717567025 .715092305 .714621357 UNSAT
+
+maplesat kulikov random3 4bits31th 8 4.167917906 4.160671194 4.152989645 UNSAT
+
+maplesat kulikov random3 4bits31th 9 40.166303080 40.173767737 40.194044077 UNSAT
+
+maplesat kulikov random3 4bits31th 10 1385.648028247 1385.918324437 1384.686149874 UNSAT
+
+maplesat kulikov random3 4bits31th 11 18673.277818094 2.439954307 .506813787 INDET
+

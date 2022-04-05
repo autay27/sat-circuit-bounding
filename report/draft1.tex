@@ -30,17 +30,17 @@ One approach to automating the search for efficient circuits is to reduce the pr
 
 \subsection{Previous work}
 
+Circuits are a popular model of non-uniform computation. In the past there have been theoretical proofs of lower bounds for restricted circuit classes, e.g. AC0\cite{furst81}\cite{ajtai83}, AC0[k] (i.e. AC0 additionally with MOD-k gates)\cite{razborov87}\cite{smolensky87}, and monotone circuits\cite{razborov85}. However, no lower bounds better than 5n-c\cite{iwama02} have been found for general circuits. Furthermore, there are results stating that it is impossible to use circuit lower bounds to separate P and NP by relativisation\cite{baker75}, algebrization\cite{aaronson09}, or natural proofs\cite{razborov94}. It has been proved that circuit lower bounds are hard to prove using resolution and resolution with k-DNFS, and it is conjectured that they are also hard under stronger proof systems such as Frege systems\cite{raz}. Due to this difficulty in theoretical progress, we would like to investigate the problem empirically.
+
 Kamath et al~\cite{kamath} propose a reduction from logical design synthesis to SAT which fixes the DNF structure of the circuit and number of disjunctions used. Experiments using this reduction to find minimal circuits for 2-4 bit adders and multipliers are reported in~\cite{estrada}. Kojevnikov et al~\cite{kulikov} demonstrate a more general reduction allowing any circuit with a fixed number of gates, proving linear bounds for \(MOD^n_3\) circuits over different Boolean bases. This was done by checking for circuit 'building blocks' with 5 to 11 gates. In~\cite{kulikovlocal} the same reduction was used to improve large circuit building blocks by searching for smaller versions of their sub-circuits. Specifically, linear upper bounds were proved or verified for \(SUM\), \(MOD^n_4\), and \(MOD^n_3\) by checking for circuits with up to 13 gates.
-
-*Mention valiant universal circuits?
-
-*Should look for other things
 
 \subsection{Our contributions}
 
-We investigate feasible ways to find small circuits using SAT reductions. Previous research in this area has focused on a small number of target Boolean functions and a single reduction at a time. Instead we use multiple combinations of reductions and SAT solvers to see which leads to the best performance, testing them on a range of different functions. 
+We investigate feasible ways to find small circuits using SAT reductions. Previous research in this area has focused on a small number of target Boolean functions and a single reduction at a time. Instead, we use multiple combinations of reductions and SAT solvers to see which leads to the best performance. We test them on a range of symmetric functions whose lower bounds are already somewhat understood, in order to analyse the performance in relation to the bound. 
 
-We also present a new reduction *not sure what to say about this*
+We also search for a general relationship between solver performance and minimum circuit size by applying our methods to a sample of randomly generated functions. We then use solvers to prove a result, that a lower bound conjecture about MOD-3 functions due to Knuth\cite{knuth15} does not hold for the de Morgan basis. 
+
+From these experiments we note that available solvers running on a personal computer can decide the existence of some circuits of size 11 in just a few hours, while others of size 11 and up can take many hours on a high-powered computing cluster. That is to say, the amount of time taken to solve comparable problems can vary considerably.
 
 *Extension axioms - should actually try them first
 
@@ -59,27 +59,130 @@ In this paper, we mainly consider circuits over the De Morgan basis \[C_2 = \{\l
 
 The size of a circuit is its number of gates. We define the circuit existence problem as the question of whether, given a truth table for a function \(f: \{0,1\}^n \to \{0,1\}^m\), there exists a circuit of size N computing \(f\).
 
+\subsection{SAT solvers}
+
+SAT solvers have previously seen success in proving mathematical theorems, most famously in 2016 when Heule et al solved the Boolean Pythagorean Triples problem\cite{heule} and in 2020 when Brakensiek, Heule et al solved Keller's conjecture\cite{heule2}. In general, SAT solvers have the advantage of being effective even when heuristics are not known for solving the original problem, as in the case of circuit existence.
+
+We used three SAT solvers, all based on conflict-driven clause learning. This is an algorithm closely related to DPLL, and which also makes use of the resolution proof system.\cite{cdcl}\cite{krajicek}
+
+MiniSAT\cite{minisat} was the winner of the 2005 SAT Competition and was last updated to version 2.2 in 2010\cite{minisat2010}. Despite being outdated, it is well-documented and the other solvers we used were based on it, making it a good baseline for performance.
+
+PicoSAT is a solver inspired by miniSAT 1.14, with a focus on improving low-level performance by using optimised data structures\cite{picosat}. It was submitted in the 2010 SAT-Race.
+
+MapleSAT is the most recent solver, with variants having won the SAT Competition 2016 and placed second in 2017. It was based off MiniSAT 2.2 but has a different branching heuristic, incorporating ideas from machine learning\cite{maplesat}.
+
+*I'm not sure why we are using picoSAT - there is still time to re-run the results if we want to replace it.
+
+\subsection{Extension axioms}
+
 \subsection{Reduction to SAT}
 
 We encoded the circuit existence problem as a Boolean formula using three reductions.
 
-\subsubsection{Existing reductions}
+\subsubsection{Kojevnikov reduction}
 
-The first is due to Kojevnikov et al~\cite{kulikov} who present it together with bounds on the growth rate of the formula. The basis of the circuit can be specified as any subset of \(B_2\). The number of clauses generated is \(O(N^3\cdot2^n)\) and the number of variables is \(O(2^n\cdot N)\)
-
-The second is due to Razborov~\cite{raz} and requires a circuit over the basis \(C_2\): *not sure how much to describe this one but I definitely need to give the growth rates..*
-
-*Also am bothered that this is the only reduction that allows constants in the circuit - it wouldn't be hard to remove that aspect.*
-
-\subsubsection{A new reduction}
-
-The third reduction is straightforward and also requires a circuit over the basis \(C_2\).
+The first is due to Kojevnikov et al~\cite{kulikov} who present it together with bounds on the growth rate of the formula. The basis of the circuit can be specified as any subset of \(B_2\).
 
 It uses the following variables:
 
 \begin{enumerate}
-  \item \(e^i_a\) \((n \leq i < N, a\in\{0,1\}^n)\) is the value of the \(i\)-th gate when the input to the circuit is \(a\). It gives \(O(N\cdot 2^n)\) variables.
-  \item \(x_{i,j}\) \(( 0 \leq i < N+n,0 \leq j < i)\) is true iff j is a predecessor of i. It gives \(O(N\cdot (N+n))\) variables.
+
+  \item $t_{ib_1b_2}$ $(n \leq i < n + N, 0 \leq b_1 < 2, 0 \leq b_2 < 2)$ is the value of the $i$-th gate if its first predecessor takes value $b_1$ and its second takes value $b_2$. The four variables $t_{i00}, t_{i01}, t_{i10}, t_{i11}$ thus define the function assigned to the $i$-th gate. This gives $O(N)$ variables.
+  \item $c_{ikj}$ $(n \leq i < n + N - 1, 0 \leq k < 2, 0 \leq j < n + N)$ is true iff $j$ is the $k$-th predecessor of $i$. This gives $O(N^2)$ variables.
+  \item $o_{ij}$ $(n \leq i < n + N, 0 \leq j < m)$ is true iff the $j$-th output is computed by the $i$-th gate. This gives $O(Nm)$ variables.
+  \item $v_{it}$ $(0 \leq i \leq n + N, 0 \leq t < 2^n)$ is the output value of the $i$-th gate if the input variables take values represented by the bits of $t$. These are used to constrain correctness of the circuit on all possible inputs, including its outputs matching the truth table of the encoded function.
+
+\end{enumerate}
+
+We encode the requirements for the circuit by the following clauses:
+
+\begin{enumerate}
+
+  \item The binary function assigned to each gate belongs to our desired basis.
+  \item For all $(i,k)$, exactly one variable $c_{ikj}$ is true (there is exactly one $k$-th predecessor of the $i$-th gate). This gives $O(N^3)$ 2-clauses and $O(N)$ $O(N)$-clauses.
+  \item For all $j$, exactly one variable $o_{ij}$ is true (the $j$-th output is computed by exactly one gate). This gives $O(N^2m)$ 2-clauses and $O(m)$ $O(N)$-clauses.
+  \item For all $0 \leq i < n$ and $0 \leq t < 2^n$, $v_{it}$ is equal to the corresponding bit in $t$. This gives $O(n \cdot 2^n)$ 1-clauses.
+  \item For all $n \leq i < n + N$ and $0 \leq t < 2^n$, $v_{it}$ is equal to the value computed by the $i$-th gate. This constrains all the gates with predecessors. Clauses of this type are written for all $n \leq i < n + N$, $n \leq j_0 < i$, $j_0 \leq j_1 < i$, $0 \leq i_0 < 2$, $0 \leq i_1 < 2$, $0 \leq r < 2^n$, and look as follows: 
+
+  \[
+    \neg c_{i0j_0} \lor \neg c_{i1j_1} \lor \neg(v_{j_0r} = i_0) \lor \neg(v_{j_1r} = i_1) \lor (v_{ir} = t_{ii_0i_1})
+  \]
+
+  This gives $O(N^3 \cdot 2^n)$ 6-clauses.
+  \item The outputs of the circuit match the truth table. Clauses of this type are written for all $0 \leq k < m, 0 \leq r < 2^n, n \leq i < n + N$, and look as follows:
+ 
+  \[
+    \neg o_{ik} \lor (v_{ir} = value_{kr})
+  \] 
+
+  where $value_{kr}$ is the required value of the $k$-th output when the circuit is given input $r$, according to the truth table. This gives $O(N2^nm)$ clauses.
+
+\end{enumerate}
+
+
+\subsubsection{Razborov reduction}
+
+The second is due to Razborov~\cite{raz}, assumes the function outputs only a single Boolean value, and requires a circuit over the basis \(C_2\). Note that it has a lower growth rate (in terms of number of clauses) than the other two reductions, suggesting it encodes the requirements more efficiently. Let $f$ be the target function with n inputs, and let $t$ be the number of gates required in the circuit.
+
+It uses the following variables:
+
+\begin{enumerate}
+
+  \item $y_{av}$ $(a \in {0,1}^n, v \in [t])$ is the value taken by node $v$ on circuit input $a$. This gives $O(t2^n)$ variables.
+  \item $y_{a\nu v}$ $(a \in {0,1}^n, \nu \in {1,2}, v \in [t])$ is the value of the $\nu$-th predecessor to $v$ on input $a$. This gives $O(t2^n)$ variables.
+  \item $Fanin(v)$ is 0 if $v$ is a $\neg$-gate and 1 otherwise. This gives $O(t)$ variables.
+  \item $Types(v)$ - when $Fanin(v)=1$, this is 0 if $v$ is a $\land$-gate and 1 if $v$ is a $\lor$-gate. This gives $O(t)$ variables.
+  \item $InputType_\nu(v)$ is 0 if the $\nu$-th predecessor to $v$ is a constant or an input, 1 if it is another gate. This gives $O(t)$ variables.
+  \item $InputType'_\nu(v)$ - when $InputType_{\nu}(v) = 0$, this is 0 if the $\nu$-th predecessor to $v$ is a constant, 1 if it is an input. This gives $O(t)$ variables.
+  \item $InputType''_\nu(v)$ - when $InputType_{\nu}(v) = InputType'_{\nu}(v) = 0$, this is the value of the constant $\nu$-th predecessor to $v$. This gives $O(t)$ variables.
+  \item $InputVar_\nu(v,i)$ $(i \in [n])$ - when $InputType_{\nu}(v) = 0, InputType'_{\nu}(v) = 1$, this is 1 iff the $\nu$-th predecessor to $v$ is the $i$-th input. This gives $O(tn)$ variables.
+  \item $INPUTVAR_\nu(v,i)$ is equal to $\bigvee_{i'<i} InputVar_\nu(v,i')$, which will be used to bound the fan-in below. This gives $O(tn)$ variables.
+  \item $InputNode_\nu(v,v')$ $(v' < v)$ - when $InputType_{\nu}(v) = 1$, this is 1 iff $\nu$-th predecessor to $v$ is the gate $v'$. This gives $O(t^2)$ variables.
+  \item $INPUTNODE_\nu(v,v')$ is analogous to $INPUTVAR_\nu(v,i)$. This gives $O(t^2)$ variables.
+  
+\end{enumerate}
+
+We encode the requirements for the circuit by the following expressions:
+
+\begin{enumerate}
+
+  \item Constant predecessors take the correct values, giving $O(t)$ clauses:
+
+  $\neg InputType_\nu(v) \land \neg InputType'_\nu(v) \rightarrow (y_{a \nu v} = InputType''_\nu(v))$
+
+  \item Gates have at most one input per input predecessor, giving $O(tn^2)$ clauses:
+
+  $\neg InputType_\nu(v) \land InputType'_\nu(v) \rightarrow \neg (InputVar_\nu(v,i) \land InputVar_\nu(v,i'))$ for $i \neq i'$
+
+  \item INPUTVAR variables take the correct value, giving $O(tn)$ clauses:
+
+  $\neg InputType_\nu(v) \land InputType'_\nu(v) \rightarrow (INPUTVAR_\nu(v,i) = (InputType_\nu(v),i-1) \lor InputVar_\nu(v,i)))$, where $InputType_\nu(v,0) = 0$
+
+  \item Gates have at least one input per input predecessor, giving $O(t)$ clauses:
+
+  $\neg InputType_\nu(v) \land InputType'_\nu(v) \rightarrow INPUTVAR_\nu(v,n)$
+
+  \item Input predecessors take the correct values, giving $O(tn \cdot 2^n)$ clauses:
+
+  $\neg InputType_\nu(v) \land InputType'_\nu(v) \land InputVar_\nu(v,i) \rightarrow (y_{a \nu v} = a_i)$
+
+  \item The analogous clauses to the above, but for InputNode and gate predecessors. 
+
+  \item Gates take the correct value, giving $O(t2^n)$ clauses.
+
+  \item The final gate (i.e. the output) matches the truth table, giving $O(2^n)$ clauses.
+
+\end{enumerate}
+
+\subsubsection{Naive reduction}
+
+The third reduction is straightforward. It also assumes the function outputs only a single Boolean value and requires a circuit over the basis \(C_2\).
+
+It uses the following variables:
+
+\begin{enumerate}
+  \item \(e^i_a\) \((n \leq i < N, a\in\{0,1\}^n)\) is the value of the \(i\)-th gate when the input to the circuit is \(a\). This gives \(O(N \cdot 2^n)\) variables.
+  \item \(x_{i,j}\) \(( 0 \leq i < N+n,0 \leq j < i)\) is true iff j is a predecessor of i. This gives \(O(N \cdot (N+n))\) variables.
   \item \(g^0_i, g^1_i\) \((n \leq i < N)\) together encode the function assigned to the \(i\)-th gate by their truth values, giving \(2N\) variables:
 
     \begin{center}
@@ -100,7 +203,7 @@ It uses the following variables:
 We encode the requirements for the circuit by the following clauses:
 
 \begin{enumerate}
-  \item For all \((i,j,k)\) with \(n \leq i < n+N\), \(0 \leq j < i\) and \(j < k < i\), and for all \(a\in\{0,1\}^n\), if \(j\) and \(k\) are both predecessors of \(i\), then \(e^i_a\) must take the value computed by the \(i\)th gate's assigned function on \(e^j_a\) and \(e^k_a\). A clause must be added for each function in the basis. For example, the clause for when the \(i\)th gate is an \(\land\)-gate:
+  \item For all \((i,j,k)\) with \(n \leq i < n+N\), \(0 \leq j < i\) and \(j < k < i\), and for all \(a\in\{0,1\}^n\), if \(j\) and \(k\) are both predecessors of \(i\), then \(e^i_a\) must take the value computed by the \(i\)th gate's assigned function on \(e^j_a\) and \(e^k_a\). Clauses must be added for each function in the basis. For example, the expression for when the \(i\)th gate is an \(\land\)-gate:
 
 \[
 (g^0_i\wedge \neg g^1_i)\wedge 
@@ -108,31 +211,29 @@ We encode the requirements for the circuit by the following clauses:
 (e^i_a\leftrightarrow e^j_a\wedge e^k_a)
 \]
   
-  Note that the gate must compute the conjunction of any two predecessors' variables. This means it can have at most two predecessors, otherwise the conjunctions of different pairs of predecessors may disagree and the gate will have no correct value. This leads to \(O(2^n\cdot N^3)\) 7-clauses.
+  Note that the gate must compute the conjunction of any two predecessors' variables. This means it can have at most two predecessors, otherwise the conjunctions of different pairs of predecessors may disagree and the gate will have no correct value. This gives \(O(2^n\cdot N^3)\) 7-clauses.
 
-  \item For all \(i\) with \(n \leq i < n+N\), gate \(i\) must have at least one predecessor. This leads to \(O(N)\) \(O(N+n)\)-clauses.
+  \item For all \(i\) with \(n \leq i < n+N\), gate \(i\) must have at least one predecessor. This gives \(O(N)\) \(O(N+n)\)-clauses.
 
-  \item For all \((i,j)\) with \(n \leq i < n+N\), \(0 \leq j < i\), if \(i\) is an \(\lor\)-gate or \(\land\)-gate with \(j\) its predecessor, it must have another distinct predecessor (i.e. it must have at least 2 overall). For example, the clause for when the \(i\)th gate is an \(\land\)-gate:
+  \item For all \((i,j)\) with \(n \leq i < n+N\), \(0 \leq j < i\), if \(i\) is an \(\lor\)-gate or \(\land\)-gate with \(j\) its predecessor, it must have another distinct predecessor (i.e. it must have at least 2 overall). For example, the expression for when the \(i\)th gate is an \(\land\)-gate:
 
 \[
 (g^0_i \land \neg g^1_i) \rightarrow \left( x_{i,j} \rightarrow \bigvee_{j<k<i} x_{i,k} \right)
 \]
 
-  This leads to \(O(N^2)\) \(O(N)\)-clauses.
+  This gives \(O(N^2)\) \(O(N)\)-clauses.
 
-  \item For all \(i\) with \(0 \leq i < n\), \(a\in\{0,1\}^n\), the \(i\)-th input must equal \(a_i\). This leads to \(O(n \cdot 2^n)\) 1-clauses.
+  \item For all \(i\) with \(0 \leq i < n\), \(a\in\{0,1\}^n\), the \(i\)-th input must equal \(a_i\). This gives \(O(n \cdot 2^n)\) 1-clauses.
 
-  \item For all \(a\in\{0,1\}^n\), the final m gates (i.e. the outputs) should agree with the output values given for \(a\) in the target truth table. This leads to \(O(2^n)\) 1-clauses.
+  \item For all \(a\in\{0,1\}^n\), the final m gates (i.e. the outputs) should agree with the output values given for \(a\) in the target truth table. This gives \(O(2^n)\) 1-clauses.
 
 \end{enumerate}
 
-\subsection{Extension axioms}
-
 \section{Results}
 
-Timed experiments were carried out on a 3.400GHz Intel i3-8130U processor running Linux. The times shown were obtained by running the software on the problem 3 times and taking the mean.
+Timed experiments were carried out on a 3.400GHz Intel i3-8130U processor running Linux. The times shown were obtained by running the software on the problem 3 times and taking the median.
 
-We chose to investigate the existence of circuits up to 9 gates, as these were reliably solved within less than 12 hours on the hardware described.
+We chose to investigate the existence of circuits up to 9 gates, as these were reliably solved within less than 9 hours on the hardware described.
 
 \subsection{Comparison of Boolean functions}
 
@@ -156,8 +257,6 @@ A complete display of graphs can be found in the appendix.
 
 \subsection{Comparison of SAT solvers and reductions}
 
-We used three SAT solvers, each based on DPLL with a variety of heuristics. (give a brief introduction on minisat, picosat, maplesat)
-
 We investigated whether there was a relationship between the reduction used to encode a Boolean function, the solver used, and the time taken by the solver.
 
 \begin{figure}[!ht]
@@ -167,11 +266,12 @@ We investigated whether there was a relationship between the reduction used to e
 
 \end{figure}
 
-It can be seen that MapleSAT on the Kulikov encoding performs the best. Apart from this, the effect of the reduction and the solver seem to be independent, with MapleSAT consistently performing better than MiniSAT and PicoSAT, and the naive and Kulikov reductions performing better than the Razborov reduction. **however I should take out the constants and re-run the experiments to be sure it’s not that..
+It can be seen that MapleSAT on the Kulikov encoding performs the best. Apart from this, the effect of the reduction and the solver seem to be independent, with MapleSAT consistently performing better than MiniSAT and PicoSAT, and the naive and Kulikov reductions performing better than the Razborov reduction. It is possible that the efficient encoding of the Razborov reduction is detrimental to the performance of the solver. However, these results are only applicable to small values of n. **however I should take out the constants and re-run the experiments to be sure it’s not that..
 
 \subsection{Random functions}
 
 16 truth tables were generated for 3 and 4-bit inputs using a pseudorandom number generator (specifically, xorshift128+ due to the Javascript implementation) simulating a uniform distribution. The tables were encoded with the Kulikov reduction and solved using MapleSAT. The times taken to check for circuits of different sizes are shown in
+change to 64 and show the tables
 
 *images*
 

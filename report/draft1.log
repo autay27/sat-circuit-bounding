@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.23)  25 FEB 2022 14:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.23)  5 APR 2022 20:04
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**draft1.tex
-(./draft1.tex
+**/home/august/satbounding/report/draft1.tex
+(/home/august/satbounding/report/draft1.tex
 LaTeX2e <2020-02-02> patch level 2
-L3 programming layer <2020-02-14>
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
@@ -22,37 +22,29 @@ File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen135
 \Gin@req@width=\dimen136
-)
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count175
 \l__pdf_internal_box=\box45
-)
-(./draft1.aux)
+) (/home/august/satbounding/report/draft1.aux)
 \openout1 = `draft1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -69,8 +61,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count176
 \scratchdimen=\dimen137
@@ -85,12 +76,9 @@ LaTeX Font Info:    ... okay on input line 5.
 \everyMPtoPDFconversion=\toks16
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 10.
@@ -98,10 +86,9 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 10.
+ [1
 
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./draft1.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/august/satbounding/report/draft1.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -110,51 +97,237 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
 \openout3 = `draft1.toc'.
 
- [1]
-[2] [3] [4]
-<images/totals.png, id=30, 602.25pt x 451.6875pt>
+
+
+LaTeX Warning: Citation `boppana' on page 1 undefined on input line 23.
+
+
+LaTeX Warning: Citation `arora' on page 1 undefined on input line 23.
+
+
+LaTeX Warning: Citation `carmosino' on page 1 undefined on input line 25.
+
+
+LaTeX Warning: Citation `arora' on page 1 undefined on input line 25.
+
+[1]
+
+LaTeX Warning: Citation `kulikovsurvey' on page 2 undefined on input line 27.
+
+
+LaTeX Warning: Citation `williams' on page 2 undefined on input line 27.
+
+
+LaTeX Warning: Citation `kulikov' on page 2 undefined on input line 29.
+
+
+LaTeX Warning: Citation `furst81' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `ajtai83' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `razborov87' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `smolensky87' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `razborov85' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `iwama02' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `baker75' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `aaronson09' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `razborov94' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `raz' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Citation `kamath' on page 2 undefined on input line 35.
+
+
+LaTeX Warning: Citation `estrada' on page 2 undefined on input line 35.
+
+
+LaTeX Warning: Citation `kulikov' on page 2 undefined on input line 35.
+
+
+LaTeX Warning: Citation `kulikovlocal' on page 2 undefined on input line 35.
+
+[2]
+
+LaTeX Warning: Citation `knuth15' on page 3 undefined on input line 41.
+
+
+LaTeX Warning: Citation `kulikov' on page 3 undefined on input line 54.
+
+
+LaTeX Warning: Citation `heule' on page 3 undefined on input line 64.
+
+
+LaTeX Warning: Citation `heule2' on page 3 undefined on input line 64.
+
+
+Overfull \hbox (2.61163pt too wide) in paragraph at lines 64--65
+\OT1/cmr/m/n/10 problem[[]] and in 2020 when Brak-en-siek, Heule et al solved Keller's conjecture[[]].
+ []
+
+[3]
+
+LaTeX Warning: Citation `cdcl' on page 4 undefined on input line 66.
+
+
+LaTeX Warning: Citation `krajicek' on page 4 undefined on input line 66.
+
+
+LaTeX Warning: Citation `minisat' on page 4 undefined on input line 68.
+
+
+LaTeX Warning: Citation `minisat2010' on page 4 undefined on input line 68.
+
+
+LaTeX Warning: Citation `picosat' on page 4 undefined on input line 70.
+
+
+LaTeX Warning: Citation `maplesat' on page 4 undefined on input line 72.
+
+
+LaTeX Warning: Citation `kulikov' on page 4 undefined on input line 84.
+
+[4]
+
+LaTeX Warning: Citation `raz' on page 5 undefined on input line 125.
+
+[5]
+Overfull \hbox (2.69171pt too wide) in paragraph at lines 155--156
+[]$\OMS/cmsy/m/n/10 :\OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^ \OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! :\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 InputVar[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; i\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^ \OML/cmm/m/it/10 InputVar[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; i[]\OT1/cmr/m/n/10 ))$
+ []
+
+
+Overfull \hbox (29.00337pt too wide) in paragraph at lines 159--160
+[]$\OMS/cmsy/m/n/10 :\OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^ \OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 INPUTVAR[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; i\OT1/cmr/m/n/10 ) = (\OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; i \OMS/cmsy/m/n/10 ^^@
+ []
+
+[6] [7]
+
+LaTeX Warning: Citation `estrada' on page 8 undefined on input line 254.
+
+<images/totals.png, id=43, 602.25pt x 451.6875pt>
 File: images/totals.png Graphic file (type png)
 <use images/totals.png>
-Package pdftex.def Info: images/totals.png  used on input line 164.
+Package pdftex.def Info: images/totals.png  used on input line 263.
 (pdftex.def)             Requested size: 345.0pt x 258.76027pt.
- [5]
-<images/3rand_sizes.png, id=34, 803.0pt x 602.25pt>
+[8]
+<images/3rand_sizes.png, id=47, 803.0pt x 602.25pt>
 File: images/3rand_sizes.png Graphic file (type png)
 <use images/3rand_sizes.png>
-Package pdftex.def Info: images/3rand_sizes.png  used on input line 181.
+Package pdftex.def Info: images/3rand_sizes.png  used on input line 281.
 (pdftex.def)             Requested size: 345.0pt x 258.75108pt.
-<images/4rand_sizes.png, id=36, 803.0pt x 602.25pt>
+<images/4rand_sizes.png, id=49, 803.0pt x 602.25pt>
 File: images/4rand_sizes.png Graphic file (type png)
 <use images/4rand_sizes.png>
-Package pdftex.def Info: images/4rand_sizes.png  used on input line 186.
+Package pdftex.def Info: images/4rand_sizes.png  used on input line 286.
 (pdftex.def)             Requested size: 345.0pt x 258.75108pt.
- (./draft1.bbl [6 <./images/totals.png>] [7 <./images/3rand_sizes.png>] [8 <./i
-mages/4rand_sizes.png>]) [9] (./draft1.aux) ) 
+
+
+LaTeX Warning: Citation `arora' on page 9 undefined on input line 292.
+
+[9 </home/august/satbounding/report/images/totals.png>] (/home/august/satbounding/report/draft1.bbl
+
+/home/august/satbounding/report/draft1.bbl:10: Package inputenc Error: Unicode character ∑ (U+2211)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 \newblock ∑
+                  11-formulae on finite structures.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[10 </home/august/satbounding/report/images/3rand_sizes.png>]
+
+/home/august/satbounding/report/draft1.bbl:20: LaTeX Error: \mathcal allowed only in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \newblock Relativizations of the \$\mathcal
+                                                {P} = ?\mathcal{NP}\$ question.
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/august/satbounding/report/draft1.bbl:20: LaTeX Error: \mathcal allowed only in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 ...vizations of the \$\mathcal{P} = ?\mathcal
+                                                  {NP}\$ question.
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[11 </home/august/satbounding/report/images/4rand_sizes.png>]
+/home/august/satbounding/report/draft1.bbl:56: Undefined control sequence.
+l.56 \newblock \url
+                   {https://github.com/niklasso/minisat/tree/master/doc}, 2010.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 6608) in paragraph at lines 54--57
+[]\OT1/cmr/m/n/10 Niklas E^^Sen and Niklas S^^?orensson.  min-isat github repos-i-tory.
+ []
+
+
+/home/august/satbounding/report/draft1.bbl:80: Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.80 \newblock An explicit lower bound of 5n −
+                                                 o(n) for boolean circuits.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[12]) [13] (/home/august/satbounding/report/draft1.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 1207 strings out of 483183
- 17616 string characters out of 5966291
- 249548 words of memory out of 5000000
- 16247 multiletter control sequences out of 15000+600000
- 537546 words of font info for 41 fonts, out of 8000000 for 9000
+ 1235 strings out of 483183
+ 18284 string characters out of 5966291
+ 249519 words of memory out of 5000000
+ 16273 multiletter control sequences out of 15000+600000
+ 537881 words of font info for 42 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 30i,7n,25p,882b,211s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on draft1.pdf (10 pages, 204015 bytes).
+ 30i,7n,25p,997b,211s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/august/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on /home/august/satbounding/report/draft1.pdf (14 pages, 250915 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 127 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

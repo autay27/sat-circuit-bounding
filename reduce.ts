@@ -20,6 +20,8 @@ import * as naive from './restrictnaive';
 
 import * as razborov from './restrictrazborov';
 
+import * as extensionvars from './extensionvars';
+
 //I think I should be using some sort of argument parsing library for all this..
 var myArgs = process.argv.slice(2).join(' ').split(/\s+/);
 
@@ -32,6 +34,7 @@ var dnf = false
 var dpll = false
 var naivever = false
 var raz = false
+var extvars = 0
 
 var allowedGates = [ 0b0001, 0b0111, 0b1010 ]
 
@@ -88,6 +91,15 @@ while(i < myArgs.length){
             break;
         case "":
             break;
+        case "-extvars":
+            next = myArgs[i+1] 
+            if (isNumeric(next)){
+                extvars = parseInt(next)
+                i+=1
+            } else {
+                argError(flag, next)
+            }
+            break;    
         default:
             flagError(flag)
     }
@@ -139,6 +151,7 @@ if (!failed){
     }
 
     if (maxDepth > 0) cnf = depth.restrict(params, cnf, maxDepth)
+    if (extvars > 0) cnf = extensionvars.restrict(params, cnf, extvars)
 
 
 //output
