@@ -6,9 +6,8 @@ set ylabel 'Total time to check for sizes 1-11'
 
 plot 'sizes_totaltimes' using 2:3 with points pt 7 ps 1 notitle
 
-set output "4bit_scatter_small.png"
+#set output "4bit_scatter_small.png"
 
-#set xrange [4:500]
-set yrange [0:400]
+#set yrange [0:400]
 
-plot 'sizes_totaltimes' using 2:3 with points pt 7 ps 1 notitle
+#plot 'sizes_totaltimes' using 2:3 with points pt 7 ps 1 notitle

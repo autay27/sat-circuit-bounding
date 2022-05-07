@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.23)  5 APR 2022 20:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.23)  24 APR 2022 17:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -121,126 +121,150 @@ LaTeX Warning: Citation `williams' on page 2 undefined on input line 27.
 LaTeX Warning: Citation `kulikov' on page 2 undefined on input line 29.
 
 
-LaTeX Warning: Citation `furst81' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `furst81' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `ajtai83' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `ajtai83' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `razborov87' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `razborov87' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `smolensky87' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `smolensky87' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `razborov85' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `razborov85' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `iwama02' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `iwama02' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `baker75' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `baker75' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `aaronson09' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `aaronson09' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `razborov94' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `razborov94' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `raz' on page 2 undefined on input line 33.
+LaTeX Warning: Citation `raz' on page 2 undefined on input line 35.
 
 
-LaTeX Warning: Citation `kamath' on page 2 undefined on input line 35.
+LaTeX Warning: Citation `kamath' on page 2 undefined on input line 37.
 
 
-LaTeX Warning: Citation `estrada' on page 2 undefined on input line 35.
+LaTeX Warning: Citation `estrada' on page 2 undefined on input line 37.
 
 
-LaTeX Warning: Citation `kulikov' on page 2 undefined on input line 35.
+LaTeX Warning: Citation `kulikov' on page 2 undefined on input line 37.
 
 
-LaTeX Warning: Citation `kulikovlocal' on page 2 undefined on input line 35.
+LaTeX Warning: Citation `kulikovlocal' on page 2 undefined on input line 37.
 
 [2]
 
-LaTeX Warning: Citation `knuth15' on page 3 undefined on input line 41.
+LaTeX Warning: Citation `knuth15' on page 3 undefined on input line 43.
 
 
-LaTeX Warning: Citation `kulikov' on page 3 undefined on input line 54.
-
-
-LaTeX Warning: Citation `heule' on page 3 undefined on input line 64.
-
-
-LaTeX Warning: Citation `heule2' on page 3 undefined on input line 64.
-
-
-Overfull \hbox (2.61163pt too wide) in paragraph at lines 64--65
-\OT1/cmr/m/n/10 problem[[]] and in 2020 when Brak-en-siek, Heule et al solved Keller's conjecture[[]].
- []
+LaTeX Warning: Citation `kulikov' on page 3 undefined on input line 56.
 
 [3]
 
-LaTeX Warning: Citation `cdcl' on page 4 undefined on input line 66.
+LaTeX Warning: Citation `heule' on page 4 undefined on input line 66.
 
 
-LaTeX Warning: Citation `krajicek' on page 4 undefined on input line 66.
+LaTeX Warning: Citation `heule2' on page 4 undefined on input line 66.
 
 
-LaTeX Warning: Citation `minisat' on page 4 undefined on input line 68.
+Overfull \hbox (2.61163pt too wide) in paragraph at lines 66--67
+\OT1/cmr/m/n/10 problem[[]] and in 2020 when Brak-en-siek, Heule et al solved Keller's conjecture[[]].
+ []
 
 
-LaTeX Warning: Citation `minisat2010' on page 4 undefined on input line 68.
+LaTeX Warning: Citation `cdcl' on page 4 undefined on input line 68.
 
 
-LaTeX Warning: Citation `picosat' on page 4 undefined on input line 70.
+LaTeX Warning: Citation `krajicek' on page 4 undefined on input line 68.
 
 
-LaTeX Warning: Citation `maplesat' on page 4 undefined on input line 72.
+LaTeX Warning: Citation `raz' on page 4 undefined on input line 68.
 
 
-LaTeX Warning: Citation `kulikov' on page 4 undefined on input line 84.
+LaTeX Warning: Citation `minisat' on page 4 undefined on input line 70.
+
+
+LaTeX Warning: Citation `minisat2010' on page 4 undefined on input line 70.
+
+
+LaTeX Warning: Citation `kulikov' on page 4 undefined on input line 70.
+
+
+LaTeX Warning: Citation `picosat' on page 4 undefined on input line 72.
+
+
+LaTeX Warning: Citation `kulikov' on page 4 undefined on input line 72.
+
+
+LaTeX Warning: Citation `kulikovlocal' on page 4 undefined on input line 72.
+
+
+LaTeX Warning: Citation `maplesat' on page 4 undefined on input line 74.
+
+
+LaTeX Warning: Citation `kulikov' on page 4 undefined on input line 86.
 
 [4]
 
-LaTeX Warning: Citation `raz' on page 5 undefined on input line 125.
+LaTeX Warning: Citation `raz' on page 5 undefined on input line 127.
 
 [5]
-Overfull \hbox (2.69171pt too wide) in paragraph at lines 155--156
+Overfull \hbox (2.69171pt too wide) in paragraph at lines 157--158
 []$\OMS/cmsy/m/n/10 :\OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^ \OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! :\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 InputVar[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; i\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^ \OML/cmm/m/it/10 InputVar[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; i[]\OT1/cmr/m/n/10 ))$
  []
 
 
-Overfull \hbox (29.00337pt too wide) in paragraph at lines 159--160
+Overfull \hbox (29.00337pt too wide) in paragraph at lines 161--162
 []$\OMS/cmsy/m/n/10 :\OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^ \OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 INPUTVAR[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; i\OT1/cmr/m/n/10 ) = (\OML/cmm/m/it/10 InputType[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; i \OMS/cmsy/m/n/10 ^^@
  []
 
-[6] [7]
+[6] [7] [8]
 
-LaTeX Warning: Citation `estrada' on page 8 undefined on input line 254.
+LaTeX Warning: Citation `estrada' on page 9 undefined on input line 255.
 
-<images/totals.png, id=43, 602.25pt x 451.6875pt>
+<images/times/8andkulikov.png, id=46, 451.6875pt x 376.40625pt>
+File: images/times/8andkulikov.png Graphic file (type png)
+<use images/times/8andkulikov.png>
+Package pdftex.def Info: images/times/8andkulikov.png  used on input line 262.
+(pdftex.def)             Requested size: 345.0pt x 287.51907pt.
+<images/times/4paritykulikov.png, id=47, 451.6875pt x 376.40625pt>
+File: images/times/4paritykulikov.png Graphic file (type png)
+<use images/times/4paritykulikov.png>
+Package pdftex.def Info: images/times/4paritykulikov.png  used on input line 268.
+(pdftex.def)             Requested size: 345.0pt x 287.51907pt.
+
+LaTeX Warning: Reference `totals' on page 9 undefined on input line 275.
+
+<images/totals.png, id=48, 602.25pt x 451.6875pt>
 File: images/totals.png Graphic file (type png)
 <use images/totals.png>
-Package pdftex.def Info: images/totals.png  used on input line 263.
+Package pdftex.def Info: images/totals.png  used on input line 278.
 (pdftex.def)             Requested size: 345.0pt x 258.76027pt.
-[8]
-<images/3rand_sizes.png, id=47, 803.0pt x 602.25pt>
-File: images/3rand_sizes.png Graphic file (type png)
-<use images/3rand_sizes.png>
-Package pdftex.def Info: images/3rand_sizes.png  used on input line 281.
-(pdftex.def)             Requested size: 345.0pt x 258.75108pt.
-<images/4rand_sizes.png, id=49, 803.0pt x 602.25pt>
-File: images/4rand_sizes.png Graphic file (type png)
-<use images/4rand_sizes.png>
-Package pdftex.def Info: images/4rand_sizes.png  used on input line 286.
-(pdftex.def)             Requested size: 345.0pt x 258.75108pt.
+[9] [10 </home/august/satbounding/report/images/times/8andkulikov.png>]
 
+LaTeX Warning: Citation `arora' on page 11 undefined on input line 291.
 
-LaTeX Warning: Citation `arora' on page 9 undefined on input line 292.
-
-[9 </home/august/satbounding/report/images/totals.png>] (/home/august/satbounding/report/draft1.bbl
+<images/random/4bit_scatter.png, id=56, 602.25pt x 451.6875pt>
+File: images/random/4bit_scatter.png Graphic file (type png)
+<use images/random/4bit_scatter.png>
+Package pdftex.def Info: images/random/4bit_scatter.png  used on input line 294.
+(pdftex.def)             Requested size: 345.0pt x 258.76027pt.
+<images/random/4bit_sizes.png, id=57, 602.25pt x 451.6875pt>
+File: images/random/4bit_sizes.png Graphic file (type png)
+<use images/random/4bit_sizes.png>
+Package pdftex.def Info: images/random/4bit_sizes.png  used on input line 299.
+(pdftex.def)             Requested size: 345.0pt x 258.76027pt.
+[11 </home/august/satbounding/report/images/times/4paritykulikov.png>] [12 </home/august/satbounding/report/images/totals.png>] (/home/august/satbounding/report/draft1.bbl [13 </home/august/satbounding/report/images/random/4bit_scatter.png>]
 
 /home/august/satbounding/report/draft1.bbl:10: Package inputenc Error: Unicode character ∑ (U+2211)
 (inputenc)                not set up for use with LaTeX.
@@ -254,7 +278,6 @@ l.10 \newblock ∑
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[10 </home/august/satbounding/report/images/3rand_sizes.png>]
 
 /home/august/satbounding/report/draft1.bbl:20: LaTeX Error: \mathcal allowed only in math mode.
 
@@ -279,7 +302,7 @@ l.20 ...vizations of the \$\mathcal{P} = ?\mathcal
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[11 </home/august/satbounding/report/images/4rand_sizes.png>]
+[14 </home/august/satbounding/report/images/random/4bit_sizes.png>]
 /home/august/satbounding/report/draft1.bbl:56: Undefined control sequence.
 l.56 \newblock \url
                    {https://github.com/niklasso/minisat/tree/master/doc}, 2010.
@@ -307,7 +330,7 @@ l.80 \newblock An explicit lower bound of 5n −
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[12]) [13] (/home/august/satbounding/report/draft1.aux)
+[15]) [16] (/home/august/satbounding/report/draft1.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -316,18 +339,18 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 1235 strings out of 483183
- 18284 string characters out of 5966291
- 249519 words of memory out of 5000000
- 16273 multiletter control sequences out of 15000+600000
+ 1255 strings out of 483183
+ 18834 string characters out of 5966291
+ 250572 words of memory out of 5000000
+ 16289 multiletter control sequences out of 15000+600000
  537881 words of font info for 42 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 30i,7n,25p,997b,211s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,7n,25p,1064b,211s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/august/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on /home/august/satbounding/report/draft1.pdf (14 pages, 250915 bytes).
+Output written on /home/august/satbounding/report/draft1.pdf (17 pages, 258312 bytes).
 PDF statistics:
- 127 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
+ 139 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

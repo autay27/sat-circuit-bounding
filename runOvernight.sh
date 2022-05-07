@@ -21,12 +21,20 @@
 
 #./makeProblems.sh 9 stdtables/partialparity/4rows8parity4.table stdprobs/kulikov/partialparity/4rows8parity4
 
+#ts-node reduce.ts 8 stdtables/parity/4parity.table -extvars 50000 > stdprobs/kulikov/extvars/4parity/8gates_50kvars.problem
+
+#./getTimes.sh stdprobs/kulikov/extvars/8and maplesat
 
 
-i=1
-while [[ "$i" -le 64 ]] 
-do
-        ./getTimes.sh stdprobs/kulikov/random3/4bits${i}th maplesat
-        i=$((i+1))
-done
+./getTimes.sh stdprobs/kulikov/extvars2/4mod3_50k maplesat
+
+./getTimes.sh stdprobs/kulikov/extvars2/4mod3_100k maplesat
+
+./getTimes.sh stdprobs/kulikov/extvars2/4mod3_200k maplesat
+
+./getTimes.sh stdprobs/kulikov/extvars2/4parity_50k maplesat
+
+./getTimes.sh stdprobs/kulikov/extvars2/4parity_100k maplesat
+
+./getTimes.sh stdprobs/kulikov/extvars2/4parity_200k maplesat
 

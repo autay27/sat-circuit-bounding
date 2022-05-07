@@ -1,0 +1,12 @@
+maplesat kulikov extvars 4parity 8gates_50kvars.problem 6.030602800 5.990056315 5.975470113 UNSAT
+
+maplesat kulikov extvars 4parity 8gates_100kvars.problem 4.625177994 4.619071693 4.616403074 UNSAT
+
+maplesat kulikov extvars 4parity 8gates_200kvars.problem 7.571951368 7.564409245 7.573213783 UNSAT
+
+maplesat kulikov extvars 4parity 9gates_50kvars.problem 53.225993405 53.218558919 53.173228503 UNSAT
+
+maplesat kulikov extvars 4parity 9gates_100kvars.problem 60.135272566 60.320595755 60.137376607 UNSAT
+
+maplesat kulikov extvars 4parity 9gates_200kvars.problem 44.738810429 44.805008039 44.760953671 UNSAT
+

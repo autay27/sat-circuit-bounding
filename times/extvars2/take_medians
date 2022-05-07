@@ -1,0 +1,3 @@
+cat maplesat_stdprobs_kulikov_extvars2_4parity_50k20220506_085043 | grep -o "[0-9]*\.[0-9]* [0-9]*\.[0-9]* [0-9]*\.[0-9]*" 
+
+
