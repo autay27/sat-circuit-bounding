@@ -4,7 +4,11 @@ set output "4bit_scatter.png"
 set xlabel 'Minimum size'
 set ylabel 'Total time to check for sizes 1-11' 
 
+set xrange [3:12] 
+set xtics 4, 1, 11
+
 plot 'sizes_totaltimes' using 2:3 with points pt 7 ps 1 notitle
+
 
 #set output "4bit_scatter_small.png"
 

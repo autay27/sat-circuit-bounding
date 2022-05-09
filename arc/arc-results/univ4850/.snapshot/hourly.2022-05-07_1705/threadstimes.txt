@@ -1,0 +1,8 @@
+--trying 8and 4parity with 4,8,16,32 threads
+34.747321046
+29.945871538
+21.151815720
+30.115308116
+--now trying mod3 6bits1 with 16,32 threads
+2412.774007124 (32 threads)
+4260.305150343 (16 threads)

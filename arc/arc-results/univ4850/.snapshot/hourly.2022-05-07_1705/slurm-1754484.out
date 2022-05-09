@@ -1,0 +1,10 @@
+searching for smallest sat. problem in problems/6bits1/; Using glucose-syrup; 32 threads; results output to glucose-syrup_problems_6bits1_20220326_142034
+Checking 1th file
+cat: /tmp/tmp.yVlHHkQdE9: No such file or directory
+mktemp: failed to create file via template ‘/tmp/tmp.XXXXXXXXXX’: No such file or directory
+searching for smallest sat. problem in problems/6bits0/; Using glucose-syrup; 32 threads; results output to glucose-syrup_problems_6bits0_20220330_030038
+Checking 1th file
+./searchMinGates.sh: line 42: $result: ambiguous redirect
+Checking 2th file
+./searchMinGates.sh: line 42: $result: ambiguous redirect
+slurmstepd: error: *** JOB 1754484 ON arc-c108 CANCELLED AT 2022-04-08T03:20:54 DUE TO TIME LIMIT ***

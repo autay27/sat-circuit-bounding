@@ -5,9 +5,8 @@
 set terminal png size 600, 500
 set output ("%d.png",ARG1)
 
-set title ARG1
 set xlabel 'Gates'
-set ylabel 'Times (s)' 
+set ylabel 'Time (s)' 
 
 #show correct # gates
 if(ARG2 > 0) {
@@ -16,6 +15,9 @@ if(ARG2 > 0) {
 
 set key left
 
-plot ARG3 using ($4):($5+$6+$7)/3 with linespoints title 'maplesat', \
-    ARG4 using ($4):($5+$6+$7)/3 with linespoints title 'minisat', \
-    ARG5 using ($4):($5+$6+$7)/3 with linespoints title 'picosat' 
+max(x, y) = (x > y ? x : y)
+median(x,y,z) = (x > y ? (x < z ? x : max(z,y)) : (y < z ? y : max(x,z)))
+    
+plot ARG3 using ($4):(median($5,$6,$7)) with linespoints title 'maplesat', \
+    ARG4 using ($4):(median($5,$6,$7)) with linespoints title 'minisat', \
+    ARG5 using ($4):(median($5,$6,$7)) with linespoints title 'picosat' 

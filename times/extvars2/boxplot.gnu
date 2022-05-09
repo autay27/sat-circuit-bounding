@@ -9,10 +9,8 @@ set output "boxplot_".ARG1.".png"
 set ylabel 'Seconds'
 set xlabel 'Number of extension axioms added' 
 
-set style data boxplot
-
-#set yrange [0:13]
-#set ytics 0,1,12
+set style data boxplot 
+set style boxplot fraction 1
 
 set yrange [20:160]
 set xtics ('0' 1, '50,000' 2, '100,000' 3, '200,000' 4)

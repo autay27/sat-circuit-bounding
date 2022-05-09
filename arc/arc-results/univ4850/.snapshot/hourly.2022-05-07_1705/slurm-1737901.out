@@ -1,0 +1,3 @@
+searching for smallest sat. problem in problems/6bits1/; Using glucose-syrup; 32 threads; results output to glucose-syrup_problems_6bits1_20220323_132512
+Checking 1th file
+slurmstepd: error: *** JOB 1737901 ON arc-c223 CANCELLED AT 2022-03-25T01:25:29 DUE TO TIME LIMIT ***
