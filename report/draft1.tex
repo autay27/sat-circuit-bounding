@@ -6,12 +6,13 @@
 
 \begin{titlepage}
 \title{Searching for circuit complexity lower bounds using SAT solvers}
+\author{Candidate 1042155\\Trinity Term 2022\\MCompsci Computer Science}
 \maketitle
 \end{titlepage}
 
 \begin{abstract}
 Where the abstract will go
-\end{abstract}
+\end{abstract},
 
 \tableofcontents
 
@@ -19,27 +20,31 @@ Where the abstract will go
 
 \subsection{Motivation}
 
-Finding lower bounds on the size of Boolean circuits computing given Boolean functions is one of the most fundamental and most challenging problems in computer science. Despite the fact that the majority of functions require exponential circuits, the best lower bounds proven on unrestricted circuits are only linear~\cite{boppana} and we still do not have optimal circuits or close upper and lower bounds for many important functions. Results in this area can be used to separate computational complexity classes, possibly even P and NP (i.e. to show that a large class of fundamental and practically useful problems do not have polynomially fast algorithms).~\cite{arora} 
+A Boolean circuit consists of a network of gates computing simple boolean functions such as AND, OR and NOT, connected such that on any input, the gates compute some set of outputs. Finding lower bounds on the size of circuits computing given Boolean functions is one of the most fundamental and most challenging problems in computer science. Results in this area can be used to separate computational complexity classes. 
 
-If functions with circuits of a given complexity could be identified by an efficient algorithm, this could be used to construct efficient learning algorithms for circuits of a smaller complexity; this would resolve one of the biggest questions in learning theory.~\cite{carmosino} Furthermore, such an algorithm could be used to break pseudorandom generators (i.e. distinguish random from pseudorandom inputs).~\cite{arora} As a result, this problem has strong connections in both learning theory and cryptography.
+For example, since P (the class of problems decidable in polynomial time in the length of the input) is contained within $P_{/poly}$ (the class of problems decidable by a family of circuits each of whose size is polynomial in the length of the input), then to separate P from NP (problems decidable by a non-deterministic Turing machine in polynomial time) it suffices to prove that NP $\notin P_{/poly}$, i.e. to find a function in NP which cannot be decided by a polynomial-size family of circuits. This would prove that a large class of fundamental and practically useful problems do not necessarily have polynomially fast algorithms~\cite{arora}. 
 
-A heuristic approach is to find minimal circuits for small instances of the functions. This can be used to prove new bounds~\cite{kulikovsurvey} and may lead to theoretical insights on the structure of their optimal circuits generally~\cite{williams}. Finding efficient circuits is also necessary in practice when designing electronic systems. 
+The majority of functions do require exponential circuits, which can be seen from a simple counting argument noting that the number of possible circuits is far higher than the number of possible Boolean encodings of small circuits~\cite{arora}. Despite this fact, the best lower bounds proven on unrestricted circuits are only linear~\cite{boppana} and we still do not have optimal circuits or close upper and lower bounds for many important functions.
 
-One approach to automating the search for efficient circuits is to reduce the problem of designing a correct circuit (logical design synthesis) to the Boolean satisfiability problem (SAT). Existing algorithms (SAT solvers) can then be used to solve the problem, either finding a correct circuit of fixed size or generating a proof that none exists~\cite{kulikov}. SAT solvers have become increasingly powerful in recent years *cite* and now have many industrial applications*cite*; the wide range of heuristics implemented by different SAT solvers means that one suited to the problem at hand could be found or developed. *cite* 
+If functions with circuits of a given complexity could be identified by an efficient algorithm, this could be used to construct efficient learning algorithms for circuits of a smaller complexity; this would resolve one of the biggest questions in learning theory~\cite{carmosino}. Furthermore, such an algorithm could be used to break pseudorandom generators (i.e. distinguish random from pseudorandom inputs)~\cite{razborov94}. As a result, this problem has strong connections in both learning theory and cryptography.
 
-*how to extend it*
+A heuristic approach is to find minimal circuits for small instances of the functions. This can be used to prove new bounds~\cite{kulikovsurvey} and may lead to theoretical insights on the structure of their optimal circuits generally~\cite{williams}. Doing this for small functions computing natural like parity, modulo and addition allows us to gain a greater understanding of their difficulty and compute them more efficiently when using low-level code or hardware. 
+
+Finding efficient circuits is also necessary in practice when designing electronic systems. Electronic circuit design is an extensive field of its own, involving circuit simulation software to test designs, or hardware specification languages such as Verilog and circuit synthesis software to convert specifications into circuits. However, electronic circuit design is concerned with a wider range of problems (for example, functions whose output changes over time) and with concerns about correct physical implementation; we focus on abstract circuits.
+
+One approach to automating the search for efficient circuits is to reduce the problem of designing a correct circuit (logical design synthesis) to the Boolean satisfiability problem (SAT). Existing algorithms (SAT solvers) can then be used to solve the problem, either finding a correct circuit of fixed size or generating a proof that none exists~\cite{kulikov}. SAT solvers have become increasingly powerful in recent years and now have many industrial applications\cite{prasad}; the wide range of heuristics implemented by different SAT solvers means that one suited to the problem at hand could be found or developed. 
 
 \subsection{Previous work}
 
-Circuits are a popular model of non-uniform computation. In the past there have been theoretical proofs of lower bounds for restricted circuit classes, e.g. AC0\cite{furst81}\cite{ajtai83}, AC0[k] (i.e. AC0 additionally with MOD-k gates)\cite{razborov87}\cite{smolensky87}, and monotone circuits\cite{razborov85}. However, no lower bounds better than 5n-c\cite{iwama02} have been found for general circuits. Furthermore, there are results stating that it is impossible to use circuit lower bounds to separate P and NP by relativising methods\cite{baker75}, algebrizing methods\cite{aaronson09}, or (under standard crpytpgraphic assumptions) so-called 'natural proofs'\cite{razborov94}. It has been proved that circuit lower bounds are hard to prove using resolution and resolution with k-DNFS, and it is conjectured that they are also hard under stronger proof systems such as Frege systems\cite{raz}. Due to this difficulty in theoretical progress, we would like to investigate the problem empirically.
+Circuits are a popular model of computation; they are non-uniform, meaning that in a family of circuits where each takes a different size of input, each circuit is independent and not constructed by a common algorithm. Notably, this means that circuits are not subject to the Space and Time Hierachy Theorems, although there is a Non-Uniform Hierarchy Theorem stating that larger circuits can compute strictly more functions than smaller ones~\cite{arora}. In the past there have been theoretical proofs of lower bounds for restricted circuit classes, such as $AC^0$ (functions computed by circuit families of $O(1)$ depth)~\cite{furst81}~\cite{ajtai83}, $AC^0[k]$ (i.e. $AC^0$ additionally with MOD-k gates)~\cite{razborov87}~\cite{smolensky87}, and monotone circuits~\cite{razborov85}. There was also a bound showing the practical impossibility of deciding bounded-size formulae in a certain second-order language~cite{stockmeyer02}. However, no lower bounds better than (3+1/86)n-o(n) have been found for general circuits over the basis $B_2$ consisting of all functions on 2 bits~\cite{find16}, while the best bound is 5n-c for the basis $U_2 = \{ \land, \lor, \neg\}$~\cite{lachish01}~\cite{iwama02}. Furthermore, there are results stating that it is impossible to use circuit lower bounds to separate P and NP by relativising methods~\cite{baker75}, algebrizing methods~\cite{aaronson09}, or (under standard cryptographic assumptions) so-called `natural proofs'~\cite{razborov94}. A formula in Disjunctive Normal Form (DNF) is one consisting of clauses (disjunctions of literals), with the final formula consisting of the conjunction of all clauses; a k-DNF is one where the number of literals in one clause is at most k. It has been proved that circuit lower bounds are hard to prove using resolution and resolution with k-DNFS, and it is conjectured that they are also hard for stronger proof systems such as Frege systems~\cite{raz}. 
 
-Kamath et al~\cite{kamath} propose a reduction from logical design synthesis to SAT which fixes the DNF structure of the circuit and number of disjunctions used. Experiments using this reduction to find minimal circuits for 2-4 bit adders and multipliers are reported in~\cite{estrada}. Kojevnikov et al~\cite{kulikov} demonstrate a more general reduction allowing any circuit with a fixed number of gates, proving linear bounds for \(MOD^n_3\) circuits over different Boolean bases. This was done by checking for circuit 'building blocks' with 5 to 11 gates. In~\cite{kulikovlocal} Kulikov et al. used the same reduction to improve large circuit building blocks by searching for smaller versions of their sub-circuits. Specifically, linear upper bounds were proved or verified for \(SUM\), \(MOD^n_4\), and \(MOD^n_3\) by checking for circuits with up to 13 gates (they remarked that checking for existence of a Boolean circuit of size 13 was out of reach). Knuth also used SAT solvers to investigate lower bounds for \(MOD^n_3\) \cite{knuth15}.
+Due to this difficulty in theoretical progress, we would like to investigate the problem empirically. SAT solvers provide a useful heuristic, as they allow us to examine small examples of the problem and find concrete rather than asymptotic bounds; due to improvements in SAT solver performance over the past years, this approach has now been put into practice. For example, Kamath et al~\cite{kamath} propose a reduction from logical design synthesis to SAT which fixes the DNF structure of the circuit and number of disjunctions used. Experiments using this reduction to find minimal circuits for 2-4 bit adders and multipliers are reported in~\cite{estrada}. Kojevnikov et al~\cite{kulikov} demonstrate a more general reduction allowing any circuit with a fixed number of gates, proving linear bounds for \(MOD^n_3\) circuits (computing whether the number of bits is equal to n modul0 3) over different Boolean bases. This was done by checking for circuit `building blocks' with 5 to 11 gates. In~\cite{kulikovlocal} Kulikov et al. used the same reduction to improve large circuit building blocks by searching for smaller versions of their sub-circuits. Specifically, linear upper bounds were proved or verified for \(SUM\), \(MOD^n_4\), and \(MOD^n_3\) by checking for circuits with up to 13 gates (they remarked that checking for existence of a Boolean circuit of size 13 was out of reach). Knuth also used SAT solvers to investigate lower bounds for \(MOD^n_3\)~\cite{knuth15}.
 
 \subsection{Our contributions}
 
 We investigate feasible ways to find small circuits using SAT reductions. Previous research in this area has focused on a small number of target Boolean functions and a single reduction at a time. Instead, we use multiple combinations of reductions and SAT solvers to see which leads to the best performance. We test them on a range of symmetric functions whose lower bounds are already somewhat understood, in order to analyse the performance in relation to the bound. 
 
-We also search for a general relationship between solver performance and minimum circuit size by applying our methods to a sample of randomly generated functions. We then use solvers to prove a result, that a lower bound conjecture about MOD-3 functions due to Knuth\cite{knuth15} does not hold for the de Morgan basis. 
+We also search for a general relationship between solver performance and minimum circuit size by applying our methods to a sample of randomly generated functions. We then use solvers to prove a result, that a lower bound conjecture about MOD-3 functions due to Knuth~\cite{knuth15} does not hold for the de Morgan basis $U_2$. 
 
 From these experiments we note that available solvers running on a personal computer can decide the existence of some circuits of size 11 in just a few hours, while others of size 11 and 12 can take many hours on a high-powered computing cluster (13 and above were not investigated). That is to say, the amount of time taken to solve comparable problems can vary considerably.
 
@@ -49,55 +54,55 @@ Exploring an additional possibility for improving performance, we find that addi
 
 \subsection{General setting}
 
-Denote by \(B_{n,m}\) the set of all Boolean functions \(f: \{0,1\}^n \to \{0,1\}^m\) and let \(B_n = B_{n,1}\). A circuit over the basis \(A \subseteq B_2\) is a directed acyclic graph with nodes of in-degree 0 or 2. Nodes of in-degree 0 are called inputs. Nodes of in-degree 2 are assigned functions from \(A\) and are called gates. Some nodes may be also be marked as outputs.
+Denote by \(B_{n,m}\) the set of all Boolean functions \(f: \{0,1\}^n \to \{0,1\}^m\) and let \(B_n = B_{n,1}\). A circuit over the basis \(A \subseteq B_2\) is a finite directed acyclic graph with nodes of in-degree 0 or 2. Nodes of in-degree 0 are called inputs. Nodes of in-degree 2 are assigned functions from \(A\) and are called gates. Some nodes may be also be marked as outputs.
 
-Without loss of generality, we can also assert that every gate has a larger index than both of its predecessors (i.e. the gates are sorted topologically w.r.t. the used numbering); that every gate's second predecessor has a larger index than its first predecessor; and that the last gate is an output.~\cite{kulikov}
+Without loss of generality, we can also assert that every gate has a larger index than both of its predecessors (i.e. the gates are sorted topologically w.r.t. the used numbering); that every gate's second predecessor has a larger index than its first predecessor; and that the last gate is an output ~\cite{kulikov}.
 
-A circuit \(c\) of size N is said to compute the function \(f\in B_{n,m}\) if, for all input vectors \(v\in\{0,1\}^n\) in the range of \(f\), \(c(v)=f(v)\), where \(c(v) = (o_1,...o_m)\) are the values of the output gates of \(c\), each input \(x_i\) takes value \(v_i\), and each gate takes the value of its assigned function when applied to the value of its two predecessor nodes.
+A circuit \(C\) of size $N$ is said to compute the function \(f\in B_{n,m}\) if, for all input vectors \(v\in\{0,1\}^n\) in the range of \(f\), \(C(v)=f(v)\), where \(C(v) = (o_1,...o_m)\) are the values of the output gates of \(C\), each input \(x_i\) takes value \(v_i\), and each gate takes the value of its assigned function when applied to the value of its two predecessor nodes.
 
-In this paper, we mainly consider circuits over the De Morgan basis \[C_2 = \{\lor, \land, \neg\}\] where \(\neg\) denotes the Boolean function which outputs the negation of its first argument.
+In this paper, we mainly consider circuits over the De Morgan basis \[U_2 = \{\lor, \land, \neg\}\] where \(\neg\) denotes the Boolean function which outputs the negation of its first argument.
 
-The size of a circuit is its number of gates. We define the circuit existence problem as the question of whether, given a truth table for a function \(f: \{0,1\}^n \to \{0,1\}^m\), there exists a circuit of size N computing \(f\).
+The size of a circuit is its number of gates. We define the Minimum Circuit Size Problem (MCSP) as the question of whether, given a natural number $N$ and a function \(f: \{0,1\}^n \to \{0,1\}^m\), there exists a circuit of size $N$ computing \(f\).
 
 \subsection{SAT solvers}
 
-SAT solvers have previously seen success in proving mathematical theorems, most famously in 2016 when Heule et al solved the Boolean Pythagorean Triples problem\cite{heule} and in 2020 when Brakensiek, Heule et al solved Keller's conjecture\cite{heule2}. In general, SAT solvers have the advantage of being effective even when heuristics are not known for solving the original problem, as in the case of circuit existence.
+SAT solvers have previously seen success in proving mathematical theorems, most famously in 2016 when Heule et al solved the Boolean Pythagorean Triples problem~\cite{heule} and in 2020 when Brakensiek, Heule et al solved Keller's conjecture~\cite{heule2}. In general, SAT solvers have the advantage of being effective even when heuristics are not known for solving the original problem, as in the case of MCSP.
 
-We used three SAT solvers, all based on conflict-driven clause learning. This is an algorithm closely related to DPLL, and which also makes use of the resolution proof system.\cite{cdcl}\cite{krajicek} As mentioned earlier, this means that they cannot decide general circuit lower bounds with a less than exponential-length proof.\cite{raz} However, this asymptotic bound still allows for reasonably-sized proofs for small inputs such as the ones investigated in this paper. 
+We used three SAT solvers, all based on conflict-driven clause learning (CDCL). This is an algorithm closely related to the Davis–Putnam–Logemann–Loveland (DPLL) algorithm, and which is also based on the resolution proof system~\cite{cdcl}~\cite{krajicek}. As mentioned earlier, this means that they cannot decide general circuit lower bounds with a less than exponential-length proof~\cite{raz}. However, this asymptotic bound still allows for reasonably-sized proofs for small inputs such as the ones investigated in this paper. 
 
-The general idea of CDCL is to choose an assignment to a variable, propagate it (simplify the problem by removing clauses that now evaluate to true), and repeat until either finding a satisfying assignment, or finding that our assignment makes the formula unsatisfiable: in which case, add a 'learned clause' to the formula according to a procedure incorporating resolution, and then 'backtrack' (remove recent assignments so the formula is no longer unsatisfiable - if this is impossible, the answer is UNSAT) before trying again.
+The general idea of CDCL is to choose an assignment to a variable, propagate it (simplify the problem by removing clauses that now evaluate to true), and repeat until either finding a satisfying assignment, or finding that our assignment makes the formula unsatisfiable: in which case, add a `learned clause' to the formula according to a procedure incorporating resolution, and then `backtrack' (remove recent assignments so the formula is no longer unsatisfiable - if this is impossible, the answer is UNSAT) before trying again.
 
-MiniSAT\cite{minisat} was the winner of the 2005 SAT Competition and was last updated to version 2.2 in 2010\cite{minisat2010}. Despite being old, it is well-documented and the other solvers we used were based on it, making it a good baseline for performance. It was also one of the solvers used to decide circuit existence in \cite{kulikov}.
+MiniSAT~\cite{minisat} was the winner of the 2005 SAT Competition and was last updated to version 2.2 in 2010~\cite{minisat2010}. Despite being old, it is well-documented and the other solvers we used were based on it, making it a good baseline for performance. It was also one of the solvers used to decide MCSP in~\cite{kulikov}.
 
-PicoSAT is a solver inspired by miniSAT 1.14, with a focus on improving low-level performance by using optimised data structures\cite{picosat}. It was submitted in the 2010 SAT-Race, and was also one of the solvers used in \cite{kulikov} and the main one in \cite{kulikovlocal}.
+PicoSAT is a solver inspired by miniSAT 1.14, with a focus on improving low-level performance by using optimised data structures~\cite{picosat}. It was submitted in the 2010 SAT-Race, and was also one of the solvers used in~\cite{kulikov} and the main one in~\cite{kulikovlocal}.
 
 MapleSAT is the most recent solver, with variants having won the SAT Competition 2016 and placed second in 2017. It was based off MiniSAT 2.2 but has a different branching heuristic, incorporating ideas from machine learning\cite{maplesat}.
 
-Finally, in order to make full use of the Oxford ARC service and its distributed computing, the parallel solver Glucose-Syrup was used. This is a 2014 parallel version of the Glucose solver, which placed 4th in both the 2014 and 2015 SAT Competition. Glucose is a solver also based on MiniSAT 2.2, which uses a new heuristic to more accurately estimate the 'usefulness' of its learned clauses and regularly delete ones that are not as useful \cite{glucose}. Glucose-Syrup is an unusual 'non-portfolio' parallel solver which runs multiple instances of the same solver in parallel, but rather than taking a divide and conquer approach, uses new heuristics for sharing learned clauses between the instances in order to speed them up \cite{glucose-syrup}.
+Finally, in order to make full use of the Oxford ARC service and its distributed computing, the parallel solver Glucose-Syrup was used. This is a 2014 parallel version of the Glucose solver, which placed 4th in both the 2014 and 2015 SAT Competition. Glucose is a solver also based on MiniSAT 2.2, which uses a new heuristic to more accurately estimate the 'usefulness' of its learned clauses and regularly delete ones that are not as useful~\cite{glucose}. Glucose-Syrup is an unusual 'non-portfolio' parallel solver which runs multiple instances of the same solver in parallel, but rather than taking a divide and conquer approach, uses new heuristics for sharing learned clauses between the instances in order to speed them up~\cite{glucose-syrup}.
 
 \subsection{Extension axioms}
 
 A relatively unexplored method for speeding up SAT solvers is adding extension axioms to the initial formula by the following method:
 
 \begin{enumerate}
-  \item Let $l_1$, $l_2$ be existing literals chosen from the formula and let q be a fresh variable (the extension variable).
+  \item Let $l_1$, $l_2$ be existing literals chosen from the formula and let $q$ be a fresh variable, known as the extension variable.
   \item Add the clauses
   \[
-    {\neg l_1, q}, {\neg l_2, q}, {l_1, l_2, \neg q}
+    \{\neg l_1, q\}, \{\neg l_2, q\}, \{l_1, l_2, \neg q\}
   \]
   These are known as extension axioms.
-  \item Repeat arbitrarily many times with new choices for $l_1$, $l_2$ and new fresh variable $q$. Note that the previously added q may also be chosen as a literal.
+  \item Repeat arbitrarily many times with new choices for $l_1$, $l_2$ and new fresh variable $q$. Note that the previously added $q$ may also be chosen as a literal.
 \end{enumerate}
 
-These axioms allow the SAT solver to use 'extended resolution' - resolving on a formula incorporating multiple literals, rather than on a single literal. This is possible since $q \leftrightarrow l_1 \lr l_2$ and $l_1$, $l_2$ may also be extension variables, allowing for larger formulae to be built. \cite{krajicek}
+These axioms allow the SAT solver to use `Extended Resolution' - resolving on a formula incorporating multiple literals, rather than on a single literal. This is possible since $q \leftrightarrow l_1 \lr l_2$ and $l_1$, $l_2$ may also be extension variables, allowing for larger formulae to be built~\cite{krajicek}.
 
 \subsection{Reduction to SAT}
 
-We encoded the circuit existence problem as a Boolean formula using three reductions. Let $t$ be the target function with $n$ inputs, and let $N$ be the number of gates required in the circuit.
+We encoded the MCSP as a Boolean formula using three reductions. Let $t$ be the target function with $n$ inputs, and let $N$ be the number of gates required in the circuit.
 
 \subsubsection{Kojevnikov reduction}
 
-The first is due to Kojevnikov et al~\cite{kulikov} who present it together with bounds on the growth rate of the formula. In particular, the growth rate of the number of clauses is $O(N \cdot 2^n)$. The basis of the circuit can be specified as any subset of \(B_2\).
+The first is due to Kojevnikov et al~\cite{kulikov} who present it together with bounds on the growth rate of the formula. In particular, the growth rate of the number of clauses is $O(N \cdot 2^n)$. The basis of the circuit can be restricted to any subset of \(B_2\).
 
 It uses the following variables:
 
@@ -138,7 +143,7 @@ We encode the requirements for the circuit by the following clauses:
 
 \subsubsection{Razborov reduction}
 
-The second is due to Razborov~\cite{raz}, assumes the function outputs only a single Boolean value, and requires a circuit over the basis \(C_2\). Note that it has a lower growth rate (in terms of number of clauses) than the other two reductions - $O(N \cdot 2^n)$ as opposed to $O(N^3 \cdot 2^n)$ - suggesting it encodes the requirements more efficiently.
+The second is due to Razborov~\cite{raz}, assumes the function outputs only a single Boolean value, and requires a circuit over the basis \(U_2\). Note that it has a lower growth rate (in terms of number of clauses) than the other two reductions - $O(N \cdot 2^n)$ as opposed to $O(N^3 \cdot 2^n)$ - suggesting it encodes the requirements more efficiently.
 
 It uses the following variables:
 
@@ -192,7 +197,7 @@ We encode the requirements for the circuit by the following expressions:
 
 \subsubsection{Naive reduction}
 
-The third reduction is straightforward. It also assumes the function outputs only a single Boolean value and requires a circuit over the basis \(C_2\). The growth rate for the number of clauses is $O(N \cdot 2^n)$, the same as for the Kojevnikov reduction.
+The third reduction is straightforward. It also assumes the function outputs only a single Boolean value and requires a circuit over the basis \(U_2\). The growth rate for the number of clauses is $O(N \cdot 2^n)$, the same as for the Kojevnikov reduction.
 
 It uses the following variables:
 
@@ -247,13 +252,13 @@ We encode the requirements for the circuit by the following clauses:
 
 \section{Results}
 
-Timed experiments were carried out on a 3.400GHz Intel i3-8130U processor running Linux. The times shown were obtained by running the software on the problem 3 times and taking the median.
+Timed experiments were carried out on a 3.400GHz Intel i3-8130U CPU, on a computer running Linux. The times shown were obtained by running the software on the problem 3 times and taking the median to ensure no anomalous times.
 
-Further experiments were conducted on the Oxford ARC service *cite* using 1 node which could run up to 32 processes in parallel. *add more details about ARC pleas
+Further experiments were conducted on the Oxford Advanced Research Computing (ARC) service, which provides access to high-powered computing. A 48 core Cascade Lake (Intel Xeon Platinum 8268 CPU @ 2.90GHz) CPU was used~\cite{arc}.
 
 \subsection{Comparison of Boolean functions}\label{funcresults}
 
-We investigated the relationship between the size of a circuit and the time taken for a SAT solver to confirm or deny its existence. We encoded a range of simple symmetric functions using the Kulikov encoding:
+We investigated the relationship between the size of a circuit and the time taken for a SAT solver to confirm or deny its existence. We encoded a range of simple symmetric functions using the Kojevnikov encoding:
 
 \begin{enumerate}
   \item AND on 7-bit and 8-bit inputs
@@ -264,77 +269,90 @@ We investigated the relationship between the size of a circuit and the time take
 
 We chose to investigate the existence of circuits up to 9 gates, as these were reliably solved within less than 9 hours on the single-processor hardware described.
 
-The size of the minimal circuit is shown in red*need to re-plot the graphs to make this work better*. It was found that the time needed to solve a problem tended to spike on or around the optimal circuit size. This may be because it is difficult to confirm or rule out circuits that come close to satisfying the requirements. Another possibility is that when close to the optimal size, there is the lowest proportion of satisfying circuits relative to the total amount of possible circuits, meaning that more of the search space must be explored (as opposed to quickly exploring it all at small sizes or quickly landing upon a satisfying circuit at large sizes). A similar phenomenon was reported in~\cite{estrada}. 
+The size of the minimal circuit is shown in red when it is under 10 gates. 
 
-Different functions took different amounts of time overall, varying between seconds and hours, something also seen in Section \ref{randomresults}. Performance for each function was not especially consistent between the solvers; usually they found the same things difficult, but the length of time each solver took for the difficult problems varied, for example in \ref{fig:8andkulikov} or. The extent of this can be seen in Section \ref{satresults}.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.75\textwidth]{images/times/8and_kulikov.png}
+  \caption{Times taken by SAT solvers to check for existence of a circuit computing AND on 8 bits, using the Kojevnikov reduction\label{fig:8and_kulikov}}
+  \includegraphics[width=0.75\textwidth]{images/times/4parity_naive.png}
+  \caption{Times taken by SAT solvers to check for existence of a circuit computing parity on 4 bits, using the Naive reduction\label{fig:4parity_naive}}
+\end{figure}
+
+It was found that the time needed to solve a problem tended to spike on or within 1 gate of the optimal circuit size. This may be because it takes longer to confirm or rule out circuits that come close to satisfying the requirements. Another possibility is that when close to the optimal size, there is the lowest proportion of satisfying circuits relative to the total amount of possible circuits, meaning that more of the search space must be explored (as opposed to quickly exploring it all at small sizes or quickly landing upon a satisfying circuit at large sizes). A similar phenomenon was reported in~\cite{estrada}. However, the time needed also tended to increase with the size of the circuit, even after a spike, reflecting the reductions' exponential growth in problem length with respect to size.
+
+Different functions took different amounts of time overall, varying between seconds and hours, something also seen in Section \ref{randomresults}, and as discussed there, the time appeared to be greater when the function had a greater optimal circuit size. Performance for each function was not especially consistent between the solvers; usually they found the same things difficult, but the length of time each solver took for the difficult problems varied, shown best in Figure \ref{fig:8and_kulikov}. The extent of this can be seen in Section \ref{satresults}.
 
 A complete display of graphs can be found in the appendix.
 
-\begin{figure}[!ht]
-  \includegraphics[width=\textwidth]{images/times/8andkulikov.png}
-  \label{fig:8andkulikov}
-  \caption{Times taken by SAT solvers to check for existence of a circuit computing AND on 8 bits}
-\end{figure}
-
-\begin{figure}[!ht]
-  \includegraphics[width=\textwidth]{images/times/4paritykulikov.png}
-  \label{fig:4paritykulikov}
-  \caption{Times taken by SAT solvers to check for existence of a circuit computing parity on 4 bits}
-\end{figure}
 
 \subsection{Comparison of SAT solvers and reductions} \label{satresults}
 
-We investigated whether there was a relationship between the reduction used to encode a Boolean function, the solver used, and the time taken by the solver. We took the total of the times each combination took to solve the problems from Section \ref{funcresults} and compared them as shown in \ref{totals}.
+We were interested in what would be the fastest solver and reduction to use for further experiments, so we investigated whether there was a relationship between the reduction used to encode a Boolean function, the solver used, and the time taken by the solver. We are not aware of any prior investigation into this area.
 
-\begin{figure}[!ht]
+We used the same three reductions and the MiniSAT, PicoSAT, and MapleSAT solvers. Glucose-Syrup was not included since it is a parallel solver, meaning the amount of time it takes is subject to different factors, e.g. number of threads available from the hardware and parallelisability of the problem, so it is not comparable.
+
+We took the total of the times each combination took to solve the problems from Section \ref{funcresults} and compared them as shown in Figure \ref{fig:totals}.
+
+\begin{figure}[h!]
   \includegraphics[width=\textwidth]{images/totals.png}
-  \label{fig:totals}
   \caption{Comparison of times taken by SAT solvers on different reductions}
+  \label{fig:totals}
 \end{figure}
 
-It can be seen that MapleSAT on the Kulikov encoding performs the best. Apart from this, the effect of the reduction and the solver seem to be independent, with MapleSAT consistently performing better than MiniSAT and PicoSAT, and the Naive and Kojevnikov reductions performing better than the Razborov reduction. It is possible that the efficient encoding of the Razborov reduction is detrimental to the performance of the solver. However, these results are only applicable to small values of n. 
+It can be seen that MapleSAT on the Kojevnikov encoding performs the best. Apart from this, the effect of the reduction and the solver seem to be independent.
+
+MapleSAT consistently performs better than MiniSAT and PicoSAT (probably because it is the most recent and builds upon the research that went into the other two), and PicoSAT occasionally `spikes' far worse on difficult problems than the other two, suggesting something about its modifications makes it especially unsuited for solving these reductions.
+
+The Naive and Kojevnikov reductions both performed better than the Razborov reduction, but which was best depended on the solver used. It is possible that the efficient encoding of the Razborov reduction is detrimental to the performance of the solver. However, these results are only applicable to small values of n.
+
+\clearpage 
 
 \subsection{Extension axioms}
 
 We investigated the effect of adding 50,000, 100,000, and 200,000 extension variables to the encodings for existence of 9-gate circuits for \(MOD_3\) and 4-bit parity functions. The literals were chosen uniformly at random using a pseudorandom number generator simulating a uniform distribution (specifically, xorshift128+ due to the TypeScript implementation). Taking note of the results from the previous section, we used the Kojevnikov reduction and MapleSAT.
 
-\begin{figure}[!ht]
-  \includegraphics[width=\textwidth]{images/extvars/boxplot_4parity_medians.png}
-  \label{fig:extparity}
-  \caption{Comparison of times taken to check existence of a 9-gate circuit for 4-bit parity}
-\end{figure}
+The results are displayed in Figures \ref{fig:extparity} and \ref{fig:extmod3} as boxplots, where each `box' contains half of the datapoints for that result, and the median is shown as a horizontal line dividing the box in half. The lines above and below each box (`whiskers') show the maximum and minimum, with all datapoints lying between them.
 
-\begin{figure}[!ht]
-  \includegraphics[width=\textwidth]{images/extvars/boxplot_4mod3_medians.png}
-  \label{fig:extmod3}
-  \caption{Comparison of times taken to check existence of a 9-gate circuit for \(MOD^0_3\)}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.75\textwidth]{images/extvars/boxplot_4parity_medians.png}
+  \caption{Comparison of times taken to check existence of a 9-gate circuit for 4-bit parity  \label{fig:extparity}}
+
+  \centering
+  \includegraphics[width=0.75\textwidth]{images/extvars/boxplot_4mod3_medians.png}
+  \caption{Comparison of times taken to check existence of a 9-gate circuit for \(MOD_3\)  \label{fig:extmod3}}
 \end{figure}
 
 On the \(MOD_3\) function, adding extension variables consistently increased the time for the solver, possibly due to a larger amount of clauses and variables needing to be dealt with at each step. However, for the parity function, adding 100,000 and 200,000 variables led to a speedup over 50 percent of the time. For both functions the median time was lowest when adding 100,000 variables, suggesting that this is a proportionate amount for the size of the problem (both problems had 401 variables and 37500 clauses, although a few of these were single-literal clauses that can be immediately simplified away by the solver).
+
+\clearpage 
 
 \subsection{Random functions}\label{randomresults}
 
 64 truth tables were generated for 4-bit inputs using the same pseudorandom generator as above. The existence of circuits of size 1 to 11 for these tables were encoded with the Kojevnikov reduction and solved using MapleSAT. The times taken to check for circuits are shown plotted against their optimal circuit size in \ref{fig:4rand_scatter} (note that 2 tables could not be fully solved within 9 hours; these functions have been omitted leading to a sample size of 62). The distribution of optimal circuit sizes is shown in \ref{fig:4rand_sizes}.
 
-The scatter graph shows a clustering in times between functions of the same optimal circuit size, but with a few outliers taking more time. This is most easily seen for sizes 10 and 11 (although the same is visible for 8 and 9 when plotted on a smaller scale). Also, the clustered functions of each optimal circuit size took strictly less time to solve than those with larger sizes, despite the fact that we always checked for existence up to 11 gates. This shows a generally strong relationship between the difficulty of checking circuit existence and the complexity of the function.
-
-While we expect a large proportion of circuits to be hard (i.e. have a large optimal circuit size) for large input sizes~\cite{arora}, the usual counting arguments break down for such small values of n. However, using the SAT solver we can check the number of hard circuits directly. While the small sample size can account for the irregular shape of the graph in \ref{fig:4rand_sizes}, there does appear to be a peak around 10 gates. This contradicts the intuition that there should be exponentially more harder functions, and suggests that there is quite a low upper limit on the complexity of a function which only can only vary over 4 bits of input. However, this is all under the assumption that the pseudorandom generator used did output a truly random sample; in reality, it may have sampled disproportionately many easy (or hard) functions.
-
-\begin{figure}[!ht]
+\begin{figure}[!h]
   \includegraphics[width=\textwidth]{images/random/4bit_scatter.png}
-  \label{fig:4rand_scatter}
   \caption{Time taken to check up to 11 gates for randomly chosen functions}
+  \label{fig:4rand_scatter}
 \end{figure}
-\begin{figure}[!ht]
-  \includegraphics[width=\textwidth]{images/random/4bit_sizes.png}
-  \label{fig:4rand_sizes}
-  \caption{Sizes of optimal circuits for 4-bit functions with randomly chosen truth tables}
 
+The scatter graph shows a clustering in times between functions of the same optimal circuit size, but with a few outliers taking more time. This is most easily seen for sizes 10 and 11 (although the same is visible for 8 and 9 when plotted on a smaller scale). Also, the clustered functions of each optimal circuit size took strictly less time to solve than those with larger sizes, despite the fact that we always checked for existence up to 11 gates. On closer inspection of the times for each function, a spike in length on or around the minimum size was usually observed, similarly to in \ref{satresults}. This shows a generally strong relationship between the difficulty of checking circuit existence and the complexity of the function.
+
+\begin{figure}[!h]
+  \includegraphics[width=\textwidth]{images/random/4bit_sizes.png}
+  \caption{Sizes of optimal circuits for 4-bit functions with randomly chosen truth tables}
+  \label{fig:4rand_sizes}
 \end{figure}
+
+While we expect a large proportion of circuits to be hard (i.e. have a large optimal circuit size) for large input sizes ~\cite{arora}, the usual counting arguments break down for such small values of n. However, using the SAT solver we can check the number of hard circuits directly. While the small sample size can account for the irregular shape of the graph in \ref{fig:4rand_sizes}, there does appear to be a peak around 10 gates. This contradicts the intuition that there should be exponentially more harder functions, and suggests that there is quite a low upper limit on the complexity of a function which only can only vary over 4 bits of input. However, this is all under the assumption that the pseudorandom generator used did output a truly random sample; in reality, it may have sampled disproportionately many easy (or hard) functions.
+
+
 
 \subsection{Knuth's MOD-3 conjecture}
 
-Define $MOD^{m,r}_n(x_1 \ldots x_n) = [x_1 + \lodts + x_n \equiv r $mod$ m]$, where $[b]$ is the Iverson bracket, i.e. evaluates to 1 if $b$ evaluates to true, else false.
+Define $MOD^{m,r}_n(x_1 \ldots x_n) = [x_1 + \ldots + x_n \equiv r $mod$ m]$, where $[b]$ is the Iverson bracket, i.e. evaluates to 1 if $b$ evaluates to true, else false.
 
 Based on the minimum circuit sizes he found for small sizes of n, Knuth conjectured that for all $r$, and $n \geq 3$, and over a full circuit basis
 
@@ -344,49 +362,45 @@ Based on the minimum circuit sizes he found for small sizes of n, Knuth conjectu
 
 He was able to confirm this for $3 \leq n \leq 5$ and all $r$, and for the case $n=6, r=0$, but not for the case $n=6, r=1$.
 
-We decided to try and check the hypothesis for $n=6, r=0$ and $n=6, r=1$ for the De Morgan basis. This involved checking for circuits for the function up to size 11 and 12, and 12 and 13 respectively. The Glucose-Syrup solver was used, running on the Oxford ARC service, which displayed gains in performance as the number of threads (so, parallel instances of the server working together) increased up to 32. *need to include some specs of ARC and citation*
+We decided to try and check the hypothesis for $n=6, r=0$ and $n=6, r=1$ for the De Morgan basis. This involved checking for circuits for the function up to size 11 and 12, and 12 and 13 respectively. The Glucose-Syrup solver was used, running on the Oxford ARC service with a maximum of 32 threads (so, 32 parallel instances of the server working together). In order to ensrue that the number of threads would lead to a gain in performance, rather than a drop due to the extra time needed to coordinate them, the SAT solver was timed on a smaller problem with 4, 8, 16 and 32 threads; it displayed gains in performance up to 32. 
 
 For the De Morgan basis, it was shown that Knuth's conjecture does not hold for $n=6, r=0$; confirming that there is no circuit size 11 took only 17 minutes, but confirming there is none of size 12 took 72.97 hours.
 
 For $n=6, r=0$, confirming that there is no circuit size 11 took 175.37 hours, while checking for size 12 did not terminate within the alloted 2 weeks of runtime.
 
-*honestly, not sure how to draw conclusions from this or whether I can add a few more results*
-
 \section{Discussion}
 
 \subsection{Reflection}
 
-The main practical lesson learned from this project was to think in the long term. Firstly, by writing code that can easily be adapted, i.e. following good OOP practices, so that less refactoring will be needed later, and by writing code that can scale to dealing with larger numbers as the scope and ambition of the project expands. This could be done by choosing a well-suited programming language, algorithms and data structures - I chose TypeScript and used arrays to store my CNF formulae, since these were familiar and easy for me to get started with, but the performance of my code on large circuits was an unexpected barrier later on, as well as the poor documentation of the different pseudorandom generators in TypeScript. Also, I was often too focused on quickly getting results rather than investing time in creating a convenient interface for the experiments or processing the resulting data, which led to wasted time in the long run.
+The main practical lesson learned from this project was to think in the long term. Firstly, by writing code that can easily be adapted, i.e. following good OOP practices, so that less refactoring will be needed later, and by writing code that can scale to dealing with larger numbers as the scope and ambition of the project expands. This could be done by choosing a well-suited programming language, algorithms and data structures - I chose TypeScript (a statically typed variant of Javascript) and used arrays to store my CNF formulae, since these were familiar and easy for me to get started with, but the performance of my code on large circuits was an unexpected barrier later on, as well as the poor documentation of the different pseudorandom generators in TypeScript. Also, I was often too focused on quickly getting results rather than investing time in creating a convenient interface for the experiments or processing the resulting data, which led to wasted time in the long run.
 
 On the academic side, I have begun to learn how to read and extract the information I need from papers, as well as how to write in the academic style and include a sufficient amount of references and background for my own report. I discovered that doing academic research is like any creative creative process, involving exploration, creativity, backtracking and the need to unify the ideas of the project into a central narrative. Furthermore, clear communication and precision is important, something I found out when I wrongly assumed the definitions of some common Boolean functions. I practiced analysing data, looking for patterns, applying my theoretical knowledge and drawing conclusions about the things that I was investigating. I also learned some techniques for visualising data in order to highlight the patterns within it to the reader.
 
-I started out by writing a program to reduce a single circuit to SAT using the Kojevnikov reduction, but quickly found it unwieldy and wrote a library of TypeScript objects to make it easy to read truth tables from files, store CNFs, quickly add certain types of clauses to them, and output them in the DIMACS format used by the SAT solvers. 
+I have begun to get a feel for how SAT solvers can be used in theoretical Computer Science. I have observed some of the current capabilities of solvers, the categories under which they are judged (such as general, industrial, and parallel) and the algorithms which power them, including by coding my own basic DPLL algorithm during preliminary experiments. I have learned more about the current state of research in circuit complexity and learned the idea of proof complexity as a result of my background reading, as well as discovering the various barriers that actually make proving the P vs NP problem so difficult.
+
+The timeline of my work on the project began with writing a Javascript program to reduce a single circuit to SAT using the Kojevnikov reduction. I quickly found it unwieldy and wrote a library of TypeScript objects to make it easy to read truth tables from files, store CNFs, quickly add certain types of clauses to them, and output them in the DIMACS format used by the SAT solvers. 
 
 Next I wrote reductions to various types of restricted circuits, such as monotonic, bounded-depth, and unbounded fan-in. However, since the problems for restricted circuits did not seem to be consistently harder or easier to solve in my preliminary experiments, I decided to focus on improving the performance for general circuits.
 
-I read about the Razborov reduction and wrote the program for it, as well as for the naive reduction. I investigated the different reductions' performances with the three SAT solvers at this point, in order to select the fastest one for use in further experiments, and concluded that I should use the Kulikov reduction with the MapleSAT solver.
+I read about the Razborov reduction and wrote the program for it, as well as for the naive reduction. I investigated the different reductions' performances with the three SAT solvers at this point, in order to select the fastest one for use in further experiments, and concluded that I should use the Kojevnikov reduction with the MapleSAT solver.
 
-Realising that more precise measurements were needed for the experiments, I investigated better methods to record the runtime of programs on the command line, beginning with using the 'time' command but progressing to storing the local start and end time in shell variables. I also gained a greater proficiency in using stream editors and gnuplot on the command line in order to process the data from my experiments, and learned \LaTeX  \ in order to present the results and theory necessary for my report.
+Realising that more precise measurements were needed for the experiments, I investigated better methods to record the runtime of programs on the command line, beginning with using the `time' command but progressing to storing the local start and end time in shell variables. I also gained a greater proficiency in using stream editors and gnuplot on the command line in order to process the data from my experiments, and learned \LaTeX  \ in order to present the results and theory necessary for my report.
 
 The rest of the project proceeded smoothly, conducting experiments for extension axioms and randomly generated functions, as well as learning how to use the Oxford ARC service with a parallel solver to investigate Knuth's conjecture. 
 
 \subsection{Conclusions}
 
--Choice of solver matters a lot (although this is quite obvious)
--Choice of reduction also matters a lot
--The time it takes to check for circuit existence is strongly related to its minimum size  (bigger -> more time)
--Same number of gates may be easier or harder for different boolean functions
--Alternative search methods (for min gates) than linear search may be a good idea, since we are looking for a 'spike' not an ordinary upward curve/straight line to the min.size
--we can get to 12 gates 
+We have confirmed that when conducting empirical investigation of circuit lower bounds, both the SAT solver and the SAT reduction used are critical for getting results without using too much time and resources. We demonstrated some different uses of the SAT solver to investigate theoretical ideas, including how high-powered computing can be incorporated to check for bigger circuits. 
+
+We also discovered that the amount of time it takes to check circuit existence for a function is related to the minimum size of its circuit, and that it usually takes longer when checking for a size that is closer to the minimum, although larger sizes are also usually more difficult. This suggests that there may be other ways to investigate, such as guessing the minimum size and checking on either side of it, or checking in parallel, rather than doing a linear search.
 
 \subsection{Further directions}
 
--Alternative search methods 
--trying some of the restricted circuits and bases from the early experimental stages
--Search for the circuit size for all 4-bit functions (or bigger eg. maybe 9 bits will allow the bounding trick to apply)
--searching for hard functions 
--more research in extension variables - the fact that extension axioms leading to improvements were found, even with no strategy or constraints on the axioms added, is promising for research in the topic. Even without a theoreticcal approach, you could just repeatedly generate bunch of ext vars, and do data analysis E.g. comparing performance to depth/size of circuits added, to whether we include literals for gate types or graph edges, doing different problem sizes and comparing performance to the proportion of variables added..
--Investigating why maplesat is best/comparing it to other recent-er solvers and seeing if any modifications can be made improving the solver for circuit problems in particular; same for the kojevnikov reduction, and thinking about how to modify it; also other reductions such as valiant circuits.
+Building on the experiments so far, it seems feasible to search for the circuit size for all 4-bit functions (there are 65536, but many of these are degenerate functions that ignore part of their inputs, or functions that compute the same bits in a different order) and for some other sizes in order to understand the distribution of minimum sizes for small inputs. Circuits with restricted depth, different bases and higher fan-in could also be investigated, for example to verify some of the stronger lower bounds that have been proved for them.
+
+The fact that extension axioms leading to improvements were found, even with no strategy or constraints on the axioms added, is promising for research in the topic. Even without theoretical research into strategies for adding the extension axioms, it would be interesting to do data analysis on a larger sample of randomly generated extension variables - for example, measuring the improvement in performance against the depth of circuits added or whether literals are chosen from the variables determining gate types or graph edges.
+
+It would also be a good idea to compare more recent SAT solvers on the circuit bounding problem, analyse the reasons behind the better performance of certain ones using prior research into SAT solvers, and explore they might be customised to suit the problem better. Similarly, it would be interesting to compare the Kojevnikov reduction to even more types of reductions and analyse why SAT solvers perform better on some than others.
 
 \bibliographystyle{plain} 
 \bibliography{sources}

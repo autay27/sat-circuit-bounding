@@ -1,6 +1,6 @@
 array files = ['maplesat_kulikov_total', 'maplesat_naive_total', 'maplesat_raz_total', 'minisat_kulikov_total', 'minisat_naive_total', 'minisat_raz_total', 'picosat_kulikov_total', 'picosat_naive_total', 'picosat_raz_total']
 
-array labels = ['Maplesat Kulikov', 'Maplesat naive', 'Maplesat Razborov', 'Minisat kulikov', 'Minisat naive', 'Minisat Razborov', 'Picosat Kulikov', 'Picosat naive', 'Picosat Razborov']
+array labels = ['Maplesat Kojevnikov', 'Maplesat Naive', 'Maplesat Razborov', 'Minisat Kojevnikov', 'Minisat Naive', 'Minisat Razborov', 'Picosat Kojevnikov', 'Picosat Naive', 'Picosat Razborov']
 
 max(x, y) = (x > y ? x : y)
 median(x,y,z) = (x > y ? (x < z ? x : max(z,y)) : (y < z ? y : max(x,z)))
