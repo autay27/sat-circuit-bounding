@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: draft1.aux
+The style file: plain.bst
+Database file #1: sources.bib
+Warning--empty booktitle in iwama02
+You've used 38 entries,
+            2118 wiz_defined-function locations,
+            724 strings with 9843 characters,
+and the built_in function-call counts, 13916 in all, are:
+= -- 1421
+> -- 520
+< -- 21
++ -- 213
+- -- 164
+* -- 797
+:= -- 2125
+add.period$ -- 124
+call.type$ -- 38
+change.case$ -- 189
+chr.to.int$ -- 0
+cite$ -- 39
+duplicate$ -- 636
+empty$ -- 1173
+format.name$ -- 164
+if$ -- 3133
+int.to.chr$ -- 0
+int.to.str$ -- 38
+missing$ -- 37
+newline$ -- 191
+num.names$ -- 82
+pop$ -- 257
+preamble$ -- 1
+purify$ -- 155
+quote$ -- 0
+skip$ -- 526
+stack$ -- 0
+substring$ -- 873
+swap$ -- 233
+text.length$ -- 21
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 144
+warning$ -- 1
+while$ -- 137
+width$ -- 40
+write$ -- 423
+(There was 1 warning)

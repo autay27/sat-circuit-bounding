@@ -1,0 +1,221 @@
+\begin{thebibliography}{10}
+
+\bibitem{aaronson09}
+Scott Aaronson and Avi Wigderson.
+\newblock Algebrization: A new barrier in complexity theory.
+\newblock {\em ACM Trans. Comput. Theory}, 1(1), feb 2009.
+
+\bibitem{ajtai83}
+M.~Ajtai.
+\newblock ∑11-formulae on finite structures.
+\newblock {\em Annals of Pure and Applied Logic}, 24(1):1--48, 1983.
+
+\bibitem{arora}
+Sanjeev Arora and Boaz Barak.
+\newblock {\em Computational complexity: a modern approach}.
+\newblock Cambridge University Press, 2009.
+
+\bibitem{glucose}
+Gilles Audemard and Laurent Simon.
+\newblock Predicting learnt clauses quality in modern sat solvers.
+\newblock In {\em Proceedings of the 21st International Joint Conference on
+  Artificial Intelligence}, IJCAI'09, page 399–404, San Francisco, CA, USA,
+  2009. Morgan Kaufmann Publishers Inc.
+
+\bibitem{glucose-syrup}
+Gilles Audemard and Laurent Simon.
+\newblock Lazy clause exchange policy for parallel sat solvers.
+\newblock In Carsten Sinz and Uwe Egly, editors, {\em Theory and Applications
+  of Satisfiability Testing -- SAT 2014}, pages 197--205, Cham, 2014. Springer
+  International Publishing.
+
+\bibitem{baker75}
+Theodore Baker, John Gill, and Robert Solovay.
+\newblock Relativizations of the \mathcal{P} = ?\mathcal{NP} question.
+\newblock {\em SIAM Journal on Computing}, 4(4):431--442, 1975.
+
+\bibitem{bayardo97}
+Roberto~J. Bayardo and Robert~C. Schrag.
+\newblock Using csp look-back techniques to solve real-world sat instances.
+\newblock In {\em Proceedings of the Fourteenth National Conference on
+  Artificial Intelligence and Ninth Conference on Innovative Applications of
+  Artificial Intelligence}, AAAI'97/IAAI'97, page 203–208. AAAI Press, 1997.
+
+\bibitem{picosat}
+Armin Biere.
+\newblock Picosat essentials.
+\newblock {\em JSAT}, 4:75--97, 05 2008.
+
+\bibitem{boppana}
+Ravi~B Boppana and Michael Sipser.
+\newblock The complexity of finite functions.
+\newblock In {\em Algorithms and complexity}, pages 757--804. Elsevier, 1990.
+
+\bibitem{heule2}
+Joshua Brakensiek, Marijn Heule, John Mackey, and David Narv{\'a}ez.
+\newblock The resolution of keller's conjecture.
+\newblock In Nicolas Peltier and Viorica Sofronie-Stokkermans, editors, {\em
+  Automated Reasoning}, pages 48--65, Cham, 2020. Springer International
+  Publishing.
+
+\bibitem{dimacs}
+John Burkardt.
+\newblock Cnf files.
+\newblock https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html.
+
+\bibitem{carmosino}
+Marco Carmosino, Russell Impagliazzo, Valentine Kabanets, and Antonina
+  Kolokolova.
+\newblock Learning algorithms from natural proofs.
+\newblock In {\em Computational Complexity Conference}, 2016.
+
+\bibitem{cook79}
+Stephen~A. Cook and Robert~A. Reckhow.
+\newblock The relative efficiency of propositional proof systems.
+\newblock {\em The Journal of Symbolic Logic}, 44(1):36--50, 1979.
+
+\bibitem{minisat}
+Niklas E{\'e}n and Niklas S{\"o}rensson.
+\newblock An extensible sat-solver.
+\newblock In Enrico Giunchiglia and Armando Tacchella, editors, {\em Theory and
+  Applications of Satisfiability Testing}, pages 502--518, Berlin, Heidelberg,
+  2004. Springer Berlin Heidelberg.
+
+\bibitem{minisat2010}
+Niklas E{\'e}n and Niklas S{\"o}rensson.
+\newblock minisat github repository.
+\newblock \url{https://github.com/niklasso/minisat/tree/master/doc}, 2010.
+
+\bibitem{estrada}
+Giovani~Gomez Estrada.
+\newblock A note on designing logical circuits using sat.
+\newblock In {\em International Conference on Evolvable Systems}, pages
+  410--421. Springer, 2003.
+
+\bibitem{find16}
+Magnus Find, Alexander Golovnev, Edward~A. Hirsch, and Alexander~S. Kulikov.
+\newblock A better-than-3n lower bound for the circuit complexity of an
+  explicit function.
+\newblock {\em 2016 IEEE 57th Annual Symposium on Foundations of Computer
+  Science (FOCS)}, pages 89--98, 2016.
+
+\bibitem{furst81}
+Merrick~L. Furst, James~B. Saxe, and Michael Sipser.
+\newblock Parity, circuits, and the polynomial-time hierarchy.
+\newblock {\em 22nd Annual Symposium on Foundations of Computer Science (sfcs
+  1981)}, pages 260--270, 1981.
+
+\bibitem{heule}
+Marijn J.~H. Heule, Oliver Kullmann, and Victor~W. Marek.
+\newblock Solving and verifying the boolean pythagorean triples problem via
+  cube-and-conquer.
+\newblock In {\em Theory and Applications of Satisfiability Testing
+  {\textendash} {SAT} 2016}, pages 228--245. Springer International Publishing,
+  2016.
+
+\bibitem{iwama02}
+Kazuo Iwama and Hiroki Morizumi.
+\newblock An explicit lower bound of 5n − o(n) for boolean circuits.
+\newblock pages 353--364, 08 2002.
+
+\bibitem{kamath}
+AP~Kamath, NK~Karmarkar, KG~Ramakrishnan, and MGC Resende.
+\newblock An interior point approach to boolean vector function synthesis.
+\newblock In {\em Proceedings of 36th Midwest Symposium on Circuits and
+  Systems}, pages 185--189. IEEE, 1993.
+
+\bibitem{knuth15}
+Donald~E Knuth.
+\newblock {\em The art of computer programming, Volume 4}.
+\newblock Addison-Wesley Professional, 2015.
+
+\bibitem{kulikov}
+Arist Kojevnikov, Alexander~S Kulikov, and Grigory Yaroslavtsev.
+\newblock Finding efficient circuits using sat-solvers.
+\newblock In {\em International Conference on Theory and Applications of
+  Satisfiability Testing}, pages 32--44. Springer, 2009.
+
+\bibitem{krajicek}
+Jan Kraj{\'\i}{\v{c}}ek.
+\newblock {\em Proof complexity}, volume 170.
+\newblock Cambridge University Press, 2019.
+
+\bibitem{kulikovsurvey}
+Alexander~S Kulikov.
+\newblock Improving circuit size upper bounds using sat-solvers.
+\newblock In {\em 2018 Design, Automation \& Test in Europe Conference \&
+  Exhibition (DATE)}, pages 305--308. IEEE, 2018.
+
+\bibitem{kulikovlocal}
+Alexander~S. Kulikov and Nikita Slezkin.
+\newblock Sat-based circuit local improvement, 2021.
+
+\bibitem{lachish01}
+Oded Lachish and Ran Raz.
+\newblock Explicit lower bound of 4.5n - o(n) for boolean circuits.
+\newblock In {\em Proc. of 33rd STOC (2001}, pages 399--408, 2001.
+
+\bibitem{maplesat}
+Jia~Hui Liang, Vijay Ganesh, Pascal Poupart, and K.~Czarnecki.
+\newblock Learning rate based branching heuristic for sat solvers.
+\newblock In {\em SAT}, 2016.
+
+\bibitem{cdcl}
+Joao Marques-Silva, Ines Lynce, and Sharad Malik.
+\newblock {\em The Handbook of Satisfiability, Chapter 4: Conflict-driven
+  clause learning SAT solvers}, pages 133--182.
+\newblock Frontiers in Artificial Intelligence and Applications. IOS Press BV,
+  2021.
+
+\bibitem{arc}
+University of~Oxford.
+\newblock Advanced research computing.
+\newblock https://www.arc.ox.ac.uk/arc-systems.
+
+\bibitem{prasad}
+Mukul~R. Prasad, Armin Biere, and Aarti Gupta.
+\newblock A survey of recent advances in sat-based formal verification.
+\newblock {\em International Journal on Software Tools for Technology
+  Transfer}, 7:156--173, 2004.
+
+\bibitem{razborov85}
+Alexander~A Razborov.
+\newblock Lower bounds for the monotone complexity of some boolean functions.
+\newblock In {\em Soviet Math. Dokl.}, volume~31, pages 354--357, 1985.
+
+\bibitem{razborov87}
+Alexander~A. Razborov.
+\newblock Lower bounds on the size of bounded depth circuits over a complete
+  basis with logical addition.
+\newblock {\em Mathematical notes of the Academy of Sciences of the USSR},
+  41:333--338, 1987.
+
+\bibitem{raz}
+Alexander~A Razborov.
+\newblock Pseudorandom generators hard for k-dnf resolution and polynomial
+  calculus resolution.
+\newblock {\em Annals of Mathematics}, pages 415--472, 2015.
+
+\bibitem{razborov94}
+Alexander~A. Razborov and Steven Rudich.
+\newblock Natural proofs.
+\newblock {\em Electron. Colloquium Comput. Complex.}, 1, 1994.
+
+\bibitem{smolensky87}
+Roman Smolensky.
+\newblock Algebraic methods in the theory of lower bounds for boolean circuit
+  complexity.
+\newblock In {\em In proceedings of the 19th Annual ACM Symposium on Theory of
+  Computing, STOC ’87}, pages 77--82, 1987.
+
+\bibitem{stockmeyer02}
+Larry Stockmeyer and Albert~R. Meyer.
+\newblock Cosmological lower bound on the circuit complexity of a small problem
+  in logic.
+\newblock {\em J. ACM}, 49(6):753–784, nov 2002.
+
+\bibitem{williams}
+Ryan Williams.
+\newblock Applying practice to theory, 2008.
+
+\end{thebibliography}
